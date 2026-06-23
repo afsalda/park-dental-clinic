@@ -386,16 +386,23 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
 }
 
-.reviews-badge .avatar-stack img {
+.reviews-badge .avatar-stack img,
+.reviews-badge .avatar-stack .avatar-item {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
   border: 2px solid rgba(255, 255, 255, 0.5);
   margin-left: -10px;
   object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-white);
 }
 
-.reviews-badge .avatar-stack img:first-child {
+.reviews-badge .avatar-stack img:first-child,
+.reviews-badge .avatar-stack .avatar-item:first-child {
   margin-left: 0;
 }
 
@@ -1157,16 +1164,23 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
 }
 
-.cta-reviews .avatar-stack img {
+.cta-reviews .avatar-stack img,
+.cta-reviews .avatar-stack .avatar-item {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
   border: 2px solid rgba(255, 255, 255, 0.5);
   margin-left: -12px;
   object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-white);
 }
 
-.cta-reviews .avatar-stack img:first-child {
+.cta-reviews .avatar-stack img:first-child,
+.cta-reviews .avatar-stack .avatar-item:first-child {
   margin-left: 0;
 }
 
