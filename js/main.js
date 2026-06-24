@@ -639,4 +639,149 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   setupCustomSelects();
+
+  // ── Reviews Infinite Marquee with Swipe & Hover ──────────────────
+  const setupReviewsMarquee = () => {
+    const marquee = document.querySelector('.reviews-marquee');
+    const track = document.querySelector('.review-track');
+    
+    if (!marquee || !track) return;
+    
+    const originalCards = Array.from(track.children);
+    if (originalCards.length === 0) return;
+
+    let trackWidth = 0;
+    let halfWidth = 0;
+    let lastObservedOffsetWidth = 0;
+    let currentX = 0;
+    const speed = 40; // Pixels per second
+    let isPaused = false;
+    let isDragging = false;
+    let startX = 0;
+    let startOffset = 0;
+    let lastTime = performance.now();
+    let animFrameId = null;
+
+    const rebuildTrack = () => {
+      // Temporarily clear track and restore original cards to measure them accurately
+      track.innerHTML = '';
+      originalCards.forEach(card => track.appendChild(card));
+      
+      // Reset transform before measuring
+      const prevTransform = track.style.transform;
+      track.style.transform = '';
+
+      // Measure single set width
+      let setWidth = 0;
+      originalCards.forEach(card => {
+        const style = window.getComputedStyle(card);
+        const marginRight = parseFloat(style.marginRight) || 0;
+        const marginLeft = parseFloat(style.marginLeft) || 0;
+        setWidth += card.offsetWidth + marginRight + marginLeft;
+      });
+      
+      if (setWidth === 0) return;
+      
+      const marqueeWidth = marquee.offsetWidth;
+      // We want to fill the track so its width is >= marqueeWidth + setWidth
+      const setsNeeded = Math.max(2, Math.ceil(marqueeWidth / setWidth) + 1);
+      
+      for (let s = 1; s < setsNeeded; s++) {
+        originalCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+      
+      halfWidth = setWidth;
+      trackWidth = setWidth * setsNeeded;
+      track.style.transform = prevTransform;
+      lastObservedOffsetWidth = track.offsetWidth;
+    };
+    
+    // Initial measurement and build
+    rebuildTrack();
+    
+    window.addEventListener('resize', rebuildTrack);
+    window.addEventListener('load', rebuildTrack);
+    
+    // Fallback recalculation
+    setTimeout(rebuildTrack, 500);
+
+    const animate = (now) => {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      // Auto-correct if layout width changes (e.g., stylesheets load after DOMContentLoaded)
+      if (track.offsetWidth !== lastObservedOffsetWidth || halfWidth === 0) {
+        rebuildTrack();
+      }
+
+      if (!isPaused && !isDragging && halfWidth > 0) {
+        currentX -= speed * delta;
+
+        // Seamless wrapping at half width boundary
+        if (currentX <= -halfWidth) {
+          currentX += halfWidth;
+        } else if (currentX > 0) {
+          currentX -= halfWidth;
+        }
+        
+        track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+      }
+
+      animFrameId = requestAnimationFrame(animate);
+    };
+
+    // Pause animation on mouse hover (desktop)
+    marquee.addEventListener('mouseenter', () => {
+      isPaused = true;
+    });
+
+    marquee.addEventListener('mouseleave', () => {
+      isPaused = false;
+      lastTime = performance.now();
+    });
+
+    // Touch Swipe handlers (mobile)
+    marquee.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].clientX;
+      startOffset = currentX;
+      lastTime = performance.now();
+    }, { passive: true });
+
+    marquee.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const currentTouchX = e.touches[0].clientX;
+      const deltaX = currentTouchX - startX;
+      
+      currentX = startOffset + deltaX;
+
+      // Wrap around offset dynamically during swipe drag to ensure infinite scroll
+      if (halfWidth > 0) {
+        if (currentX <= -halfWidth) {
+          currentX += halfWidth;
+          startX = currentTouchX;
+          startOffset = currentX;
+        } else if (currentX > 0) {
+          currentX -= halfWidth;
+          startX = currentTouchX;
+          startOffset = currentX;
+        }
+      }
+
+      track.style.transform = `translate3d(${currentX}px, 0, 0)`;
+    }, { passive: true });
+
+    marquee.addEventListener('touchend', () => {
+      isDragging = false;
+      lastTime = performance.now();
+    });
+    
+    // Start continuous rendering loop
+    animFrameId = requestAnimationFrame(animate);
+  };
+  
+  setupReviewsMarquee();
 });
