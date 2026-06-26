@@ -650,14 +650,29 @@
           </div>
 
           <div id="s2" style="display: none;">
-            <label class="fld-lbl" for="dt-in">Date</label>
-            <input type="date" id="dt-in" style="margin-bottom: 14px;">
+            <label class="fld-lbl">Date</label>
+            <input type="hidden" id="dt-in">
+            <div class="calendar-container" style="margin-bottom: 16px;">
+              <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                <div>
+                  <span id="cal-month-year" style="font-size: 14px; font-weight: 700; color: var(--color-text); font-family: var(--font-heading);"></span>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <button id="cal-today-btn" type="button">Today</button>
+                  <button id="cal-prev-btn" type="button" class="btn-cal-nav" aria-label="Previous month"><i class="ti ti-chevron-left" style="font-size: 14px;"></i></button>
+                  <button id="cal-next-btn" type="button" class="btn-cal-nav" aria-label="Next month"><i class="ti ti-chevron-right" style="font-size: 14px;"></i></button>
+                </div>
+              </div>
+              <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 8px;">
+                <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+              </div>
+              <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;"></div>
+            </div>
             <span class="sec-lbl">Time preference</span>
             <div id="time-grid"></div>
           </div>
 
           <div id="s3" style="display: none;">
-            <span style="display: inline-flex; align-items: center; gap: 5px; background: #d1fae5; color: #065f46; font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 14px; font-family: var(--font-body);"><i class="ti ti-check" aria-hidden="true" style="font-size: 12px;"></i>Free first consultation</span>
             
             <label class="fld-lbl" for="nm-in">Full name</label>
             <input type="text" id="nm-in" placeholder="e.g. Rahul Nair" autocomplete="name" style="margin-bottom: 12px;">

@@ -411,6 +411,95 @@ textarea {
   border-left: none !important;
   height: 46px;
 }
+
+/* Calendar Widget styling */
+.calendar-container {
+  background: var(--surface-1);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.btn-cal-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border);
+  background: var(--surface-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.btn-cal-nav:hover {
+  background: var(--surface-2);
+  border-color: var(--text-muted);
+  color: var(--text-primary);
+}
+
+#cal-today-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1.5px solid var(--border);
+  background: var(--surface-1);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+#cal-today-btn:hover {
+  background: var(--surface-2);
+  border-color: var(--text-muted);
+  color: var(--text-primary) !important;
+}
+
+.cal-day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.cal-day-cell:hover:not(.disabled):not(.selected) {
+  background-color: var(--bg-accent);
+  color: var(--text-accent);
+}
+
+.cal-day-cell.selected {
+  background-color: var(--fill-accent) !important;
+  color: var(--on-accent) !important;
+  font-weight: 600;
+}
+
+.cal-day-cell.today:not(.selected) {
+  background-color: var(--surface-2);
+  border: 1.5px solid var(--border-accent);
+  font-weight: 600;
+}
+
+.cal-day-cell.disabled {
+  color: var(--text-muted);
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cal-day-cell.empty {
+  cursor: default;
+}
 </style>
 
 <div class="wizard-overlay">
@@ -441,14 +530,29 @@ textarea {
 </div>
 
 <div id="s2" style="display: none;">
-  <label class="fld-lbl" for="dt-in">Date</label>
-  <input type="date" id="dt-in" style="margin-bottom: 14px;">
+  <label class="fld-lbl">Date</label>
+  <input type="hidden" id="dt-in">
+  <div class="calendar-container" style="margin-bottom: 16px;">
+    <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <div>
+        <span id="cal-month-year" style="font-size: 14px; font-weight: 700; color: var(--text-primary); font-family: 'Manrope', sans-serif;"></span>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button id="cal-today-btn" type="button">Today</button>
+        <button id="cal-prev-btn" type="button" class="btn-cal-nav" aria-label="Previous month"><i class="ti ti-chevron-left" style="font-size: 14px;"></i></button>
+        <button id="cal-next-btn" type="button" class="btn-cal-nav" aria-label="Next month"><i class="ti ti-chevron-right" style="font-size: 14px;"></i></button>
+      </div>
+    </div>
+    <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">
+      <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+    </div>
+    <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;"></div>
+  </div>
   <span class="sec-lbl">Time preference</span>
   <div id="time-grid"></div>
 </div>
 
 <div id="s3" style="display: none;">
-  <span style="display: inline-flex; align-items: center; gap: 5px; background: var(--bg-success); color: var(--text-success); font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 14px; font-family: 'Inter', sans-serif;"><i class="ti ti-check" aria-hidden="true" style="font-size: 12px;"></i>Free first consultation</span>
   
   <label class="fld-lbl" for="nm-in">Full name</label>
   <input type="text" id="nm-in" placeholder="e.g. Rahul Nair" autocomplete="name" style="margin-bottom: 12px;">
@@ -529,6 +633,9 @@ const stepMeta=[
 let cur=1;
 const bk={svc:'General Consultation',doc:'Any specialist (recommended)',date:'',time:''};
 
+let calMonth = new Date().getMonth();
+let calYear = new Date().getFullYear();
+
 const sg=document.getElementById('svc-grid');
 svcs.forEach((s,i)=>{
   const d=document.createElement('div');
@@ -559,8 +666,114 @@ times.forEach(t=>{
   tg.appendChild(el);
 });
 
-const today=new Date().toISOString().split('T')[0];
-document.getElementById('dt-in').min=today;
+const initCalendar = () => {
+  const prevBtn = document.getElementById('cal-prev-btn');
+  const nextBtn = document.getElementById('cal-next-btn');
+  const todayBtn = document.getElementById('cal-today-btn');
+  
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      calMonth--;
+      if (calMonth < 0) {
+        calMonth = 11;
+        calYear--;
+      }
+      renderCalendar();
+    };
+  }
+  
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      calMonth++;
+      if (calMonth > 11) {
+        calMonth = 0;
+        calYear++;
+      }
+      renderCalendar();
+    };
+  }
+  
+  if (todayBtn) {
+    todayBtn.onclick = () => {
+      const todayVal = new Date();
+      calMonth = todayVal.getMonth();
+      calYear = todayVal.getFullYear();
+      const todayStr = todayVal.toISOString().split('T')[0];
+      bk.date = todayStr;
+      const dtIn = document.getElementById('dt-in');
+      if (dtIn) dtIn.value = todayStr;
+      renderCalendar();
+    };
+  }
+  
+  renderCalendar();
+};
+
+const renderCalendar = () => {
+  const monthYearSpan = document.getElementById('cal-month-year');
+  const daysGrid = document.getElementById('calendar-days');
+  if (!monthYearSpan || !daysGrid) return;
+  
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  
+  const selectedDate = bk.date ? new Date(bk.date + ' 00:00') : null;
+  if (selectedDate) {
+    selectedDate.setHours(0,0,0,0);
+  }
+  
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  monthYearSpan.textContent = `${monthNames[calMonth]} ${calYear}`;
+  
+  daysGrid.innerHTML = '';
+  
+  const firstDayIndex = new Date(calYear, calMonth, 1).getDay();
+  const totalDays = new Date(calYear, calMonth + 1, 0).getDate();
+  
+  // Empty cells before first day of month
+  for (let i = 0; i < firstDayIndex; i++) {
+    const emptyCell = document.createElement('div');
+    emptyCell.className = 'cal-day-cell empty';
+    daysGrid.appendChild(emptyCell);
+  }
+  
+  // Days in the month
+  for (let day = 1; day <= totalDays; day++) {
+    const dayCell = document.createElement('div');
+    dayCell.className = 'cal-day-cell';
+    dayCell.textContent = day;
+    
+    const cellDate = new Date(calYear, calMonth, day);
+    cellDate.setHours(0,0,0,0);
+    
+    // Check if disabled (before today)
+    if (cellDate < today) {
+      dayCell.classList.add('disabled');
+    } else {
+      dayCell.onclick = () => {
+        const formattedDate = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        bk.date = formattedDate;
+        const dtIn = document.getElementById('dt-in');
+        if (dtIn) dtIn.value = formattedDate;
+        renderCalendar();
+      };
+    }
+    
+    // Check if selected
+    if (selectedDate && cellDate.getTime() === selectedDate.getTime()) {
+      dayCell.classList.add('selected');
+    }
+    
+    // Check if today
+    if (cellDate.getTime() === today.getTime()) {
+      dayCell.classList.add('today');
+    }
+    
+    daysGrid.appendChild(dayCell);
+  }
+};
+
+initCalendar();
 
 function updateDots(){
   ['d1','d2','d3'].forEach((id,i)=>{

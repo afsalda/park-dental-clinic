@@ -373,6 +373,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   let cur=1;
   const bk={svc:'General Consultation',doc:'Any specialist (recommended)',date:'',time:''};
+
+  let calMonth = new Date().getMonth();
+  let calYear = new Date().getFullYear();
   
   // Render grids and slots dynamically
   const initWizard = () => {
@@ -423,6 +426,113 @@ document.addEventListener('DOMContentLoaded', () => {
     if (dtIn) {
       dtIn.min=today;
       dtIn.value = bk.date;
+    }
+  };
+
+  const initCalendar = () => {
+    const prevBtn = document.getElementById('cal-prev-btn');
+    const nextBtn = document.getElementById('cal-next-btn');
+    const todayBtn = document.getElementById('cal-today-btn');
+    
+    if (prevBtn) {
+      prevBtn.onclick = () => {
+        calMonth--;
+        if (calMonth < 0) {
+          calMonth = 11;
+          calYear--;
+        }
+        renderCalendar();
+      };
+    }
+    
+    if (nextBtn) {
+      nextBtn.onclick = () => {
+        calMonth++;
+        if (calMonth > 11) {
+          calMonth = 0;
+          calYear++;
+        }
+        renderCalendar();
+      };
+    }
+    
+    if (todayBtn) {
+      todayBtn.onclick = () => {
+        const todayVal = new Date();
+        calMonth = todayVal.getMonth();
+        calYear = todayVal.getFullYear();
+        const todayStr = todayVal.toISOString().split('T')[0];
+        bk.date = todayStr;
+        const dtIn = document.getElementById('dt-in');
+        if (dtIn) dtIn.value = todayStr;
+        renderCalendar();
+      };
+    }
+    
+    renderCalendar();
+  };
+
+  const renderCalendar = () => {
+    const monthYearSpan = document.getElementById('cal-month-year');
+    const daysGrid = document.getElementById('calendar-days');
+    if (!monthYearSpan || !daysGrid) return;
+    
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    
+    const selectedDate = bk.date ? new Date(bk.date + ' 00:00') : null;
+    if (selectedDate) {
+      selectedDate.setHours(0,0,0,0);
+    }
+    
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    monthYearSpan.textContent = `${monthNames[calMonth]} ${calYear}`;
+    
+    daysGrid.innerHTML = '';
+    
+    const firstDayIndex = new Date(calYear, calMonth, 1).getDay();
+    const totalDays = new Date(calYear, calMonth + 1, 0).getDate();
+    
+    // Empty cells before first day of month
+    for (let i = 0; i < firstDayIndex; i++) {
+      const emptyCell = document.createElement('div');
+      emptyCell.className = 'cal-day-cell empty';
+      daysGrid.appendChild(emptyCell);
+    }
+    
+    // Days in the month
+    for (let day = 1; day <= totalDays; day++) {
+      const dayCell = document.createElement('div');
+      dayCell.className = 'cal-day-cell';
+      dayCell.textContent = day;
+      
+      const cellDate = new Date(calYear, calMonth, day);
+      cellDate.setHours(0,0,0,0);
+      
+      // Check if disabled (before today)
+      if (cellDate < today) {
+        dayCell.classList.add('disabled');
+      } else {
+        dayCell.onclick = () => {
+          const formattedDate = `${calYear}-${String(calMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+          bk.date = formattedDate;
+          const dtIn = document.getElementById('dt-in');
+          if (dtIn) dtIn.value = formattedDate;
+          renderCalendar();
+        };
+      }
+      
+      // Check if selected
+      if (selectedDate && cellDate.getTime() === selectedDate.getTime()) {
+        dayCell.classList.add('selected');
+      }
+      
+      // Check if today
+      if (cellDate.getTime() === today.getTime()) {
+        dayCell.classList.add('today');
+      }
+      
+      daysGrid.appendChild(dayCell);
     }
   };
   
@@ -501,6 +611,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const ntIn = document.getElementById('nt-in');
     if (ntIn) ntIn.value = '';
     
+    calMonth = new Date().getMonth();
+    calYear = new Date().getFullYear();
+    renderCalendar();
+
     initWizard();
     setStep(1);
   };
@@ -641,6 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   initWizard();
+  initCalendar();
 
   // ── Reviews Infinite Marquee with Swipe & Hover ──────────────────
   const setupReviewsMarquee = () => {

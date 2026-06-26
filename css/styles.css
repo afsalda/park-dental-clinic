@@ -2702,3 +2702,93 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 0 3px var(--color-primary-light);
 }
 
+/* Calendar Widget styling */
+.calendar-container {
+  background: var(--color-white);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.btn-cal-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.2s;
+}
+
+.btn-cal-nav:hover {
+  background: var(--color-border-light);
+  border-color: var(--color-text-muted);
+  color: var(--color-text);
+}
+
+#cal-today-btn {
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-white);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: var(--font-body);
+  color: var(--color-text-secondary);
+  transition: all 0.2s;
+}
+
+#cal-today-btn:hover {
+  background: var(--color-border-light);
+  border-color: var(--color-text-muted);
+  color: var(--color-text) !important;
+}
+
+.cal-day-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease;
+}
+
+.cal-day-cell:hover:not(.disabled):not(.selected) {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-dark);
+}
+
+.cal-day-cell.selected {
+  background-color: var(--color-primary) !important;
+  color: var(--color-white) !important;
+  font-weight: 600;
+}
+
+.cal-day-cell.today:not(.selected) {
+  background-color: var(--color-border-light);
+  border: 1.5px solid var(--color-primary);
+  font-weight: 600;
+}
+
+.cal-day-cell.disabled {
+  color: var(--color-text-muted);
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.cal-day-cell.empty {
+  cursor: default;
+}
+
+
