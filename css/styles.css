@@ -1878,6 +1878,78 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-sm);
     text-align: center;
   }
+
+  /* Appointment Booking Modal Mobile Styling Optimization */
+  #booking-modal .modal-container {
+    border: none;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
+    padding: var(--space-xl);
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #booking-modal .modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+  }
+
+  #booking-modal .modal-header {
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-border-light);
+    padding-right: 40px;
+  }
+
+  #booking-modal .modal-header .text-h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  #booking-modal .modal-body {
+    overflow-y: auto;
+    flex: 1;
+    padding-right: 4px;
+  }
+
+  #booking-modal .booking-form {
+    gap: 12px;
+  }
+
+  #booking-modal .form-group {
+    gap: 4px;
+  }
+
+  #booking-modal .form-group-row {
+    gap: 12px;
+  }
+
+  #booking-modal .form-group input,
+  #booking-modal .form-group select,
+  #booking-modal .form-group textarea {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-border);
+  }
+
+  #booking-modal .btn-block {
+    padding: 12px;
+  }
+
+  #booking-modal .form-actions {
+    gap: var(--space-sm);
+    margin-top: var(--space-sm);
+  }
+
+  @media (max-width: 600px) {
+    #booking-modal .form-group-row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════
