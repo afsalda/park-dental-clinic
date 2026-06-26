@@ -2668,3 +2668,37 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   width: 100%;
 }
+
+.wizard-card-embedded input[type=text],
+.wizard-card-embedded input[type=tel],
+.wizard-card-embedded input[type=date],
+.wizard-card-embedded textarea,
+.wizard-card input[type=text],
+.wizard-card input[type=tel],
+.wizard-card input[type=date],
+.wizard-card textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--color-text);
+  background: var(--color-white);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.wizard-card-embedded input[type=text]:focus,
+.wizard-card-embedded input[type=tel]:focus,
+.wizard-card-embedded input[type=date]:focus,
+.wizard-card-embedded textarea:focus,
+.wizard-card input[type=text]:focus,
+.wizard-card input[type=tel]:focus,
+.wizard-card input[type=date]:focus,
+.wizard-card textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
