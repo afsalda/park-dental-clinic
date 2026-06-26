@@ -22,35 +22,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Mobile Menu Toggle ────────────────────────────────────────────
   const navToggle = document.querySelector('.nav-toggle');
-  const navLinks = document.querySelector('.nav-links');
+  const mobileDrawer = document.getElementById('mobile-nav-drawer');
+  const drawerClose = document.getElementById('drawer-close');
   const overlay = document.querySelector('.mobile-menu-overlay');
+
+  const openMobileMenu = () => {
+    if (navToggle) navToggle.classList.add('open');
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+    }
+    if (overlay) overlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMobileMenu = () => {
+    if (navToggle) navToggle.classList.remove('open');
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+    }
+    if (overlay) overlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  };
 
   if (navToggle) {
     navToggle.addEventListener('click', () => {
-      const isOpen = navToggle.classList.toggle('open');
-      navLinks.classList.toggle('open', isOpen);
-      overlay.classList.toggle('visible', isOpen);
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
+  }
 
-    // Close menu on overlay click
-    if (overlay) {
-      overlay.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        overlay.classList.remove('visible');
-        document.body.style.overflow = '';
-      });
-    }
+  if (drawerClose) {
+    drawerClose.addEventListener('click', closeMobileMenu);
+  }
 
-    // Close menu on link click
-    navLinks.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        navLinks.classList.remove('open');
-        overlay.classList.remove('visible');
-        document.body.style.overflow = '';
-      });
+  if (overlay) {
+    overlay.addEventListener('click', closeMobileMenu);
+  }
+
+  // Close menu on link click inside the drawer
+  if (mobileDrawer) {
+    mobileDrawer.querySelectorAll('.drawer-link, .drawer-cta').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
     });
   }
 
@@ -193,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Active Nav Link Highlight ─────────────────────────────────────
   const sections = document.querySelectorAll('section[id]');
-  const navLinkItems = document.querySelectorAll('.nav-link[href^="#"]');
+  const navLinkItems = document.querySelectorAll('.nav-link[href^="#"], .drawer-link[href^="#"]');
 
   if (sections.length > 0 && navLinkItems.length > 0) {
     const sectionObserver = new IntersectionObserver((entries) => {
