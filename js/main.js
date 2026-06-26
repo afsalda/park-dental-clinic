@@ -343,12 +343,178 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── Event Bindings ────────────────────────────────────────────────
   
+  const svcs=[
+    {label:'General Consultation',img:'images/icon-treatment.png'},
+    {label:'Dental Implants',img:'images/icon-implants.png'},
+    {label:'Cosmetic Dentistry',img:'images/icon-veneers.png'},
+    {label:'Root Canal',img:'images/icon-prosthetics.png'},
+    {label:'Teeth Whitening',img:'images/icon-whitening.png'},
+    {label:'Braces & Aligners',img:'images/icon-braces.png'}
+  ];
+  const docs=[
+    {name:'Any specialist (recommended)',role:'We\'ll match you to the right doctor',init:'✦'},
+    {name:'Dr. Monish',role:'Chief Dental Surgeon',init:'M'},
+    {name:'Dr. Manu M. Das',role:'Maxillofacial Surgeon',init:'M'},
+    {name:'Dr. Aswani Anil',role:'Pedodontist',init:'A'},
+    {name:'Dr. Nikhil Julian',role:'Endodontist',init:'N'},
+    {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'}
+  ];
+  const times=[
+    {t:'10:00 – 12:00',l:'Morning'},
+    {t:'12:00 – 14:00',l:'Mid-day'},
+    {t:'14:00 – 17:00',l:'Afternoon'},
+    {t:'17:00 – 19:30',l:'Evening'}
+  ];
+  const stepMeta=[
+    {num:'Step 1 of 3',title:'What brings you in?',sub:'Select your service and preferred specialist'},
+    {num:'Step 2 of 3',title:'When works for you?',sub:'Pick a preferred date and time'},
+    {num:'Step 3 of 3',title:'Your details',sub:'We\'ll confirm your appointment shortly'}
+  ];
+  
+  let cur=1;
+  const bk={svc:'General Consultation',doc:'Any specialist (recommended)',date:'',time:''};
+  
+  // Render grids and slots dynamically
+  const initWizard = () => {
+    const sg=document.getElementById('svc-grid');
+    if (sg) {
+      sg.innerHTML = '';
+      svcs.forEach((s,i)=>{
+        const d=document.createElement('div');
+        d.className='svc-card'+(s.label===bk.svc?' sel':'');
+        d.innerHTML=`<div class="svc-icon"><img src="${s.img}" alt="${s.label}" style="width: 100%; height: 100%; object-fit: contain;"></div><span class="svc-label">${s.label}</span>`;
+        d.onclick=()=>{document.querySelectorAll('.svc-card').forEach(c=>c.classList.remove('sel'));d.classList.add('sel');bk.svc=s.label;};
+        sg.appendChild(d);
+      });
+    }
+    
+    const dl=document.getElementById('doc-list');
+    if (dl) {
+      dl.innerHTML = '';
+      docs.forEach((d,i)=>{
+        const el=document.createElement('div');
+        el.className='doc-card'+(d.name===bk.doc?' sel':'');
+        el.dataset.docName=d.name;
+        el.innerHTML=`<div class="doc-av">${d.init}</div><div><p class="doc-name">${d.name}</p><p class="doc-role">${d.role}</p></div><div class="doc-radio">${d.name===bk.doc?'<i class="ti ti-check" style="font-size: 10px; color: var(--color-white);" aria-hidden="true"></i>':''}</div>`;
+        el.onclick=()=>{
+          document.querySelectorAll('.doc-card').forEach(c=>{c.classList.remove('sel');c.querySelector('.doc-radio').innerHTML='';});
+          el.classList.add('sel');
+          el.querySelector('.doc-radio').innerHTML='<i class="ti ti-check" aria-hidden="true"></i>';
+          bk.doc=d.name;
+        };
+        dl.appendChild(el);
+      });
+    }
+    
+    const tg=document.getElementById('time-grid');
+    if (tg) {
+      tg.innerHTML = '';
+      times.forEach(t=>{
+        const el=document.createElement('div');
+        el.className='t-slot'+(t.t===bk.time?' sel':'');
+        el.innerHTML=`<span class="t-main">${t.t}</span><span class="t-lbl">${t.l}</span>`;
+        el.onclick=()=>{document.querySelectorAll('.t-slot').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');bk.time=t.t;};
+        tg.appendChild(el);
+      });
+    }
+    
+    const today=new Date().toISOString().split('T')[0];
+    const dtIn = document.getElementById('dt-in');
+    if (dtIn) {
+      dtIn.min=today;
+      dtIn.value = bk.date;
+    }
+  };
+  
+  const updateDots = () => {
+    ['d1','d2','d3'].forEach((id,i)=>{
+      const dot=document.getElementById(id);
+      if (dot) {
+        if(i+1<cur)dot.style.background='var(--color-primary-dark)';
+        else if(i+1===cur)dot.style.background='var(--color-primary)';
+        else dot.style.background='var(--color-border)';
+      }
+    });
+  };
+  
+  const setStep = (n) => {
+    const s1 = document.getElementById('s1');
+    const s2 = document.getElementById('s2');
+    const s3 = document.getElementById('s3');
+    if (!s1 || !s2 || !s3) return;
+    
+    s1.style.display='none';
+    s2.style.display='none';
+    s3.style.display='none';
+    
+    cur=n;
+    document.getElementById('s'+n).style.display='block';
+    
+    const m=stepMeta[n-1];
+    document.getElementById('snum').textContent=m.num;
+    document.getElementById('stitle').textContent=m.title;
+    document.getElementById('ssub').textContent=m.sub;
+    updateDots();
+    
+    const bk_btn=document.getElementById('bbk');
+    bk_btn.classList.toggle('invis',n===1);
+    
+    const nxt=document.getElementById('bnx');
+    const foot=document.getElementById('foot');
+    
+    if(n===3){
+      nxt.style.display='none';
+      bk_btn.style.display='flex';
+      let wa=foot.querySelector('.wa-actions-container');
+      if(!wa){
+        wa=document.createElement('div');
+        wa.className='wa-actions-container';
+        wa.style.cssText='flex: 1; display: flex; flex-direction: column; gap: 0;';
+        wa.innerHTML='<button class="btn-wa" id="bwa"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.001-2.63-1.019-5.101-2.872-6.958-1.85-1.856-4.322-2.874-6.941-2.875-5.44.001-9.866 4.417-9.87 9.851-.001 1.776.477 3.51 1.385 5.048L2.013 21.75l6.096-1.597z"/></svg>Book via WhatsApp</button><button class="btn-cb" id="bcb">Request a callback instead</button>';
+        foot.appendChild(wa);
+        document.getElementById('bwa').onclick=doWA;
+        document.getElementById('bcb').onclick=doCB;
+      }
+    } else {
+      nxt.style.display='flex';
+      const oldWA=foot.querySelector('.wa-actions-container');
+      if(oldWA)oldWA.remove();
+    }
+  };
+  
+  const resetWizard = () => {
+    cur = 1;
+    bk.svc = 'General Consultation';
+    bk.doc = 'Any specialist (recommended)';
+    bk.date = '';
+    bk.time = '';
+    
+    const dtIn = document.getElementById('dt-in');
+    if (dtIn) dtIn.value = '';
+    
+    const nmIn = document.getElementById('nm-in');
+    if (nmIn) nmIn.value = '';
+    
+    const phIn = document.getElementById('ph-in');
+    if (phIn) phIn.value = '';
+    
+    const ntIn = document.getElementById('nt-in');
+    if (ntIn) ntIn.value = '';
+    
+    initWizard();
+    setStep(1);
+  };
+  
+  const selectDoctorInWizard = (docName) => {
+    bk.doc = docName;
+    initWizard();
+  };
+
   // 1. Booking triggers
   document.querySelectorAll('.trigger-booking').forEach(trigger => {
     trigger.addEventListener('click', (e) => {
       e.preventDefault();
-      // Reset form on open
-      document.getElementById('booking-form').reset();
+      resetWizard();
       openModal('booking-modal');
     });
   });
@@ -385,20 +551,8 @@ document.addEventListener('DOMContentLoaded', () => {
     docModalBookBtn.addEventListener('click', () => {
       const docName = docModalBookBtn.getAttribute('data-doctor-name');
       closeModal('doctor-modal');
-      
-      // Auto-select doctor in booking form
-      const docSelect = document.getElementById('booking-doctor');
-      if (docSelect) {
-        // Find option containing the doctor's name
-        for (let i = 0; i < docSelect.options.length; i++) {
-          if (docSelect.options[i].value.includes(docName)) {
-            docSelect.selectedIndex = i;
-            // Manually dispatch change event to update custom select UI
-            docSelect.dispatchEvent(new Event('change'));
-            break;
-          }
-        }
-      }
+      resetWizard();
+      selectDoctorInWizard(docName);
       openModal('booking-modal');
     });
   }
@@ -411,62 +565,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ── Appointment Form Submissions ──────────────────────────────────
-  const bookingForm = document.getElementById('booking-form');
-  const toast = document.getElementById('success-toast');
-
-  if (bookingForm) {
-    // Submit via WhatsApp
-    bookingForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('booking-name').value.trim();
-      const phone = document.getElementById('booking-phone').value.trim();
-      const service = document.getElementById('booking-service').value;
-      const doctor = document.getElementById('booking-doctor').value;
-      const date = document.getElementById('booking-date').value;
-      const time = document.getElementById('booking-time').value;
-      const notes = document.getElementById('booking-notes').value.trim();
-
-      // Format WhatsApp message
-      let message = `Hello Park Dental Clinic,\n\nI would like to book a dental appointment:\n`;
-      message += `• Name: ${name}\n`;
-      message += `• Phone: ${phone}\n`;
-      message += `• Service: ${service}\n`;
-      message += `• Doctor: ${doctor}\n`;
-      message += `• Preferred Date: ${date}\n`;
-      message += `• Preferred Time: ${time}\n`;
-      if (notes) {
-        message += `• Notes: ${notes}\n`;
-      }
-      
-      const whatsappUrl = `https://wa.me/919846918974?text=${encodeURIComponent(message)}`;
-      
-      closeModal('booking-modal');
-      // Open WhatsApp link in new tab
-      window.open(whatsappUrl, '_blank', 'noopener');
-    });
-
-    // Request Callback Option
-    const callbackBtn = document.getElementById('submit-callback');
-    if (callbackBtn) {
-      callbackBtn.addEventListener('click', () => {
-        const nameInput = document.getElementById('booking-name');
-        const phoneInput = document.getElementById('booking-phone');
-
-        // Simple validation check before submitting callback
-        if (!nameInput.value.trim() || !phoneInput.value.trim()) {
-          nameInput.reportValidity() || phoneInput.reportValidity();
+  // Navigation actions
+  const nextBtn = document.getElementById('bnx');
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      if (cur === 1) {
+        setStep(2);
+      } else if (cur === 2) {
+        bk.date = document.getElementById('dt-in').value;
+        if (!bk.date) {
+          alert('Please select a date.');
           return;
         }
-
-        closeModal('booking-modal');
-        showToast();
-      });
-    }
+        if (!bk.time) {
+          alert('Please select a preferred time slot.');
+          return;
+        }
+        const d = bk.date ? new Date(bk.date + ' 00:00').toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }) : 'No date selected';
+        document.getElementById('sm-svc').textContent = bk.svc;
+        document.getElementById('sm-doc').textContent = bk.doc;
+        document.getElementById('sm-dt').textContent = d + (bk.time ? ', ' + bk.time : '');
+        setStep(3);
+      }
+    };
   }
-
-  // Toast animation trigger
+  
+  const backBtn = document.getElementById('bbk');
+  if (backBtn) {
+    backBtn.onclick = () => {
+      if (cur > 1) setStep(cur - 1);
+    };
+  }
+  
+  function doWA() {
+    const n = document.getElementById('nm-in').value.trim();
+    const p = document.getElementById('ph-in').value.trim();
+    const nt = document.getElementById('nt-in').value.trim();
+    if (!n || !p) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+    if (p.length !== 10 || isNaN(p)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    const d = bk.date ? new Date(bk.date + ' 00:00').toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) : 'Flexible';
+    const msg = `Hello Park Dental Clinic!\n\nI'd like to book an appointment:\n\nService: ${bk.svc}\nDoctor: ${bk.doc}\nDate: ${d}\nTime: ${bk.time || 'Any time'}\nName: ${n}\nPhone: +91 ${p}${nt ? '\nNotes: ' + nt : ''}`;
+    
+    closeModal('booking-modal');
+    window.open('https://wa.me/919846918974?text=' + encodeURIComponent(msg), '_blank');
+  }
+  
+  const toast = document.getElementById('success-toast');
+  function doCB() {
+    const n = document.getElementById('nm-in').value.trim();
+    const p = document.getElementById('ph-in').value.trim();
+    if (!n || !p) {
+      alert('Please enter your name and phone number.');
+      return;
+    }
+    if (p.length !== 10 || isNaN(p)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    closeModal('booking-modal');
+    showToast();
+  }
+  
   const showToast = () => {
     if (!toast) return;
     toast.classList.add('active');
@@ -475,187 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 4500);
   };
 
-  // ── Custom Select Dropdowns ────────────────────────────────────────
-  const setupCustomSelects = () => {
-    const selects = document.querySelectorAll('#booking-form select');
-    
-    selects.forEach(select => {
-      // 1. Create container wrapper
-      const container = document.createElement('div');
-      container.className = 'custom-select-container';
-      
-      // Insert container in place of select
-      select.parentNode.insertBefore(container, select);
-      container.appendChild(select);
-      
-      // Hide original select visually
-      select.classList.add('custom-select-hidden');
-      
-      // 2. Create custom trigger
-      const trigger = document.createElement('div');
-      trigger.className = 'custom-select-trigger';
-      trigger.setAttribute('tabindex', '0');
-      trigger.setAttribute('role', 'combobox');
-      trigger.setAttribute('aria-expanded', 'false');
-      trigger.setAttribute('aria-haspopup', 'listbox');
-      
-      const triggerValue = document.createElement('span');
-      triggerValue.className = 'custom-select-value';
-      
-      // Set initial value
-      const initialOption = select.options[select.selectedIndex];
-      triggerValue.textContent = initialOption ? initialOption.textContent : '';
-      
-      const arrow = document.createElement('div');
-      arrow.className = 'custom-select-arrow';
-      arrow.innerHTML = `
-        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      `;
-      
-      trigger.appendChild(triggerValue);
-      trigger.appendChild(arrow);
-      container.appendChild(trigger);
-      
-      // 3. Create options dropdown
-      const optionsDropdown = document.createElement('div');
-      optionsDropdown.className = 'custom-select-options';
-      optionsDropdown.setAttribute('role', 'listbox');
-      
-      // Create options
-      const updateOptions = () => {
-        optionsDropdown.innerHTML = '';
-        Array.from(select.options).forEach((opt, idx) => {
-          const customOpt = document.createElement('div');
-          customOpt.className = 'custom-select-option';
-          customOpt.setAttribute('role', 'option');
-          customOpt.dataset.value = opt.value;
-          customOpt.textContent = opt.textContent;
-          
-          if (idx === select.selectedIndex) {
-            customOpt.classList.add('selected');
-          }
-          
-          customOpt.addEventListener('click', (e) => {
-            e.stopPropagation();
-            select.value = opt.value;
-            select.dispatchEvent(new Event('change'));
-            closeDropdown();
-          });
-          
-          optionsDropdown.appendChild(customOpt);
-        });
-      };
-      
-      updateOptions();
-      container.appendChild(optionsDropdown);
-      
-      // 4. Dropdown interaction handlers
-      const openDropdown = () => {
-        // Close all other custom selects first
-        document.querySelectorAll('.custom-select-container.open').forEach(c => {
-          if (c !== container) {
-            c.classList.remove('open');
-            c.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
-          }
-        });
-        
-        container.classList.add('open');
-        trigger.setAttribute('aria-expanded', 'true');
-        
-        // Check vertical space (open upward if needed)
-        const rect = trigger.getBoundingClientRect();
-        const spaceBelow = window.innerHeight - rect.bottom;
-        const spaceAbove = rect.top;
-        const dropdownHeight = 220; // max-height of options + padding
-        
-        if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
-          container.classList.add('open-upward');
-        } else {
-          container.classList.remove('open-upward');
-        }
-      };
-      
-      const closeDropdown = () => {
-        container.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      };
-      
-      const toggleDropdown = (e) => {
-        e.stopPropagation();
-        if (container.classList.contains('open')) {
-          closeDropdown();
-        } else {
-          openDropdown();
-        }
-      };
-      
-      trigger.addEventListener('click', toggleDropdown);
-      
-      // Keyboard Accessibility
-      trigger.addEventListener('keydown', (e) => {
-        if (e.key === ' ' || e.key === 'Enter') {
-          e.preventDefault();
-          toggleDropdown(e);
-        } else if (e.key === 'Escape') {
-          closeDropdown();
-        } else if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          if (!container.classList.contains('open')) {
-            openDropdown();
-          } else {
-            const nextIdx = (select.selectedIndex + 1) % select.options.length;
-            select.selectedIndex = nextIdx;
-            select.dispatchEvent(new Event('change'));
-          }
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          if (!container.classList.contains('open')) {
-            openDropdown();
-          } else {
-            const prevIdx = (select.selectedIndex - 1 + select.options.length) % select.options.length;
-            select.selectedIndex = prevIdx;
-            select.dispatchEvent(new Event('change'));
-          }
-        }
-      });
-      
-      // Sync from native select change
-      select.addEventListener('change', () => {
-        const activeOption = select.options[select.selectedIndex];
-        triggerValue.textContent = activeOption ? activeOption.textContent : '';
-        
-        // Update selected option class
-        const opts = optionsDropdown.querySelectorAll('.custom-select-option');
-        opts.forEach((o, idx) => {
-          if (idx === select.selectedIndex) {
-            o.classList.add('selected');
-            // Scroll selected option into view inside dropdown
-            if (container.classList.contains('open')) {
-              o.scrollIntoView({ block: 'nearest' });
-            }
-          } else {
-            o.classList.remove('selected');
-          }
-        });
-      });
-      
-      // Listen for focus/blur on trigger to handle styled outline
-      trigger.addEventListener('focus', () => container.classList.add('focus'));
-      trigger.addEventListener('blur', () => container.classList.remove('focus'));
-    });
-    
-    // Close dropdowns on document click
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.custom-select-container.open').forEach(c => {
-        c.classList.remove('open');
-        c.querySelector('.custom-select-trigger').setAttribute('aria-expanded', 'false');
-      });
-    });
-  };
-
-  setupCustomSelects();
+  initWizard();
 
   // ── Reviews Infinite Marquee with Swipe & Hover ──────────────────
   const setupReviewsMarquee = () => {

@@ -1,0 +1,663 @@
+<!-- Google Fonts & Tabler Icons Webfont -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+<h2 class="sr-only">Park Dental Clinic 3-step appointment booking wizard</h2>
+<style>
+:root {
+  /* Colors */
+  --color-primary:         #0891b2;
+  --color-primary-hover:   #0e7490;
+  --color-primary-dark:    #155e75;
+  --color-primary-light:   #e0f7fa;
+  --color-primary-50:      #ecfeff;
+  --color-accent:          #06b6d4;
+  --color-text:            #0f172a;
+  --color-text-secondary:  #475569;
+  --color-text-muted:      #94a3b8;
+  --color-text-on-primary: #ffffff;
+  --color-border:          #e2e8f0;
+  --color-border-light:    #f1f5f9;
+  --color-white:           #ffffff;
+
+  /* Theme variables matching the wizard's custom CSS variable references */
+  --border: var(--color-border);
+  --border-accent: var(--color-primary);
+  --border-strong: #cbd5e1;
+  --bg-accent: var(--color-primary-light);
+  --surface-1: var(--color-white);
+  --surface-2: #f8fafc;
+  --text-primary: var(--color-text);
+  --text-accent: var(--color-primary);
+  --text-muted: var(--color-text-muted);
+  --text-secondary: var(--color-text-secondary);
+  --fill-accent: var(--color-primary);
+  --on-accent: var(--color-white);
+  --radius: 12px;
+  --bg-success: #d1fae5;
+  --text-success: #065f46;
+}
+
+/* Card container styles */
+.wizard-overlay {
+  min-height: 680px;
+  height: 100%;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Mobile default bottom-sheet */
+  overflow: hidden;
+  border-radius: 12px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.wizard-card {
+  background: var(--surface-2);
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.15);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* PC View adaptations */
+@media (min-width: 600px) {
+  .wizard-overlay {
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  .wizard-card {
+    border-radius: 20px;
+    border-bottom: 1px solid var(--border);
+    max-height: 90vh;
+  }
+}
+
+.svc-card, .doc-card, .t-slot {
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.svc-card:hover, .doc-card:hover, .t-slot:hover {
+  border-color: var(--border-accent);
+  background: var(--color-primary-50);
+  transform: translateY(-1px);
+}
+
+.svc-card.sel, .doc-card.sel, .t-slot.sel {
+  border-color: var(--border-accent);
+  background: var(--bg-accent);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+}
+
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px 10px;
+  gap: 8px;
+  background: var(--surface-1);
+}
+
+.svc-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svc-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+  font-family: 'Manrope', sans-serif;
+}
+
+.doc-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--surface-1);
+}
+
+.doc-av {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--bg-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-accent);
+  flex-shrink: 0;
+  border: 1px solid rgba(8, 145, 178, 0.1);
+}
+
+.doc-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+}
+
+.doc-role {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 2px 0 0 0;
+}
+
+.doc-radio {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  margin-left: auto;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  color: transparent;
+  font-size: 10px;
+  transition: all 0.2s ease;
+}
+
+.doc-card.sel .doc-radio {
+  background: var(--fill-accent);
+  border-color: var(--fill-accent);
+  color: #fff;
+}
+
+.t-slot {
+  padding: 12px;
+  text-align: center;
+  background: var(--surface-1);
+}
+
+.t-slot.sel {
+  border-color: var(--border-accent);
+}
+
+.t-main {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: block;
+}
+
+.t-lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 3px;
+}
+
+.t-slot.sel .t-main, .t-slot.sel .t-lbl {
+  color: var(--text-accent);
+}
+
+.fld-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .75px;
+  margin: 0 0 8px;
+  display: block;
+}
+
+input[type=text], input[type=tel], input[type=date], textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  outline: none;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--border-accent);
+  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+}
+
+textarea {
+  resize: none;
+}
+
+.sum-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.sum-row:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.btn-back-sm {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.btn-back-sm:hover {
+  background: var(--color-border-light);
+  color: var(--text-primary);
+}
+
+.btn-back-sm.invis {
+  visibility: hidden;
+}
+
+.btn-next {
+  flex: 1;
+  height: 44px;
+  background: var(--fill-accent);
+  color: var(--on-accent);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.15);
+}
+
+.btn-next:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(8, 145, 178, 0.25);
+}
+
+.btn-wa {
+  width: 100%;
+  padding: 13px;
+  background: #25D366;
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Manrope', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+.btn-wa:hover {
+  background: #20ba5a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+}
+
+.btn-cb {
+  width: 100%;
+  padding: 11px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cb:hover {
+  background: var(--color-border-light);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.sec-lbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .75px;
+  margin: 0 0 10px;
+  display: block;
+}
+
+#svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 400px) {
+  #svc-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+#time-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.prefix-span {
+  padding: 12px 14px;
+  background: var(--bg-accent);
+  border: 1.5px solid var(--border-strong);
+  border-right: none;
+  border-radius: var(--radius) 0 0 var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-accent);
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 46px;
+}
+
+.phone-input-container {
+  display: flex;
+  margin-bottom: 11px;
+}
+
+.phone-input {
+  flex: 1;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  border-left: none !important;
+  height: 46px;
+}
+</style>
+
+<div class="wizard-overlay">
+<div class="wizard-card">
+
+<div style="padding: 18px 18px 0; flex-shrink: 0;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+    <span style="font-size: 13.5px; font-weight: 600; color: var(--text-accent); font-family: 'Manrope', sans-serif;"><i class="ti ti-tooth" aria-hidden="true" style="font-size: 16px; vertical-align: -2px; margin-right: 5px;"></i>Park Dental</span>
+    <button style="width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-1); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--text-secondary); transition: all 0.2s ease;" aria-label="Close"><i class="ti ti-x" style="font-size: 14px;" aria-hidden="true"></i></button>
+  </div>
+  <div style="display: flex; gap: 6px; margin-bottom: 12px;">
+    <div id="d1" style="height: 4px; flex: 1; border-radius: 2px; background: var(--fill-accent); transition: background 0.3s ease;"></div>
+    <div id="d2" style="height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.3s ease;"></div>
+    <div id="d3" style="height: 4px; flex: 1; border-radius: 2px; background: var(--border); transition: background 0.3s ease;"></div>
+  </div>
+  <p id="snum" style="font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: .75px; margin: 0 0 4px; font-family: 'Inter', sans-serif;">Step 1 of 3</p>
+  <p id="stitle" style="font-size: 20px; font-weight: 700; color: var(--text-primary); margin: 0 0 4px; letter-spacing: -.2px; font-family: 'Manrope', sans-serif;">What brings you in?</p>
+  <p id="ssub" style="font-size: 13px; color: var(--text-muted); margin: 0 0 16px; font-family: 'Inter', sans-serif;">Select your service and preferred specialist</p>
+</div>
+
+<div id="content" style="overflow-y: auto; max-height: 380px; padding: 0 18px 8px; box-sizing: border-box;">
+
+<div id="s1">
+  <span class="sec-lbl">Service</span>
+  <div id="svc-grid"></div>
+  <span class="sec-lbl">Preferred specialist (optional)</span>
+  <div id="doc-list" style="display: flex; flex-direction: column; gap: 6px;"></div>
+</div>
+
+<div id="s2" style="display: none;">
+  <label class="fld-lbl" for="dt-in">Date</label>
+  <input type="date" id="dt-in" style="margin-bottom: 14px;">
+  <span class="sec-lbl">Time preference</span>
+  <div id="time-grid"></div>
+</div>
+
+<div id="s3" style="display: none;">
+  <span style="display: inline-flex; align-items: center; gap: 5px; background: var(--bg-success); color: var(--text-success); font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 20px; margin-bottom: 14px; font-family: 'Inter', sans-serif;"><i class="ti ti-check" aria-hidden="true" style="font-size: 12px;"></i>Free first consultation</span>
+  
+  <label class="fld-lbl" for="nm-in">Full name</label>
+  <input type="text" id="nm-in" placeholder="e.g. Rahul Nair" autocomplete="name" style="margin-bottom: 12px;">
+  
+  <label class="fld-lbl" for="ph-in">WhatsApp / Phone</label>
+  <div class="phone-input-container">
+    <span class="prefix-span">+91</span>
+    <input type="tel" id="ph-in" class="phone-input" placeholder="98000 00000" maxlength="10" autocomplete="tel">
+  </div>
+  
+  <label class="fld-lbl" for="nt-in">Notes (optional)</label>
+  <textarea id="nt-in" placeholder="Any pain, concerns, or special requests..." rows="2" style="margin-bottom: 14px;"></textarea>
+  
+  <span class="sec-lbl">Booking summary</span>
+  <div style="background: var(--surface-1); border: 1px solid var(--border); border-radius: var(--radius); padding: 6px 14px; margin-bottom: 8px;">
+    <div class="sum-row">
+      <i class="ti ti-stethoscope" aria-hidden="true" style="font-size: 18px; color: var(--text-accent); flex-shrink: 0;"></i>
+      <div>
+        <p style="font-size: 10px; color: var(--text-muted); margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">Service</p>
+        <p id="sm-svc" style="font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin: 2px 0 0 0; font-family: 'Manrope', sans-serif;"></p>
+      </div>
+    </div>
+    <div class="sum-row">
+      <i class="ti ti-user" aria-hidden="true" style="font-size: 18px; color: var(--text-accent); flex-shrink: 0;"></i>
+      <div>
+        <p style="font-size: 10px; color: var(--text-muted); margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">Doctor</p>
+        <p id="sm-doc" style="font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin: 2px 0 0 0; font-family: 'Manrope', sans-serif;"></p>
+      </div>
+    </div>
+    <div class="sum-row">
+      <i class="ti ti-calendar" aria-hidden="true" style="font-size: 18px; color: var(--text-accent); flex-shrink: 0;"></i>
+      <div>
+        <p style="font-size: 10px; color: var(--text-muted); margin: 0; text-transform: uppercase; letter-spacing: 0.5px;">Date and time</p>
+        <p id="sm-dt" style="font-size: 13.5px; font-weight: 600; color: var(--text-primary); margin: 2px 0 0 0; font-family: 'Manrope', sans-serif;"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div id="foot" style="padding: 14px 18px 18px; border-top: 1px solid var(--border); background: var(--surface-2); flex-shrink: 0; display: flex; gap: 8px; align-items: center; box-sizing: border-box;">
+  <button id="bbk" class="btn-back-sm invis" aria-label="Go back"><i class="ti ti-arrow-left" style="font-size: 18px;" aria-hidden="true"></i></button>
+  <button id="bnx" class="btn-next">Continue <i class="ti ti-arrow-right" style="font-size: 18px;" aria-hidden="true"></i></button>
+</div>
+
+</div>
+</div>
+
+<script>
+const svcs=[
+  {label:'General Consultation',img:'images/icon-treatment.png'},
+  {label:'Dental Implants',img:'images/icon-implants.png'},
+  {label:'Cosmetic Dentistry',img:'images/icon-veneers.png'},
+  {label:'Root Canal',img:'images/icon-prosthetics.png'},
+  {label:'Teeth Whitening',img:'images/icon-whitening.png'},
+  {label:'Braces & Aligners',img:'images/icon-braces.png'}
+];
+const docs=[
+  {name:'Any specialist (recommended)',role:'We\'ll match you to the right doctor',init:'✦'},
+  {name:'Dr. Monish',role:'Chief Dental Surgeon',init:'M'},
+  {name:'Dr. Manu M. Das',role:'Maxillofacial Surgeon',init:'M'},
+  {name:'Dr. Aswani Anil',role:'Pedodontist',init:'A'},
+  {name:'Dr. Nikhil Julian',role:'Endodontist',init:'N'},
+  {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'}
+];
+const times=[
+  {t:'10:00 – 12:00',l:'Morning'},
+  {t:'12:00 – 14:00',l:'Mid-day'},
+  {t:'14:00 – 17:00',l:'Afternoon'},
+  {t:'17:00 – 19:30',l:'Evening'}
+];
+const stepMeta=[
+  {num:'Step 1 of 3',title:'What brings you in?',sub:'Select your service and preferred specialist'},
+  {num:'Step 2 of 3',title:'When works for you?',sub:'Pick a preferred date and time'},
+  {num:'Step 3 of 3',title:'Your details',sub:'We\'ll confirm your appointment shortly'}
+];
+let cur=1;
+const bk={svc:'General Consultation',doc:'Any specialist (recommended)',date:'',time:''};
+
+const sg=document.getElementById('svc-grid');
+svcs.forEach((s,i)=>{
+  const d=document.createElement('div');
+  d.className='svc-card'+(i===0?' sel':'');
+  d.innerHTML=`<div class="svc-icon"><img src="${s.img}" alt="${s.label}" style="width: 100%; height: 100%; object-fit: contain;"></div><span class="svc-label">${s.label}</span>`;
+  d.onclick=()=>{document.querySelectorAll('.svc-card').forEach(c=>c.classList.remove('sel'));d.classList.add('sel');bk.svc=s.label;};
+  sg.appendChild(d);
+});
+const dl=document.getElementById('doc-list');
+docs.forEach((d,i)=>{
+  const el=document.createElement('div');
+  el.className='doc-card'+(i===0?' sel':'');
+  el.innerHTML=`<div class="doc-av">${d.init}</div><div><p class="doc-name">${d.name}</p><p class="doc-role">${d.role}</p></div><div class="doc-radio">${i===0?'<i class="ti ti-check" style="font-size: 10px; color: #fff;" aria-hidden="true"></i>':''}</div>`;
+  el.onclick=()=>{
+    document.querySelectorAll('.doc-card').forEach(c=>{c.classList.remove('sel');c.querySelector('.doc-radio').innerHTML='';});
+    el.classList.add('sel');
+    el.querySelector('.doc-radio').innerHTML='<i class="ti ti-check" style="font-size: 10px; color: #fff;" aria-hidden="true"></i>';
+    bk.doc=d.name;
+  };
+  dl.appendChild(el);
+});
+const tg=document.getElementById('time-grid');
+times.forEach(t=>{
+  const el=document.createElement('div');
+  el.className='t-slot';
+  el.innerHTML=`<span class="t-main">${t.t}</span><span class="t-lbl">${t.l}</span>`;
+  el.onclick=()=>{document.querySelectorAll('.t-slot').forEach(c=>c.classList.remove('sel'));el.classList.add('sel');bk.time=t.t;};
+  tg.appendChild(el);
+});
+
+const today=new Date().toISOString().split('T')[0];
+document.getElementById('dt-in').min=today;
+
+function updateDots(){
+  ['d1','d2','d3'].forEach((id,i)=>{
+    const dot=document.getElementById(id);
+    if(i+1<cur)dot.style.background='var(--border-accent)';
+    else if(i+1===cur)dot.style.background='var(--fill-accent)';
+    else dot.style.background='var(--border)';
+  });
+}
+function setStep(n){
+  document.getElementById('s1').style.display='none';
+  document.getElementById('s2').style.display='none';
+  document.getElementById('s3').style.display='none';
+  cur=n;
+  document.getElementById('s'+n).style.display='block';
+  const m=stepMeta[n-1];
+  document.getElementById('snum').textContent=m.num;
+  document.getElementById('stitle').textContent=m.title;
+  document.getElementById('ssub').textContent=m.sub;
+  updateDots();
+  const bk_btn=document.getElementById('bbk');
+  bk_btn.classList.toggle('invis',n===1);
+  const nxt=document.getElementById('bnx');
+  const foot=document.getElementById('foot');
+  if(n===3){
+    nxt.style.display='none';
+    bk_btn.style.display='flex';
+    let wa=foot.querySelector('.wa-actions-container');
+    if(!wa){
+      wa=document.createElement('div');
+      wa.className='wa-actions-container';
+      wa.style.cssText='flex: 1; display: flex; flex-direction: column; gap: 0;';
+      wa.innerHTML='<button class="btn-wa" id="bwa"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.001-2.63-1.019-5.101-2.872-6.958-1.85-1.856-4.322-2.874-6.941-2.875-5.44.001-9.866 4.417-9.87 9.851-.001 1.776.477 3.51 1.385 5.048L2.013 21.75l6.096-1.597z"/></\' + \'svg>Book via WhatsApp</button><button class="btn-cb" id="bcb">Request a callback instead</button>';
+      foot.appendChild(wa);
+      document.getElementById('bwa').onclick=doWA;
+      document.getElementById('bcb').onclick=doCB;
+    }
+  } else {
+    nxt.style.display='flex';
+    const oldWA=foot.querySelector('.wa-actions-container');
+    if(oldWA)oldWA.remove();
+  }
+}
+document.getElementById('bnx').onclick=()=>{
+  if(cur===1){
+    setStep(2);
+  } else if(cur===2){
+    bk.date=document.getElementById('dt-in').value;
+    if(!bk.date){
+      alert('Please select a date.');
+      return;
+    }
+    if(!bk.time){
+      alert('Please select a preferred time slot.');
+      return;
+    }
+    const d=bk.date?new Date(bk.date+' 00:00').toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}):'No date selected';
+    document.getElementById('sm-svc').textContent=bk.svc;
+    document.getElementById('sm-doc').textContent=bk.doc;
+    document.getElementById('sm-dt').textContent=d+(bk.time?', '+bk.time:'');
+    setStep(3);
+  }
+};
+document.getElementById('bbk').onclick=()=>{if(cur>1)setStep(cur-1);};
+function doWA(){
+  const n=document.getElementById('nm-in').value.trim();
+  const p=document.getElementById('ph-in').value.trim();
+  const nt=document.getElementById('nt-in').value.trim();
+  if(!n||!p){
+    alert('Please enter your name and phone number.');
+    return;
+  }
+  if(p.length !== 10 || isNaN(p)){
+    alert('Please enter a valid 10-digit phone number.');
+    return;
+  }
+  const d=bk.date?new Date(bk.date+' 00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'}):'Flexible';
+  const msg=`Hello Park Dental Clinic!\n\nI'd like to book an appointment:\n\nService: ${bk.svc}\nDoctor: ${bk.doc}\nDate: ${d}\nTime: ${bk.time||'Any time'}\nName: ${n}\nPhone: +91 ${p}${nt?'\nNotes: '+nt:''}`;
+  window.open('https://wa.me/919846918974?text='+encodeURIComponent(msg),'_blank');
+}
+function doCB(){
+  const n=document.getElementById('nm-in').value.trim();
+  const p=document.getElementById('ph-in').value.trim();
+  if(!n||!p){
+    alert('Please enter your name and phone number.');
+    return;
+  }
+  if(p.length !== 10 || isNaN(p)){
+    alert('Please enter a valid 10-digit phone number.');
+    return;
+  }
+  alert(`Thanks ${n}! We'll call +91 ${p} to confirm your booking.`);
+}
+// Set up close button to hide the overlay visually if embedded
+document.querySelector('[aria-label="Close"]').onclick = () => {
+  const overlay = document.querySelector('.wizard-overlay');
+  if(overlay) overlay.style.display = 'none';
+};
+setStep(1);
+</script>
