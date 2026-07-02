@@ -190,7 +190,7 @@
 }
 
 .t-slot {
-  padding: 12px;
+  padding: 6px 8px;
   text-align: center;
   background: var(--surface-1);
 }
@@ -417,14 +417,14 @@ textarea {
   background: var(--surface-1);
   border: 1.5px solid var(--border);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 8px 10px;
   box-sizing: border-box;
 }
 
 .btn-cal-nav {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
   border: 1.5px solid var(--border);
   background: var(--surface-1);
   display: flex;
@@ -442,8 +442,8 @@ textarea {
 }
 
 #cal-today-btn {
-  padding: 4px 10px;
-  font-size: 11px;
+  padding: 2px 8px;
+  font-size: 10px;
   font-weight: 600;
   border: 1.5px solid var(--border);
   background: var(--surface-1);
@@ -461,14 +461,14 @@ textarea {
 }
 
 .cal-day-cell {
-  aspect-ratio: 1;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   color: var(--text-primary);
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   user-select: none;
   transition: all 0.15s ease;
@@ -532,8 +532,8 @@ textarea {
 <div id="s2" style="display: none;">
   <label class="fld-lbl">Date</label>
   <input type="hidden" id="dt-in">
-  <div class="calendar-container" style="margin-bottom: 16px;">
-    <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+  <div class="calendar-container" style="margin-bottom: 10px;">
+    <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
       <div>
         <span id="cal-month-year" style="font-size: 14px; font-weight: 700; color: var(--text-primary); font-family: 'Manrope', sans-serif;"></span>
       </div>
@@ -543,10 +543,10 @@ textarea {
         <button id="cal-next-btn" type="button" class="btn-cal-nav" aria-label="Next month"><i class="ti ti-chevron-right" style="font-size: 14px;"></i></button>
       </div>
     </div>
-    <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 8px;">
+    <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--text-muted); margin-bottom: 4px;">
       <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
     </div>
-    <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;"></div>
+    <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center;"></div>
   </div>
   <span class="sec-lbl">Time preference</span>
   <div id="time-grid"></div>
@@ -617,13 +617,15 @@ const docs=[
   {name:'Dr. Manu M. Das',role:'Maxillofacial Surgeon',init:'M'},
   {name:'Dr. Aswani Anil',role:'Pedodontist',init:'A'},
   {name:'Dr. Nikhil Julian',role:'Endodontist',init:'N'},
-  {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'}
+  {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'},
+  {name:'Dr. Mathew Jacob',role:'Endodontist',init:'M'},
+  {name:'Dr. Layana Theodore',role:'Prosthodontist',init:'L'}
 ];
 const times=[
-  {t:'10:00 – 12:00',l:'Morning'},
-  {t:'12:00 – 14:00',l:'Mid-day'},
-  {t:'14:00 – 17:00',l:'Afternoon'},
-  {t:'17:00 – 19:30',l:'Evening'}
+  {t:'10:00 AM – 12:00 PM',l:'Morning'},
+  {t:'12:00 PM – 2:00 PM',l:'Mid-day'},
+  {t:'2:00 PM – 5:00 PM',l:'Afternoon'},
+  {t:'5:00 PM – 7:30 PM',l:'Evening'}
 ];
 const stepMeta=[
   {num:'Step 1 of 3',title:'What brings you in?',sub:'Select your service and preferred specialist'},

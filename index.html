@@ -26,7 +26,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-  <link rel="stylesheet" href="css/styles.css?v=4">
+  <link rel="stylesheet" href="css/styles.css?v=6">
 
   <!-- Favicon (inline SVG tooth) -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 2c-3.5 0-6.4 1.2-8.2 3.3C5.9 7.5 5 10.2 5 13c0 2.5.8 4.8 1.8 7 1 2.1 2.2 4.1 3.2 6 .5.9 1 1.8 1.4 2.6.4.8 1 1.4 1.8 1.4s1.4-.6 1.6-1.5c.3-1.2.6-2.6 1.2-3.5.6-.9 1.2-.9 1.8.1.6.9.9 2.3 1.2 3.5.2.9.8 1.5 1.6 1.5s1.3-.6 1.8-1.4c.4-.8.9-1.7 1.4-2.6 1-1.9 2.2-3.9 3.2-6 1-2.2 1.8-4.5 1.8-7 0-2.8-.9-5.5-2.8-7.7C22.4 3.2 19.5 2 16 2z' fill='%230891b2'/%3E%3C/svg%3E">
@@ -167,7 +167,7 @@
         <div class="stats-row">
           <!-- Clinic Image Card -->
           <div class="stats-clinic-card animate-on-scroll">
-            <img src="images/clinic.png" alt="Modern Park Dental Clinic building exterior with glass facade and tropical greenery in Kochi" loading="lazy">
+            <img src="images/clinic.jpg" alt="Modern Park Dental Clinic building exterior with glass facade and tropical greenery in Kochi" loading="lazy">
             <div class="stats-clinic-overlay"></div>
             <div class="stats-clinic-info">
               <div>
@@ -191,13 +191,28 @@
                 <rect x="14" y="38" width="16" height="4" rx="2" fill="currentColor" opacity="0.3"/>
               </svg>
             </div>
-            <a href="#booking-modal" class="stats-promo-arrow trigger-booking" aria-label="Book free consultation">
+            <a href="#booking-modal" class="stats-promo-arrow trigger-booking" aria-label="Book consultation">
               <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
             </a>
             <div class="stats-promo-text">
-              <h3 class="stats-promo-title">Your first consultation is free of charge</h3>
+              <h3 class="stats-promo-title">Schedule your dental consultation</h3>
               <p class="stats-promo-desc">Book a consultation today. We'd love to give you a reason to smile more :)</p>
             </div>
+          </div>
+        </div>
+
+        <!-- Clinic Gallery Sub-section -->
+        <div class="clinic-gallery-container animate-on-scroll" style="margin-top: var(--space-4xl);">
+          <div class="gallery-header" style="margin-bottom: var(--space-xl); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-xs);">
+            <span class="badge badge-primary">✦ Tour Our Space</span>
+            <h3 class="text-h2" style="margin: 0; font-family: var(--font-heading); font-weight: 700; color: var(--color-text);">Inside Our Clinic</h3>
+          </div>
+          <div class="gallery-track">
+            <div class="gallery-item"><img src="images/gallery-1.jpg" alt="Modern dental consultation room at Park Dental Clinic" loading="lazy"></div>
+            <div class="gallery-item"><img src="images/gallery-2.jpg" alt="State-of-the-art dental treatment operatory chair" loading="lazy"></div>
+            <div class="gallery-item"><img src="images/gallery-3.jpg" alt="Comfortable clinic reception and waiting lounge area" loading="lazy"></div>
+            <div class="gallery-item"><img src="images/gallery-4.jpg" alt="Advanced sterile clinical tools and diagnostic equipment" loading="lazy"></div>
+            <div class="gallery-item"><img src="images/gallery-5.jpg" alt="Modern building exterior facade of Park Dental Clinic" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -394,7 +409,7 @@
           <div class="team-header animate-on-scroll">
             <div class="team-header-left">
               <h2 class="text-h1 split-text-animate">Our Specialists</h2>
-              <p class="team-count">5 experienced specialists ready to care for you</p>
+              <p class="team-count">7 experienced specialists ready to care for you</p>
             </div>
             <a href="#team-grid" class="btn btn-secondary btn-sm">
               Meet the Team
@@ -411,9 +426,6 @@
                   <h3 class="team-card-name">Dr. Monish</h3>
                   <p class="team-card-role">Chief Dental Surgeon</p>
                 </div>
-                <button class="team-card-btn trigger-doctor" data-doctor="monish" aria-label="View profile of Dr. Monish">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-                </button>
               </div>
             </div>
 
@@ -426,9 +438,6 @@
                   <h3 class="team-card-name">Dr. Manu M. Das</h3>
                   <p class="team-card-role">Maxillofacial Surgeon</p>
                 </div>
-                <button class="team-card-btn trigger-doctor" data-doctor="manu" aria-label="View profile of Dr. Manu M. Das">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-                </button>
               </div>
             </div>
 
@@ -441,9 +450,6 @@
                   <h3 class="team-card-name">Dr. Aswani Anil</h3>
                   <p class="team-card-role">Pedodontist</p>
                 </div>
-                <button class="team-card-btn trigger-doctor" data-doctor="aswani" aria-label="View profile of Dr. Aswani Anil">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-                </button>
               </div>
             </div>
 
@@ -456,9 +462,6 @@
                   <h3 class="team-card-name">Dr. Nikhil Julian</h3>
                   <p class="team-card-role">Endodontist</p>
                 </div>
-                <button class="team-card-btn trigger-doctor" data-doctor="nikhil" aria-label="View profile of Dr. Nikhil Julian">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-                </button>
               </div>
             </div>
 
@@ -471,9 +474,30 @@
                   <h3 class="team-card-name">Dr. Fouzia Ismail</h3>
                   <p class="team-card-role">General Dentist</p>
                 </div>
-                <button class="team-card-btn trigger-doctor" data-doctor="fouzia" aria-label="View profile of Dr. Fouzia Ismail">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
-                </button>
+              </div>
+            </div>
+
+            <!-- Dr. Mathew Jacob -->
+            <div class="team-card animate-on-scroll">
+              <img src="images/dr-mathew.jpg" alt="Dr. Mathew Jacob, Endodontist at Park Dental Clinic" loading="lazy">
+              <div class="team-card-overlay"></div>
+              <div class="team-card-info">
+                <div>
+                  <h3 class="team-card-name">Dr. Mathew Jacob</h3>
+                  <p class="team-card-role">Endodontist</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dr. Layana Theodore -->
+            <div class="team-card animate-on-scroll">
+              <img src="images/dr-layana.jpg" alt="Dr. Layana Theodore, MDS Prosthodontist & Implant Surgeon at Park Dental Clinic" loading="lazy">
+              <div class="team-card-overlay"></div>
+              <div class="team-card-info">
+                <div>
+                  <h3 class="team-card-name">Dr. Layana Theodore</h3>
+                  <p class="team-card-role">Prosthodontist & Implant Surgeon</p>
+                </div>
               </div>
             </div>
           </div>
@@ -605,7 +629,7 @@
                   <div class="footer-contact-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                   </div>
-                  <span class="footer-contact-text">Mon to Sat — 10:00 to 19:30<br>Sunday — Closed</span>
+                  <span class="footer-contact-text">Mon to Sat — 10:00 AM to 7:30 PM<br>Sunday — Closed</span>
                 </div>
               </div>
             </div>
@@ -652,8 +676,8 @@
           <div id="s2" style="display: none;">
             <label class="fld-lbl">Date</label>
             <input type="hidden" id="dt-in">
-            <div class="calendar-container" style="margin-bottom: 16px;">
-              <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+            <div class="calendar-container" style="margin-bottom: 10px;">
+              <div class="calendar-header" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
                 <div>
                   <span id="cal-month-year" style="font-size: 14px; font-weight: 700; color: var(--color-text); font-family: var(--font-heading);"></span>
                 </div>
@@ -663,10 +687,10 @@
                   <button id="cal-next-btn" type="button" class="btn-cal-nav" aria-label="Next month"><i class="ti ti-chevron-right" style="font-size: 14px;"></i></button>
                 </div>
               </div>
-              <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 8px;">
+              <div class="calendar-weekdays" style="display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 11px; font-weight: 600; color: var(--color-text-muted); margin-bottom: 4px;">
                 <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
               </div>
-              <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center;"></div>
+              <div id="calendar-days" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; text-align: center;"></div>
             </div>
             <span class="sec-lbl">Time preference</span>
             <div id="time-grid"></div>
@@ -733,12 +757,7 @@
           <span id="doc-modal-specialty" class="badge">Specialty</span>
           <h3 id="doctor-modal-title-text" class="text-h2">Doctor Name</h3>
           <p id="doc-modal-role" class="text-body-lg text-primary" style="margin-bottom: var(--space-md);"></p>
-          <div class="doc-meta-grid">
-            <div class="doc-meta-item"><strong>Education:</strong> <span id="doc-modal-edu"></span></div>
-            <div class="doc-meta-item"><strong>Experience:</strong> <span id="doc-modal-exp"></span></div>
-          </div>
-          <p id="doc-modal-bio" class="text-body" style="margin-top: var(--space-lg);"></p>
-          <button id="doc-modal-book" class="btn btn-primary" style="margin-top: var(--space-2xl); width: 100%;">
+          <button id="doc-modal-book" class="btn btn-primary" style="margin-top: var(--space-xl); width: 100%;">
             Book Appointment
             <svg class="btn-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg>
           </button>

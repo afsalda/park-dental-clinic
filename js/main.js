@@ -255,46 +255,43 @@ document.addEventListener('DOMContentLoaded', () => {
       name: "Dr. Monish",
       role: "Chief Dental Surgeon & Implantologist",
       specialty: "Dental Implants",
-      edu: "BDS (Rajas Dental College), Postgraduate Degree (Manipal University), IDA Member",
-      exp: "20+ Years in Implantology & Dental Surgery",
-      bio: "Dr. Monish is a pioneer in modern implantology in Kochi. With over two decades of clinical experience, he specializes in full-mouth reconstructions, computer-guided dental implants, and cosmetic smile makeovers. Known for his compassionate patient communication, Dr. Monish ensures that every treatment is clear and stress-free.",
       img: "images/dr-manu.jpg"
     },
     manu: {
       name: "Dr. Manu M. Das",
       role: "Oral & Maxillofacial Surgeon",
       specialty: "Surgical Procedures",
-      edu: "MDS (Oral & Maxillofacial Surgery)",
-      exp: "12+ Years in Advanced Oral and Facial Surgery",
-      bio: "Dr. Manu M. Das is an expert in surgical tooth extractions, wisdom teeth removal, corrective jaw surgery, and dental implants. He employs state-of-the-art diagnostic imaging to plan and execute complex surgical procedures safely and painlessly.",
       img: "images/dr-monish.jpg"
     },
     aswani: {
       name: "Dr. Aswani Anil",
       role: "Pedodontist (Children's Dentist)",
       specialty: "Pediatric Care",
-      edu: "BDS, MDS (Pedodontics & Preventive Dentistry)",
-      exp: "8+ Years in Pediatric Dental Care",
-      bio: "Dr. Aswani Anil is dedicated to providing friendly, gentle dental care to infants, children, and teenagers. She specializes in preventive treatments, habit-breaking appliances, and child behavior management, helping young patients develop a positive attitude toward lifelong dental health.",
       img: "images/dr-aswani.jpg"
     },
     nikhil: {
       name: "Dr. Nikhil Julian",
       role: "Endodontist (Root Canal Specialist)",
       specialty: "Root Canal Therapy",
-      edu: "MDS (Conservative Dentistry & Endodontics)",
-      exp: "9+ Years in Micro-Endodontics & Restorations",
-      bio: "Dr. Nikhil Julian focuses on saving teeth using microscopic root canal treatments. He specializes in single-visit root canals, retreatments, and conservative aesthetic restorations. His precision and gentle technique ensure patients experience little to no discomfort.",
       img: "images/dr-nikhil.jpg"
     },
     fouzia: {
       name: "Dr. Fouzia Ismail",
       role: "General Dentist",
       specialty: "General Dentistry",
-      edu: "BDS (General Dentistry & Aesthetic Care)",
-      exp: "6+ Years in Family Dental Health",
-      bio: "Dr. Fouzia Ismail coordinates routine dental checks, teeth whitening, aesthetic bonding, and preventive care. She is passionate about dental education, helping patients establish oral hygiene routines that prevent long-term issues.",
       img: "images/dr-fouzia.jpg"
+    },
+    mathew: {
+      name: "Dr. Mathew Jacob",
+      role: "Endodontist (Root Canal Specialist)",
+      specialty: "Root Canal Therapy",
+      img: "images/dr-mathew.jpg"
+    },
+    layana: {
+      name: "Dr. Layana Theodore",
+      role: "MDS Prosthodontist & Implantologist",
+      specialty: "Implant Surgery & Prosthetics",
+      img: "images/dr-layana.jpg"
     }
   };
 
@@ -357,13 +354,15 @@ document.addEventListener('DOMContentLoaded', () => {
     {name:'Dr. Manu M. Das',role:'Maxillofacial Surgeon',init:'M'},
     {name:'Dr. Aswani Anil',role:'Pedodontist',init:'A'},
     {name:'Dr. Nikhil Julian',role:'Endodontist',init:'N'},
-    {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'}
+    {name:'Dr. Fouzia Ismail',role:'General Dentist',init:'F'},
+    {name:'Dr. Mathew Jacob',role:'Endodontist',init:'M'},
+    {name:'Dr. Layana Theodore',role:'Prosthodontist',init:'L'}
   ];
   const times=[
-    {t:'10:00 – 12:00',l:'Morning'},
-    {t:'12:00 – 14:00',l:'Mid-day'},
-    {t:'14:00 – 17:00',l:'Afternoon'},
-    {t:'17:00 – 19:30',l:'Evening'}
+    {t:'10:00 AM – 12:00 PM',l:'Morning'},
+    {t:'12:00 PM – 2:00 PM',l:'Mid-day'},
+    {t:'2:00 PM – 5:00 PM',l:'Afternoon'},
+    {t:'5:00 PM – 7:30 PM',l:'Evening'}
   ];
   const stepMeta=[
     {num:'Step 1 of 3',title:'What brings you in?',sub:'Select your service and preferred specialist'},
@@ -647,9 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('doc-modal-specialty').textContent = doc.specialty;
       document.getElementById('doctor-modal-title-text').textContent = doc.name;
       document.getElementById('doc-modal-role').textContent = doc.role;
-      document.getElementById('doc-modal-edu').textContent = doc.edu;
-      document.getElementById('doc-modal-exp').textContent = doc.exp;
-      document.getElementById('doc-modal-bio').textContent = doc.bio;
+
 
       // Store current doctor ID on the booking modal launch button in doctor details
       const bookBtn = document.getElementById('doc-modal-book');
