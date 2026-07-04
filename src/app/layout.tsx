@@ -289,6 +289,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <head>
+        {/* Google Search Console Verification */}
+        <meta name="google-site-verification" content="bUyC6aCrt6af4PPxkR7VYWeSs4Rqplyk2iBSgbMxoQg" />
         {/* Tabler Icons CDN */}
         <link
           rel="stylesheet"
