@@ -163,59 +163,63 @@ export default function Reviews() {
         </div>
 
         {/* Tab Contents */}
-        {activeTab === "google" ? (
-          <div className="reviews-widget-container animate-on-scroll">
-            <div className="sk-ww-google-reviews" data-embed-id="25694673"></div>
-          </div>
-        ) : (
-          <div className="practo-reviews-wrapper animate-on-scroll">
-            <button
-              className="practo-nav-btn prev"
-              aria-label="Previous reviews"
-              onClick={() => handleScroll("left")}
-            >
-              <i className="ti ti-chevron-left"></i>
-            </button>
+        <div
+          className="reviews-widget-container animate-on-scroll"
+          style={{ display: activeTab === "google" ? "block" : "none" }}
+        >
+          <div className="sk-ww-google-reviews" data-embed-id="25694673"></div>
+        </div>
 
-            <div className="practo-track" ref={practoTrackRef}>
-              {practoReviewsList.map((review, index) => (
-                <div className="practo-card" key={index}>
-                  <div className="practo-card-header">
-                    <div className="practo-avatar">{review.author.charAt(0)}</div>
-                    <div className="practo-meta">
-                      <h3 className="practo-author-name">{review.author}</h3>
-                      <span className="practo-time">{review.time}</span>
-                    </div>
-                    <div className="practo-source-badge">
-                      <span className="practo-dot"></span>
-                      Practo Verified
-                    </div>
+        <div
+          className="practo-reviews-wrapper animate-on-scroll"
+          style={{ display: activeTab === "practo" ? "flex" : "none" }}
+        >
+          <button
+            className="practo-nav-btn prev"
+            aria-label="Previous reviews"
+            onClick={() => handleScroll("left")}
+          >
+            <i className="ti ti-chevron-left"></i>
+          </button>
+
+          <div className="practo-track" ref={practoTrackRef}>
+            {practoReviewsList.map((review, index) => (
+              <div className="practo-card" key={index}>
+                <div className="practo-card-header">
+                  <div className="practo-avatar">{review.author.charAt(0)}</div>
+                  <div className="practo-meta">
+                    <h3 className="practo-author-name">{review.author}</h3>
+                    <span className="practo-time">{review.time}</span>
                   </div>
-                  <div className="practo-treatment-badge">
-                    <i className="ti ti-circle-check" style={{ marginRight: "4px", fontSize: "13px", verticalAlign: "-1px", color: "var(--color-primary)" }}></i>
-                    {review.treatment}
+                  <div className="practo-source-badge">
+                    <span className="practo-dot"></span>
+                    Practo Verified
                   </div>
-                  <div className="review-rating" style={{ color: "var(--color-star)" }}>
-                    {Array.from({ length: review.rating }).map((_, i) => (
-                      <svg key={i} viewBox="0 0 20 20" fill="currentColor" style={{ width: "16px", height: "16px", marginRight: "2px" }}>
-                        <path d="M10 15.27L16.18 20l-1.64-7.03L20 8.24l-7.19-.61L10 1 7.19 7.63 0 8.24l5.46 4.73L3.82 20z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <blockquote className="practo-text">"{review.text}"</blockquote>
                 </div>
-              ))}
-            </div>
-
-            <button
-              className="practo-nav-btn next"
-              aria-label="Next reviews"
-              onClick={() => handleScroll("right")}
-            >
-              <i className="ti ti-chevron-right"></i>
-            </button>
+                <div className="practo-treatment-badge">
+                  <i className="ti ti-circle-check" style={{ marginRight: "4px", fontSize: "13px", verticalAlign: "-1px", color: "var(--color-primary)" }}></i>
+                  {review.treatment}
+                </div>
+                <div className="review-rating" style={{ color: "var(--color-star)" }}>
+                  {Array.from({ length: review.rating }).map((_, i) => (
+                    <svg key={i} viewBox="0 0 20 20" fill="currentColor" style={{ width: "16px", height: "16px", marginRight: "2px" }}>
+                      <path d="M10 15.27L16.18 20l-1.64-7.03L20 8.24l-7.19-.61L10 1 7.19 7.63 0 8.24l5.46 4.73L3.82 20z" />
+                    </svg>
+                  ))}
+                </div>
+                <blockquote className="practo-text">"{review.text}"</blockquote>
+              </div>
+            ))}
           </div>
-        )}
+
+          <button
+            className="practo-nav-btn next"
+            aria-label="Next reviews"
+            onClick={() => handleScroll("right")}
+          >
+            <i className="ti ti-chevron-right"></i>
+          </button>
+        </div>
       </div>
 
       <Script
