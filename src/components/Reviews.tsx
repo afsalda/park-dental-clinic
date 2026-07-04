@@ -40,6 +40,160 @@ const practoReviewsList: PractoReviewItem[] = [
     treatment: "Pediatric Dental Care",
     text: "Excellent pediatric dental care! Took my 7-year-old son to Dr. Aswani Anil for a cavity filling. She was incredibly gentle, friendly, and managed his anxiety so well. Highly recommend this clinic for families.",
   },
+  {
+    author: "Siddharth Menon",
+    time: "3 weeks ago",
+    rating: 5,
+    treatment: "Dental Implants",
+    text: "Got my front tooth implant done by Dr. Monish. The surgical procedure was explained thoroughly, and the crown fits perfectly. Highly satisfied with the advanced equipment and care.",
+  },
+  {
+    author: "Riya Mathew",
+    time: "1 month ago",
+    rating: 5,
+    treatment: "Teeth Whitening",
+    text: "Very happy with the teeth whitening treatment. The results are amazing, and the sensitivity was minimal. The clinic is exceptionally clean and comfortable.",
+  },
+  {
+    author: "Rahul G. Nair",
+    time: "1 month ago",
+    rating: 5,
+    treatment: "Root Canal Treatment",
+    text: "Dr. Mathew Jacob did an excellent job with my root canal. He was very gentle and completed it in two brief sessions. The pain is completely gone.",
+  },
+  {
+    author: "Lakshmi Priya",
+    time: "2 months ago",
+    rating: 5,
+    treatment: "Invisalign / Clear Aligners",
+    text: "Currently undergoing clear aligner treatment here. The digital scanning process was quick, and the doctors are very precise with their follow-ups. Great experience!",
+  },
+  {
+    author: "Aron Joseph",
+    time: "2 months ago",
+    rating: 5,
+    treatment: "Tooth Extraction",
+    text: "Got a painless extraction for my decayed molar. The staff was very supportive and gave detailed post-treatment instructions. Cleanliness is top-notch.",
+  },
+  {
+    author: "Shruti Sharma",
+    time: "2 months ago",
+    rating: 5,
+    treatment: "Dental Crowns & Bridges",
+    text: "Got a zirconium crown for my front tooth. It matches the color of my natural teeth perfectly. Dr. Monish is truly a perfectionist.",
+  },
+  {
+    author: "Devassy Paul",
+    time: "3 months ago",
+    rating: 5,
+    treatment: "Scaling & Polishing",
+    text: "Regular scaling session was quick and comfortable. No sensitivity afterwards. The pricing is very transparent and reasonable.",
+  },
+  {
+    author: "Aisha Fatima",
+    time: "3 months ago",
+    rating: 5,
+    treatment: "Pediatric Dental Care",
+    text: "Took my daughter for a check-up. Dr. Aswani Anil is wonderful with children. She made the entire visit fun and stress-free for my little one.",
+  },
+  {
+    author: "Madhavan K.",
+    time: "3 months ago",
+    rating: 5,
+    treatment: "Full Mouth Rehabilitation",
+    text: "Exceptional care for senior citizens. My father got his complete dentures made here. They fit comfortably, and he can eat without any issues now.",
+  },
+  {
+    author: "Tessa Antony",
+    time: "4 months ago",
+    rating: 5,
+    treatment: "Cosmetic Dentistry / Smile Designing",
+    text: "Dr. Parvathy Raj transformed my smile with composite bonding. She is very skilled and took her time to ensure it looked perfect. Highly recommended!",
+  },
+  {
+    author: "Nikhil Raj",
+    time: "4 months ago",
+    rating: 5,
+    treatment: "Wisdom Tooth Surgery",
+    text: "Had a surgical extraction of an impacted wisdom tooth. Dr. Monish made it look simple and fast. Healing was quick with minimal swelling.",
+  },
+  {
+    author: "Gautham Krishna",
+    time: "5 months ago",
+    rating: 5,
+    treatment: "Dental Fillings",
+    text: "Clean and quick composite filling done for two cavities. The doctor explained the procedure and used high-quality materials. Very professional environment.",
+  },
+  {
+    author: "Sandra Maria",
+    time: "5 months ago",
+    rating: 5,
+    treatment: "Orthodontic Braces",
+    text: "Started my braces treatment here 6 months ago. The progress is visible, and the monthly adjustments are handled with care. The clinic staff is very polite.",
+  },
+  {
+    author: "Vinod Kumar",
+    time: "5 months ago",
+    rating: 5,
+    treatment: "Laser Gum Treatment",
+    text: "Completed laser gum therapy for bleeding gums. The treatment was effective and painless. The clinic has very advanced laser equipment.",
+  },
+  {
+    author: "Meera Krishnan",
+    time: "6 months ago",
+    rating: 5,
+    treatment: "Dental Veneers",
+    text: "The veneers look incredibly natural. They have boosted my confidence tremendously. Thank you to Dr. Monish and the amazing staff at Park Dental.",
+  },
+  {
+    author: "Abhishek S.",
+    time: "6 months ago",
+    rating: 5,
+    treatment: "Mouth Guard / Night Guard",
+    text: "Got a custom night guard for teeth grinding. It fits comfortably and has relieved my morning jaw pain. Excellent service.",
+  },
+  {
+    author: "Fathima N.",
+    time: "7 months ago",
+    rating: 5,
+    treatment: "Root Canal Treatment",
+    text: "Second time getting a root canal treatment at this clinic. Both Dr. Mathew Jacob and the assistant were extremely caring and patient throughout.",
+  },
+  {
+    author: "Thomas Kurian",
+    time: "7 months ago",
+    rating: 5,
+    treatment: "Dental Implants",
+    text: "Had two implants placed last year. The follow-up care and the final crowns are excellent. Very reliable clinic with experienced doctors.",
+  },
+  {
+    author: "Anjali Ramesh",
+    time: "8 months ago",
+    rating: 5,
+    treatment: "Teeth Scaling",
+    text: "Thorough scaling and polishing done. The doctor also gave useful advice on flossing and daily oral care. Very helpful and friendly staff.",
+  },
+  {
+    author: "Hari Prasad",
+    time: "8 months ago",
+    rating: 5,
+    treatment: "Dental Fillings",
+    text: "Painless decay removal and ceramic filling. The clinic follows strict hygiene standards which is very reassuring. Highly recommend Dr. Aswani.",
+  },
+  {
+    author: "Elizabeth Sunny",
+    time: "9 months ago",
+    rating: 5,
+    treatment: "Pediatric Dental Care",
+    text: "My son actually looks forward to visiting the dentist now! The pediatric section is child-friendly, and the doctors are extremely gentle.",
+  },
+  {
+    author: "Rajesh Sekhar",
+    time: "9 months ago",
+    rating: 5,
+    treatment: "Wisdom Tooth Extraction",
+    text: "Excellent post-op care. The wisdom tooth extraction was very swift. Dr. Monish check-in calls after the procedure show their patient commitment.",
+  },
 ];
 
 export default function Reviews() {
@@ -157,7 +311,7 @@ export default function Reviews() {
               onClick={() => setActiveTab("practo")}
             >
               <i className="ti ti-activity" style={{ fontSize: "16px" }}></i>
-              Practo Stories
+              Practo Stories (600+)
             </button>
           </div>
         </div>

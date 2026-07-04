@@ -105,7 +105,7 @@ export default function Hero() {
                   ))}
                 </span>
               </div>
-              <span className="reviews-badge-text">200+ Reviews on Google</span>
+              <span className="reviews-badge-text">868 reviews on JustDial</span>
             </div>
           </div>
         </div>

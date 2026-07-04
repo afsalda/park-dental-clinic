@@ -78,7 +78,7 @@ export default function Services() {
                   ))}
                 </div>
                 <span className="rating-score">4.9</span>
-                <span className="rating-count">(200+ Reviews)</span>
+                <span className="rating-count">(868 reviews on JustDial)</span>
               </div>
               <h2 className="text-h1 split-text-animate">
                 Expert Dental

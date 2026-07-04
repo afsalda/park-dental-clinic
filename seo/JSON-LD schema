@@ -11,7 +11,7 @@
       "email": "parkdentalclinicdrmonish@gmail.com",
       "telephone": ["+91 98469 18974", "+91 81081 07271"],
       "foundingDate": "2015",
-      "description": "Premium multi-specialty dental clinic in Kochi, Kerala offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care. 4.9 Google rating from 200+ reviews.",
+      "description": "Premium multi-specialty dental clinic in Kochi, Kerala offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care. 4.9 rating from 868 reviews on JustDial.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Ground floor, opposite to More Supermarket, Punnackal, Elamakkara",
@@ -114,7 +114,7 @@
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.9",
-        "reviewCount": "200",
+        "reviewCount": "868",
         "bestRating": "5",
         "worstRating": "1"
       },

@@ -1706,6 +1706,7 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   flex-shrink: 0;
   margin-top: 2px;
+  transition: all var(--duration-fast) var(--ease-out);
 }
 
 .footer-contact-icon svg {
@@ -2538,6 +2539,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-contact-link:hover {
   color: var(--color-primary) !important;
+}
+
+.footer-contact-link:hover .footer-contact-text {
+  color: var(--color-primary);
+}
+
+.footer-contact-link:hover .footer-contact-icon {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 /* ── Custom Select Components ────────────────────────────────────────── */

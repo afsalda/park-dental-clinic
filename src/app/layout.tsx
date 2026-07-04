@@ -281,11 +281,54 @@ const jsonLd = {
   ]
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let ratingValue = "5.0";
+  let reviewCount = "34";
+
+  try {
+    // Fetch the live Google Reviews feed from SociableKit with daily revalidation
+    const res = await fetch("https://data.accentapi.com/feed/25694673.json", {
+      next: { revalidate: 86400 },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data?.bio?.overall_star_rating) {
+        ratingValue = Number(data.bio.overall_star_rating).toFixed(1);
+      }
+      if (data?.bio?.rating_count) {
+        reviewCount = data.bio.rating_count.toString();
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch live Google Reviews rating for schema:", error);
+  }
+
+  // Create a deep copy of jsonLd to inject dynamic values
+  const dynamicJsonLd = JSON.parse(JSON.stringify(jsonLd));
+
+  // Find Organization and update its description to match live ratings
+  const org = dynamicJsonLd["@graph"].find((item: any) => item["@type"] === "Organization");
+  if (org) {
+    org.description = `Premium multi-specialty dental clinic in Kochi, Kerala offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care. ${ratingValue} Google rating from ${reviewCount}+ reviews.`;
+  }
+
+  // Find MedicalClinic and update its rating and description
+  const clinic = dynamicJsonLd["@graph"].find((item: any) => item["@type"] === "MedicalClinic");
+  if (clinic) {
+    clinic.description = `Premium multi-specialty dental clinic in Kochi, Kerala with seven specialists offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care. ${ratingValue} Google rating from ${reviewCount}+ reviews.`;
+    clinic.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": ratingValue,
+      "reviewCount": reviewCount, // Keeps it a valid numeric string for SEO validation
+      "bestRating": "5",
+      "worstRating": "1"
+    };
+  }
+
   return (
     <html lang="en" className={`${inter.variable} ${manrope.variable}`}>
       <head>
@@ -305,7 +348,7 @@ export default function RootLayout({
         {/* Structured Schema Data */}
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(dynamicJsonLd) }}
         />
       </head>
       <body>

@@ -56,7 +56,7 @@ export default function CtaSection() {
                       ))}
                     </span>
                   </div>
-                  <span className="cta-reviews-text">200+ Reviews on Google</span>
+                  <span className="cta-reviews-text">868 reviews on JustDial</span>
                 </div>
               </div>
               <a
