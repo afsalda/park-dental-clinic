@@ -1127,6 +1127,244 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: var(--shadow-card-hover) !important;
 }
 
+/* Segmented Control for Reviews Tabs */
+.reviews-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(-1 * var(--space-sm));
+  margin-bottom: var(--space-3xl);
+  width: 100%;
+}
+
+.reviews-tabs {
+  display: flex;
+  background: var(--color-border-light);
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  gap: 4px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+.reviews-tab-btn {
+  border: none;
+  background: transparent;
+  padding: 10px 24px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  outline: none;
+}
+
+.reviews-tab-btn.active {
+  background: var(--color-white);
+  color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.reviews-tab-btn:hover:not(.active) {
+  color: var(--color-text);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Practo Reviews Carousel Styles */
+.practo-reviews-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.practo-track {
+  display: flex;
+  gap: var(--space-xl);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--space-md) var(--space-xs);
+  width: 100%;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.practo-track::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.practo-card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  background-color: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out);
+  cursor: default;
+}
+
+.practo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(8, 145, 178, 0.25);
+}
+
+.practo-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  position: relative;
+  width: 100%;
+}
+
+.practo-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  font-family: var(--font-heading);
+  flex-shrink: 0;
+  border: 1px solid rgba(8, 145, 178, 0.15);
+}
+
+.practo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.practo-author-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.practo-time {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+.practo-source-badge {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f0fdf4;
+  color: #16a34a;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(22, 163, 74, 0.15);
+}
+
+.practo-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #16a34a;
+  border-radius: var(--radius-full);
+}
+
+.practo-treatment-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  width: fit-content;
+  font-family: var(--font-body);
+}
+
+.practo-text {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  font-style: normal;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  flex-grow: 1;
+}
+
+/* Nav Buttons for custom carousel */
+.practo-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: all var(--duration-fast) var(--ease-out);
+  z-index: 10;
+}
+
+.practo-nav-btn:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(8, 145, 178, 0.25);
+}
+
+.practo-nav-btn.prev {
+  left: -20px;
+}
+
+.practo-nav-btn.next {
+  right: -20px;
+}
+
+@media (min-width: 768px) {
+  .practo-card {
+    flex: 0 0 calc(50% - 10px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .practo-card {
+    flex: 0 0 calc(33.333% - 14px);
+  }
+}
+
+@media (max-width: 767px) {
+  .practo-nav-btn {
+    display: none; /* Hide navigation buttons on mobile touch screens */
+  }
+}
+
+
 
 /* ══════════════════════════════════════════════════════════════════════
    TEAM SECTION
