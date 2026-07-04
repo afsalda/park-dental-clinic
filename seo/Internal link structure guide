@@ -1,0 +1,130 @@
+# Park Dental Clinic - Internal Link Structure & Navigation Recommendations
+
+## Current Problem
+
+The site is a single-page application (SPA) with all content on one URL (`/`). Navigation uses anchor links (`#home`, `#clinic`, `#services`, `#testimonials`, `#team`, `#contact`) that scroll to sections on the same page. There are zero separate page URLs.
+
+This causes two major problems:
+1. **GEO audit scored 0/15 on crawlable internal links** - AI crawlers and search engines see only one URL with no link graph to follow
+2. **No page-level SEO** - Each dental service (implants, cosmetic, root canal, etc.) should have its own indexable page targeting specific search keywords like "dental implants in Kochi" or "root canal treatment Kerala"
+
+## Recommended Architecture
+
+### Phase 1: Create Service Pages (Highest Priority)
+
+Split the current single-page site into separate pages. Each service gets its own URL with dedicated content.
+
+| Page | URL | Target Keywords | Priority |
+|------|-----|----------------|----------|
+| Homepage | `/` | dentist kochi, dental clinic kerala | 1.0 |
+| Dental Implants | `/dental-implants` | dental implants kochi, tooth implant kerala, all-on-4 kochi | 0.9 |
+| Cosmetic Dentistry | `/cosmetic-dentistry` | cosmetic dentist kochi, veneers kerala, smile makeover | 0.9 |
+| Root Canal | `/root-canal-treatment` | root canal kochi, RCT kerala, painless root canal | 0.8 |
+| Teeth Whitening | `/teeth-whitening` | teeth whitening kochi, laser whitening kerala | 0.8 |
+| Braces & Aligners | `/braces-aligners` | braces kochi, clear aligners kerala, invisalign | 0.8 |
+| Check-ups & Hygiene | `/checkups-hygiene` | dental cleaning kochi, hygiene kerala | 0.7 |
+| About/Clinic | `/about` | park dental clinic, dental clinic elamakkara | 0.7 |
+| Dentists/Team | `/dentists` | dentist kochi, dental specialist kerala | 0.7 |
+| Reviews | `/reviews` | park dental reviews, dentist kochi reviews | 0.6 |
+| Contact | `/contact` | dental clinic contact kochi, book dentist | 0.6 |
+| Blog Article | `/blog/best-dental-clinics-kochi` | best dental clinic kochi, safe dental clinic kerala | 0.8 |
+
+### Phase 2: Update Navigation to Use Real Links
+
+Replace the current anchor-based navigation with real `<a href>` links to separate pages.
+
+**Current (bad for crawlers):**
+```html
+<a href="#services" class="nav-link">Services</a>
+<a href="#team" class="nav-link">Dentists</a>
+<a href="#contact" class="nav-link">Contact</a>
+```
+
+**Recommended (crawlable):**
+```html
+<a href="/dental-implants" class="nav-link">Dental Implants</a>
+<a href="/cosmetic-dentistry" class="nav-link">Cosmetic Dentistry</a>
+<a href="/root-canal-treatment" class="nav-link">Root Canal</a>
+<a href="/braces-aligners" class="nav-link">Braces & Aligners</a>
+<a href="/about" class="nav-link">Our Clinic</a>
+<a href="/dentists" class="nav-link">Dentists</a>
+<a href="/reviews" class="nav-link">Reviews</a>
+<a href="/contact" class="nav-link">Contact</a>
+```
+
+### Phase 3: Add Internal Cross-Links
+
+Each service page should link to related services and back to the homepage.
+
+**Example for the Dental Implants page:**
+- Link to: `/cosmetic-dentistry` ("See how veneers complement your implants")
+- Link to: `/root-canal-treatment` ("Need a root canal before an implant?")
+- Link to: `/dentists` ("Meet our implant surgeon, Dr. Layana Theodore")
+- Link to: `/contact` ("Book your implant consultation")
+- Link to: `/blog/best-dental-clinics-kochi` ("Read our comparison of Kochi dental clinics")
+
+**Example for the Homepage:**
+- Link to each service page with descriptive anchor text:
+  - `<a href="/dental-implants">Dental implants in Kochi</a>`
+  - `<a href="/cosmetic-dentistry">Cosmetic dentistry and smile makeovers</a>`
+  - `<a href="/root-canal-treatment">Painless root canal therapy</a>`
+  - `<a href="/braces-aligners">Braces and clear aligners for all ages</a>`
+- Link to the blog article: `<a href="/blog/best-dental-clinics-kochi">Best dental clinics in Kochi compared</a>`
+
+### Phase 4: Add Breadcrumb Navigation
+
+Each page should have breadcrumbs for both users and crawlers:
+
+```html
+<nav aria-label="Breadcrumb">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/dental-implants">Dental Implants</a></li>
+  </ol>
+</nav>
+```
+
+Add breadcrumb JSON-LD schema to each page:
+```json
+{
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.parkdentalclinics.co.in/" },
+    { "@type": "ListItem", "position": 2, "name": "Dental Implants", "item": "https://www.parkdentalclinics.co.in/dental-implants" }
+  ]
+}
+```
+
+### Phase 5: Add a Blog Section
+
+Publish the GEO article and future articles as blog posts at `/blog/<slug>`. This creates a content hub that:
+- Targets long-tail keywords patients search for
+- Gives AI engines more content to cite
+- Creates more internal links and pages for crawlers to discover
+
+Suggested first articles:
+1. `/blog/best-dental-clinics-kochi` - The comparison article we just wrote
+2. `/blog/dental-implants-cost-kerala` - Implant pricing guide
+3. `/blog/root-canal-painless-treatment` - RCT FAQ and guide
+4. `/blog/clear-aligners-vs-braces` - Orthodontic comparison
+5. `/blog/dental-tourism-kerala-guide` - Medical tourism guide
+
+## Expected GEO Score Impact
+
+| Fix | Current Score | After Fix |
+|-----|--------------|-----------|
+| robots.txt (already drafted) | 18/25 | 25/25 |
+| llms.txt (already drafted) | 0/15 | 13/15 |
+| Server-side rendering | 20/20 | 20/20 |
+| sitemap.xml (this file) | 0/10 | 8/10 |
+| JSON-LD schema (already drafted) | 0/15 | 14/15 |
+| Crawlable internal links (this plan) | 0/15 | 12/15 |
+| **Total** | **38/100** | **92/100** |
+
+## Implementation Notes
+
+- The site is built by whyweb.in. Share this document with them as the development spec.
+- If the site uses a framework like React or Vue, ensure the new pages use server-side rendering (SSR) or static generation (SSG). The current SPA approach means crawlers only see one page.
+- The booking modal (`#booking-modal`) can remain as a modal on each page. It does not need its own URL.
+- Keep the Google Maps link (`https://maps.app.goo.gl/oPA1jHT1RMKtVsqB9`) on the contact page and homepage footer.
+- Update the `og:url` meta tag from `https://parkdentalclinic.in` to `https://www.parkdentalclinics.co.in/` - it currently points to a different domain.

@@ -1,0 +1,60 @@
+# robots.txt for Park Dental Clinic
+# https://www.parkdentalclinics.co.in/
+
+# Allow all AI crawlers and search engines full access
+User-agent: *
+Allow: /
+
+# OpenAI crawlers
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT-User
+User-agent: ChatGPT-User
+Allow: /
+
+# OAI-SearchBot
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic crawlers
+User-agent: ClaudeBot
+Allow: /
+
+# anthropic-ai
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity crawlers
+User-agent: PerplexityBot
+Allow: /
+
+# Perplexity-User
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI crawlers (separate from Googlebot)
+User-agent: Google-Extended
+Allow: /
+
+# Common Crawl (feeds many training datasets)
+User-agent: CCBot
+Allow: /
+
+# Googlebot
+User-agent: Googlebot
+Allow: /
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+
+# Block admin and private pages
+User-agent: *
+Disallow: /admin
+Disallow: /api
+Disallow: /*.json$
+Disallow: /privacy
+
+# Sitemap
+Sitemap: https://www.parkdentalclinics.co.in/sitemap.xml

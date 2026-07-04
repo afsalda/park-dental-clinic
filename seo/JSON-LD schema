@@ -1,0 +1,242 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.parkdentalclinics.co.in/#organization",
+      "name": "Park Dental Clinic",
+      "url": "https://www.parkdentalclinics.co.in/",
+      "logo": "https://www.parkdentalclinics.co.in/logo.png",
+      "email": "parkdentalclinicdrmonish@gmail.com",
+      "telephone": ["+91 98469 18974", "+91 81081 07271"],
+      "foundingDate": "2015",
+      "description": "Premium multi-specialty dental clinic in Kochi, Kerala offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care. 4.9 Google rating from 200+ reviews.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ground floor, opposite to More Supermarket, Punnackal, Elamakkara",
+        "addressLocality": "Kochi",
+        "addressRegion": "Kerala",
+        "postalCode": "682026",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.google.com/maps/place/Park+Dental+Clinic/@9.9816,76.3194,17z"
+      ],
+      "employee": [
+        {
+          "@type": "Person",
+          "name": "Dr. Monish Krishnan",
+          "jobTitle": "Chief Dental Surgeon",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Manu M. Das",
+          "jobTitle": "Maxillofacial Surgeon",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Aswani Anil",
+          "jobTitle": "Pedodontist",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Nikhil Julian",
+          "jobTitle": "Endodontist",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Fouzia Ismail",
+          "jobTitle": "General Dentist",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Mathew Jacob",
+          "jobTitle": "Endodontist",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        },
+        {
+          "@type": "Person",
+          "name": "Dr. Layana Theodore",
+          "jobTitle": "Prosthodontist and Implant Surgeon",
+          "worksFor": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.parkdentalclinics.co.in/#website",
+      "url": "https://www.parkdentalclinics.co.in/",
+      "name": "Park Dental Clinic",
+      "publisher": { "@id": "https://www.parkdentalclinics.co.in/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.parkdentalclinics.co.in/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://www.parkdentalclinics.co.in/#clinic",
+      "name": "Park Dental Clinic",
+      "url": "https://www.parkdentalclinics.co.in/",
+      "description": "Premium multi-specialty dental clinic in Kochi, Kerala with seven specialists offering dental implants, cosmetic dentistry, root canal therapy, teeth whitening, braces and aligners, and family dental care.",
+      "image": "https://www.parkdentalclinics.co.in/clinic-image.jpg",
+      "priceRange": "$$",
+      "telephone": "+91 98469 18974",
+      "email": "parkdentalclinicdrmonish@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ground floor, opposite to More Supermarket, Punnackal, Elamakkara",
+        "addressLocality": "Kochi",
+        "addressRegion": "Kerala",
+        "postalCode": "682026",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "9.9816",
+        "longitude": "76.3194"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "10:00",
+          "closes": "19:30"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "200",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "medicalSpecialty": [
+        "Dentistry",
+        "OralSurgery",
+        "Endodontics",
+        "Orthodontics",
+        "PediatricDentistry",
+        "Prosthodontics",
+        "CosmeticDentistry"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Kochi"
+      },
+      "parentOrganization": { "@id": "https://www.parkdentalclinics.co.in/#organization" }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#implants",
+      "serviceType": "Dental Implants",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "Single tooth implants, full-arch restoration, All-on-4, immediate-load implants, and implant-supported bridges performed by a prosthodontist and implant surgeon."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#cosmetic",
+      "serviceType": "Cosmetic Dentistry",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "Porcelain veneers, composite veneers, smile makeovers, dental bonding, and aesthetic contouring."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#rootcanal",
+      "serviceType": "Root Canal Therapy",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "Painless single and multi-visit root canal treatments using advanced rotary endodontics and digital imaging, performed by dedicated endodontists."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#whitening",
+      "serviceType": "Teeth Whitening",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "In-office laser whitening, custom take-home whitening trays, and professional stain removal treatments."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#orthodontics",
+      "serviceType": "Dental Braces and Aligners",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "Traditional metal braces, ceramic braces, self-ligating systems, and clear aligner therapy for all ages."
+    },
+    {
+      "@type": "Service",
+      "@id": "https://www.parkdentalclinics.co.in/#hygiene",
+      "serviceType": "Routine Check-ups and Hygiene",
+      "provider": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "description": "Professional cleanings, plaque and tartar removal, gum health checks, and preventive care plans."
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://www.parkdentalclinics.co.in/#faqpage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes Park Dental Clinic the safest dental clinic in Kochi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Park Dental Clinic has seven specialists with defined roles, meaning every procedure is performed by someone trained specifically for it. A maxillofacial surgeon handles surgical cases, two endodontists perform root canals with rotary endodontics, and a prosthodontist and implant surgeon manages implant placements. The clinic uses modern digital imaging and follows strict sterilization protocols."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Park Dental Clinic treat children?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Park Dental Clinic has a dedicated pedodontist, Dr. Aswani Anil, who specializes in pediatric dental care. Children require different approaches to behavior management, anesthesia, and treatment planning than adults."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Park Dental Clinic offer Invisalign or clear aligners?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Park Dental Clinic offers clear aligner therapy alongside traditional metal braces, ceramic braces, and self-ligating systems for all ages."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is Park Dental Clinic located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Park Dental Clinic is located at Ground floor, opposite to More Supermarket, Punnackal, Elamakkara, Kochi, Kerala 682026, India. The clinic is open Monday to Saturday from 10:00 AM to 7:30 PM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I book an appointment at Park Dental Clinic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can book an appointment online at parkdentalclinics.co.in or call +91 98469 18974 or +91 81081 07271. Online booking is available with a 3-step form to select your service, preferred specialist, and preferred date and time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What dental services does Park Dental Clinic offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Park Dental Clinic offers dental implants (single tooth, full-arch, All-on-4, immediate-load), cosmetic dentistry (veneers, smile makeovers, bonding), root canal therapy with rotary endodontics, teeth whitening (laser and take-home trays), dental braces and clear aligners, and routine check-ups and hygiene care."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are dental implants safe at Park Dental Clinic?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Dental implants at Park Dental Clinic are placed by Dr. Layana Theodore, a prosthodontist and implant surgeon. The clinic uses modern digital imaging for precise placement and follows strict sterilization protocols aligned with CDC and DCI guidelines."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
