@@ -960,6 +960,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 600px;
 }
 
+/* Unused old reviews marquee styles commented out for reference
 .reviews-marquee {
   width: 100vw;
   position: relative;
@@ -1073,6 +1074,59 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   margin: 0;
 }
+*/
+
+/* ── SociableKit Google Reviews Widget Overrides ── */
+.reviews-widget-container {
+  width: 100%;
+  margin-top: var(--space-xl);
+  min-height: 300px;
+}
+
+/* Hide SociableKit feed title and header components completely */
+.sk-ww-google-reviews .sk_feed_title,
+.sk-ww-google-reviews .sk_feed_title_container,
+.sk-ww-google-reviews .sk-ww-google-reviews-feed-title,
+.sk-ww-google-reviews .sk-ww-google-reviews-header,
+.sk-ww-google-reviews .sk-reviews-header-info,
+.sk-ww-google-reviews .sk-reviews-header {
+  display: none !important;
+}
+
+/* Hide SociableKit branding completely */
+.sk-ww-google-reviews .sk_branding,
+.sk-ww-google-reviews .sk-branding,
+.sk-ww-google-reviews .sk_branding_link,
+.sk-ww-google-reviews a[href*="sociablekit.com"],
+.sk-ww-google-reviews a[href*="sociablekit"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Override SociableKit widget font family */
+.sk-ww-google-reviews {
+  font-family: var(--font-body) !important;
+}
+
+/* Custom premium styling for reviews cards inside the widget */
+.sk-ww-google-reviews .sk_reviews_grid-item,
+.sk-ww-google-reviews .sk-reviews-card {
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: var(--radius-md) !important;
+  transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out) !important;
+}
+
+.sk-ww-google-reviews .sk_reviews_grid-item:hover,
+.sk-ww-google-reviews .sk-reviews-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-card-hover) !important;
+}
+
 
 /* ══════════════════════════════════════════════════════════════════════
    TEAM SECTION
