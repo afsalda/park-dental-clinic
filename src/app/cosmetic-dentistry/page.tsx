@@ -71,7 +71,7 @@ export default function CosmeticDentistryPage() {
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-manu.jpg",
+            img: "/images/dr-monish.jpg",
             id: "monish",
           },
           {
