@@ -94,7 +94,7 @@ export default function DoctorModal() {
         if (e.target === e.currentTarget) closeDoctor();
       }}
     >
-      <div className="modal-container animate-scale">
+      <div className="modal-container">
         <button className="modal-close" aria-label="Close modal" onClick={closeDoctor}>
           &times;
         </button>

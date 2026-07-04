@@ -17,7 +17,7 @@ export default function PrivacyModal() {
         if (e.target === e.currentTarget) closePrivacy();
       }}
     >
-      <div className="modal-container animate-scale" style={{ maxWidth: "600px" }}>
+      <div className="modal-container" style={{ maxWidth: "600px" }}>
         <button className="modal-close" aria-label="Close modal" onClick={closePrivacy}>
           &times;
         </button>

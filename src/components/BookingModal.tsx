@@ -223,7 +223,7 @@ export default function BookingModal() {
       }}
     >
       <div
-        className="modal-container animate-scale"
+        className="modal-container"
         style={{ maxWidth: "460px", padding: 0, overflow: "hidden", border: "none" }}
       >
         <div className="wizard-card-embedded">
