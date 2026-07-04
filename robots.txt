@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.parkdentalclinics.co.in/sitemap.xml
