@@ -114,10 +114,14 @@ export default function BookingModal() {
   };
 
   const handleTodayClick = () => {
-    const today = new Date();
-    setCalMonth(today.getMonth());
-    setCalYear(today.getFullYear());
-    const formatted = today.toISOString().split("T")[0];
+    const date = new Date();
+    if (date.getDay() === 0) {
+      // If today is Sunday, default to tomorrow (Monday)
+      date.setDate(date.getDate() + 1);
+    }
+    setCalMonth(date.getMonth());
+    setCalYear(date.getFullYear());
+    const formatted = date.toISOString().split("T")[0];
     setBkDate(formatted);
   };
 
@@ -472,7 +476,8 @@ export default function BookingModal() {
                       const cellDate = new Date(calYear, calMonth, day);
                       cellDate.setHours(0, 0, 0, 0);
 
-                      const isDisabled = cellDate < todayDate;
+                      const isSunday = cellDate.getDay() === 0;
+                      const isDisabled = cellDate < todayDate || isSunday;
                       const isSelected =
                         selectedDateObject &&
                         cellDate.getTime() === selectedDateObject.getTime();
