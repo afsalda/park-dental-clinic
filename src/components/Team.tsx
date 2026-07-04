@@ -14,13 +14,13 @@ const doctorsList: Doctor[] = [
     id: "monish",
     name: "Dr. Monish",
     role: "Chief Dental Surgeon",
-    img: "/images/dr-monish.jpg",
+    img: "/images/dr-manu.jpg",
   },
   {
     id: "manu",
     name: "Dr. Manu M. Das",
     role: "Maxillofacial Surgeon",
-    img: "/images/dr-manu.jpg",
+    img: "/images/dr-monish.jpg",
   },
   {
     id: "aswani",

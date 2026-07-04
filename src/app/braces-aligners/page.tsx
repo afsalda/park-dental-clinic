@@ -71,7 +71,7 @@ export default function BracesAlignersPage() {
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-monish.jpg",
+            img: "/images/dr-manu.jpg",
             id: "monish",
           },
         ]}

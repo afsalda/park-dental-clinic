@@ -81,7 +81,7 @@ export default function DentalImplantsPage() {
           {
             name: "Dr. Manu M. Das",
             role: "Maxillofacial Surgeon",
-            img: "/images/dr-manu.jpg",
+            img: "/images/dr-monish.jpg",
             id: "manu",
           },
         ]}
