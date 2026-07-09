@@ -78,5 +78,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${BASE_URL}/best-dental-clinics-kochi`,
+      lastModified: today,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }
