@@ -53,6 +53,10 @@ export default function Header() {
 
   return (
     <>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+      />
       {/* Mobile Menu Overlay */}
       <div
         className={`mobile-menu-overlay ${isMobileMenuOpen ? "visible" : ""}`}
@@ -76,7 +80,13 @@ export default function Header() {
             aria-label="Park Dental Clinic Home"
             onClick={(e) => handleLinkClick(e, "#home")}
           >
-            <img src="/images/logo.png" alt="Park Dental Logo" className="logo-img" />
+            <img
+              src="/images/logo.webp"
+              alt="Park Dental Logo"
+              className="logo-img"
+              width={800}
+              height={267}
+            />
           </Link>
           <button
             className="drawer-close"
@@ -172,7 +182,13 @@ export default function Header() {
             aria-label="Park Dental Clinic Home"
             onClick={(e) => handleLinkClick(e, "#home")}
           >
-            <img src="/images/logo.png" alt="Park Dental Logo" className="logo-img" />
+            <img
+              src="/images/logo.webp"
+              alt="Park Dental Logo"
+              className="logo-img"
+              width={800}
+              height={267}
+            />
           </Link>
 
           <div className="nav-links" id="nav-links">
