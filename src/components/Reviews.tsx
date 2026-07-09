@@ -378,7 +378,8 @@ export default function Reviews() {
 
       <Script
         src="https://widgets.sociablekit.com/google-reviews/widget.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
+        defer
       />
     </section>
   );
