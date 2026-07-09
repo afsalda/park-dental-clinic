@@ -114,7 +114,7 @@ export default function Footer() {
                 <Link href="/contact" className="footer-link" onClick={(e) => handleLinkClick(e, "#contact")}>
                   Contact Us
                 </Link>
-                <Link href="/best-dental-clinics-kochi" className="footer-link">
+                <Link href="/best-dental-clinics-kochi-reddit" className="footer-link">
                   Best Dental Clinics in Kochi
                 </Link>
                 <a

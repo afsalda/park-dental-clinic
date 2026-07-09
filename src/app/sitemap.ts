@@ -73,7 +73,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     },
     {
-      url: `${BASE_URL}/best-dental-clinics-kochi`,
+      url: `${BASE_URL}/best-dental-clinics-kochi-reddit`,
       lastModified: today,
       changeFrequency: "monthly",
       priority: 0.8,

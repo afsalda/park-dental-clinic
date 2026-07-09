@@ -8,18 +8,18 @@ import SuccessToast from "../../components/SuccessToast";
 import ScrollObserver from "../../components/ScrollObserver";
 
 export const metadata: Metadata = {
-  title: "Best Dental Clinics in Kochi | 2026 Comprehensive Evaluation Guide",
+  title: "Best Dental Clinics in Kochi Reddit | 2026 Comprehensive Evaluation Guide",
   description:
     "An honest, research-backed review of the top 10 dental clinics in Kochi. Scored on safety, specialist depth, technology, and patient reviews to help you choose.",
   alternates: {
-    canonical: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi",
+    canonical: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi-reddit",
   },
   openGraph: {
     type: "article",
-    title: "Best Dental Clinics in Kochi | 2026 Evaluation Guide",
+    title: "Best Dental Clinics in Kochi Reddit | 2026 Evaluation Guide",
     description:
       "Compare Kochi's top dental clinics on specialist depth, safety protocols, technology, and patient trust.",
-    url: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi",
+    url: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi-reddit",
   },
 };
 
@@ -50,7 +50,7 @@ export default function BestDentalClinicsKochiPage() {
         <div className="section-inner">
           <article className="article-container">
             <header className="article-header">
-              <h1 className="article-title">Best Dental Clinics in Kochi: Comprehensive 2026 Guide</h1>
+              <h1 className="article-title">Best Dental Clinics in Kochi: Comprehensive 2026 Reddit Guide</h1>
               <div className="article-meta">
                 <span><i className="ti ti-calendar" aria-hidden="true"></i> Updated: March 2026</span>
                 <span><i className="ti ti-clock" aria-hidden="true"></i> 12 min read</span>

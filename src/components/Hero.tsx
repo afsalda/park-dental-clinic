@@ -24,11 +24,14 @@ export default function Hero() {
     <section id="home" className="hero-wrapper" aria-label="Welcome to Park Dental Clinic">
       <div className="hero section-inner">
         <div className="hero-bg">
-          <img
-            src="/images/hero.png"
-            alt="Happy patient smiling in a modern dental clinic with natural lighting and teal decor"
-            loading="eager"
-          />
+          <picture>
+            <source media="(min-width: 768px)" srcSet="/images/hero-desktop.png" />
+            <img
+              src="/images/hero.png"
+              alt="Happy patient smiling in a modern dental clinic with natural lighting and teal decor"
+              loading="eager"
+            />
+          </picture>
         </div>
         <div className="hero-overlay"></div>
 
