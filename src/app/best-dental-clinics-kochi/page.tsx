@@ -6,6 +6,7 @@ import DoctorModal from "../../components/DoctorModal";
 import PrivacyModal from "../../components/PrivacyModal";
 import SuccessToast from "../../components/SuccessToast";
 import ScrollObserver from "../../components/ScrollObserver";
+import { IconCalendar, IconClock, IconUser } from "../../components/Icons";
 
 export const metadata: Metadata = {
   title: "Best Dental Clinics in Kochi | 2026 Comprehensive Evaluation Guide",
@@ -52,9 +53,9 @@ export default function BestDentalClinicsKochiPage() {
             <header className="article-header">
               <h1 className="article-title">Best Dental Clinics in Kochi: Comprehensive 2026 Guide</h1>
               <div className="article-meta">
-                <span><i className="ti ti-calendar" aria-hidden="true"></i> Updated: March 2026</span>
-                <span><i className="ti ti-clock" aria-hidden="true"></i> 12 min read</span>
-                <span><i className="ti ti-user" aria-hidden="true"></i> Verified Dental Review</span>
+                <span><IconCalendar size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} /> Updated: March 2026</span>
+                <span><IconClock size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} /> 12 min read</span>
+                <span><IconUser size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} /> Verified Dental Review</span>
               </div>
             </header>
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useBooking } from "../context/BookingContext";
+import { IconTooth, IconCheck, IconChevronLeft, IconChevronRight, IconStethoscope, IconUser, IconCalendar, IconArrowLeft, IconArrowRight } from "./Icons";
 
 interface ServiceItem {
   label: string;
@@ -253,11 +254,11 @@ export default function BookingModal() {
                   fontFamily: "var(--font-heading)",
                 }}
               >
-                <i
-                  className="ti ti-tooth"
+                <IconTooth
+                  size={16}
+                  style={{ verticalAlign: "-2px", marginRight: "5px" }}
                   aria-hidden="true"
-                  style={{ fontSize: "16px", verticalAlign: "-2px", marginRight: "5px" }}
-                ></i>
+                />
                 Park Dental
               </span>
             </div>
@@ -379,11 +380,11 @@ export default function BookingModal() {
                       </div>
                       <div className="doc-radio">
                         {bkDoc === d.name && (
-                          <i
-                            className="ti ti-check"
-                            style={{ fontSize: "10px", color: "var(--color-white)" }}
+                          <IconCheck
+                            size={10}
+                            style={{ color: "var(--color-white)" }}
                             aria-hidden="true"
-                          ></i>
+                          />
                         )}
                       </div>
                     </div>
@@ -430,7 +431,7 @@ export default function BookingModal() {
                         aria-label="Previous month"
                         onClick={handlePrevMonth}
                       >
-                        <i className="ti ti-chevron-left" style={{ fontSize: "14px" }}></i>
+                        <IconChevronLeft size={14} />
                       </button>
                       <button
                         id="cal-next-btn"
@@ -439,7 +440,7 @@ export default function BookingModal() {
                         aria-label="Next month"
                         onClick={handleNextMonth}
                       >
-                        <i className="ti ti-chevron-right" style={{ fontSize: "14px" }}></i>
+                        <IconChevronRight size={14} />
                       </button>
                     </div>
                   </div>
@@ -572,11 +573,11 @@ export default function BookingModal() {
                   }}
                 >
                   <div className="sum-row">
-                    <i
-                      className="ti ti-stethoscope"
+                    <IconStethoscope
+                      size={18}
+                      style={{ color: "var(--color-primary)", flexShrink: 0 }}
                       aria-hidden="true"
-                      style={{ fontSize: "18px", color: "var(--color-primary)", flexShrink: 0 }}
-                    ></i>
+                    />
                     <div>
                       <p
                         style={{
@@ -604,11 +605,11 @@ export default function BookingModal() {
                     </div>
                   </div>
                   <div className="sum-row">
-                    <i
-                      className="ti ti-user"
+                    <IconUser
+                      size={18}
+                      style={{ color: "var(--color-primary)", flexShrink: 0 }}
                       aria-hidden="true"
-                      style={{ fontSize: "18px", color: "var(--color-primary)", flexShrink: 0 }}
-                    ></i>
+                    />
                     <div>
                       <p
                         style={{
@@ -636,11 +637,11 @@ export default function BookingModal() {
                     </div>
                   </div>
                   <div className="sum-row">
-                    <i
-                      className="ti ti-calendar"
+                    <IconCalendar
+                      size={18}
+                      style={{ color: "var(--color-primary)", flexShrink: 0 }}
                       aria-hidden="true"
-                      style={{ fontSize: "18px", color: "var(--color-primary)", flexShrink: 0 }}
-                    ></i>
+                    />
                     <div>
                       <p
                         style={{
@@ -693,13 +694,13 @@ export default function BookingModal() {
               aria-label="Go back"
               onClick={handleBack}
             >
-              <i className="ti ti-arrow-left" style={{ fontSize: "18px" }} aria-hidden="true"></i>
+              <IconArrowLeft size={18} aria-hidden="true" />
             </button>
 
             {curStep < 3 ? (
               <button id="bnx" className="btn-next" onClick={handleContinue}>
                 Continue{" "}
-                <i className="ti ti-arrow-right" style={{ fontSize: "18px" }} aria-hidden="true"></i>
+                <IconArrowRight size={18} aria-hidden="true" />
               </button>
             ) : (
               <div

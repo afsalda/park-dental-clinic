@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Script from "next/script";
+import { IconBrandGoogle, IconActivity, IconChevronLeft, IconChevronRight, IconCircleCheck } from "./Icons";
 
 interface PractoReviewItem {
   author: string;
@@ -303,14 +304,14 @@ export default function Reviews() {
               className={`reviews-tab-btn ${activeTab === "google" ? "active" : ""}`}
               onClick={() => setActiveTab("google")}
             >
-              <i className="ti ti-brand-google" style={{ fontSize: "16px" }}></i>
+              <IconBrandGoogle size={16} />
               Google Reviews
             </button>
             <button
               className={`reviews-tab-btn ${activeTab === "practo" ? "active" : ""}`}
               onClick={() => setActiveTab("practo")}
             >
-              <i className="ti ti-activity" style={{ fontSize: "16px" }}></i>
+              <IconActivity size={16} />
               Practo Stories (600+)
             </button>
           </div>
@@ -333,7 +334,7 @@ export default function Reviews() {
             aria-label="Previous reviews"
             onClick={() => handleScroll("left")}
           >
-            <i className="ti ti-chevron-left"></i>
+            <IconChevronLeft size={20} />
           </button>
 
           <div className="practo-track" ref={practoTrackRef}>
@@ -351,7 +352,7 @@ export default function Reviews() {
                   </div>
                 </div>
                 <div className="practo-treatment-badge">
-                  <i className="ti ti-circle-check" style={{ marginRight: "4px", fontSize: "13px", verticalAlign: "-1px", color: "var(--color-primary)" }}></i>
+                  <IconCircleCheck size={13} style={{ marginRight: "4px", verticalAlign: "-1px", color: "var(--color-primary)" }} />
                   {review.treatment}
                 </div>
                 <div className="review-rating" style={{ color: "var(--color-star)" }}>
@@ -371,7 +372,7 @@ export default function Reviews() {
             aria-label="Next reviews"
             onClick={() => handleScroll("right")}
           >
-            <i className="ti ti-chevron-right"></i>
+            <IconChevronRight size={20} />
           </button>
         </div>
       </div>

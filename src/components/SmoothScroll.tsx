@@ -7,27 +7,54 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.5,
-      infinite: false,
-    });
-
-    lenisRef.current = lenis;
-
-    // RAF Loop
+    let lenis: Lenis | null = null;
     let rafId: number;
-    function raf(time: number) {
-      lenis.raf(time);
+
+    const initLenis = () => {
+      if (lenis) return;
+
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.5,
+        infinite: false,
+      });
+
+      lenisRef.current = lenis;
+
+      function raf(time: number) {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      }
       rafId = requestAnimationFrame(raf);
-    }
-    rafId = requestAnimationFrame(raf);
+    };
+
+    // Initialize on first interaction or scroll, or after a timeout
+    const triggerInit = () => {
+      initLenis();
+      cleanUpListeners();
+    };
+
+    const cleanUpListeners = () => {
+      window.removeEventListener("scroll", triggerInit);
+      window.removeEventListener("pointermove", triggerInit);
+      window.removeEventListener("touchstart", triggerInit);
+      window.removeEventListener("wheel", triggerInit);
+      window.removeEventListener("keydown", triggerInit);
+    };
+
+    window.addEventListener("scroll", triggerInit, { passive: true });
+    window.addEventListener("pointermove", triggerInit, { passive: true });
+    window.addEventListener("touchstart", triggerInit, { passive: true });
+    window.addEventListener("wheel", triggerInit, { passive: true });
+    window.addEventListener("keydown", triggerInit, { passive: true });
+
+    // Fallback timeout to initialize it after 2 seconds
+    const timeoutId = setTimeout(triggerInit, 2000);
 
     // Click handler for anchor links to handle smooth scrolling with offset
     const handleAnchorClick = (e: MouseEvent) => {
@@ -46,10 +73,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         if (element) {
           e.preventDefault();
           
+          // Ensure Lenis is initialized
+          initLenis();
+
           // Let's account for navigation height when scrolling
           const navHeight = 80;
           
-          lenis.scrollTo(element, {
+          lenis?.scrollTo(element, {
             offset: -navHeight,
             duration: 1.2,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -62,8 +92,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     // Clean up
     return () => {
+      clearTimeout(timeoutId);
+      cleanUpListeners();
       cancelAnimationFrame(rafId);
-      lenis.destroy();
+      if (lenis) {
+        lenis.destroy();
+      }
       document.removeEventListener("click", handleAnchorClick, { capture: true });
     };
   }, []);

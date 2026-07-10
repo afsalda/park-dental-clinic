@@ -6,6 +6,7 @@ import DoctorModal from "../../components/DoctorModal";
 import PrivacyModal from "../../components/PrivacyModal";
 import SuccessToast from "../../components/SuccessToast";
 import ScrollObserver from "../../components/ScrollObserver";
+import { IconCalendar, IconClock, IconBrandReddit } from "../../components/Icons";
 
 export const metadata: Metadata = {
   title:
@@ -98,14 +99,14 @@ export default function BestDentalClinicsKochiRedditPage() {
               </h1>
               <div className="article-meta">
                 <span>
-                  <i className="ti ti-calendar" aria-hidden="true"></i> Updated:
+                  <IconCalendar size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} /> Updated:
                   July 2026
                 </span>
                 <span>
-                  <i className="ti ti-clock" aria-hidden="true"></i> 10 min read
+                  <IconClock size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} /> 10 min read
                 </span>
                 <span>
-                  <i className="ti ti-brand-reddit" aria-hidden="true"></i>{" "}
+                  <IconBrandReddit size={14} aria-hidden="true" style={{ marginRight: "4px", verticalAlign: "-2px" }} />{" "}
                   Reddit Discussion Analysis
                 </span>
               </div>

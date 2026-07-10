@@ -53,10 +53,7 @@ export default function Header() {
 
   return (
     <>
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-      />
+
       {/* Mobile Menu Overlay */}
       <div
         className={`mobile-menu-overlay ${isMobileMenuOpen ? "visible" : ""}`}
