@@ -47,7 +47,7 @@ export default function TeethWhiteningPage() {
       <ServicePageLayout
         title="Teeth Whitening"
         slug="teeth-whitening"
-        icon="/images/icon-whitening.png"
+        icon="/images/icon-whitening.webp"
         heroDescription="Brighten your smile by up to 8 shades with professional teeth whitening. Choose from in-office laser whitening for instant results or custom take-home trays for gradual whitening at your convenience."
         bookingService="Teeth Whitening"
         sections={[
@@ -71,13 +71,13 @@ export default function TeethWhiteningPage() {
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-monish.jpg",
+            img: "/images/dr-monish.webp",
             id: "monish",
           },
           {
             name: "Dr. Fouzia Ismail",
             role: "General Dentist",
-            img: "/images/dr-fouzia.jpg",
+            img: "/images/dr-fouzia.webp",
             id: "fouzia",
           },
         ]}

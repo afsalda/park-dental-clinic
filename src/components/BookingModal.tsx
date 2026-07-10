@@ -20,12 +20,12 @@ interface TimeItem {
 }
 
 const svcs: ServiceItem[] = [
-  { label: "General Consultation", img: "/images/icon-treatment.png" },
-  { label: "Dental Implants", img: "/images/icon-implants.png" },
-  { label: "Cosmetic Dentistry", img: "/images/icon-veneers.png" },
-  { label: "Root Canal", img: "/images/icon-prosthetics.png" },
-  { label: "Teeth Whitening", img: "/images/icon-whitening.png" },
-  { label: "Braces & Aligners", img: "/images/icon-braces.png" },
+  { label: "General Consultation", img: "/images/icon-treatment.webp" },
+  { label: "Dental Implants", img: "/images/icon-implants.webp" },
+  { label: "Cosmetic Dentistry", img: "/images/icon-veneers.webp" },
+  { label: "Root Canal", img: "/images/icon-prosthetics.webp" },
+  { label: "Teeth Whitening", img: "/images/icon-whitening.webp" },
+  { label: "Braces & Aligners", img: "/images/icon-braces.webp" },
 ];
 
 const docs: DoctorItem[] = [
@@ -354,6 +354,9 @@ export default function BookingModal() {
                         <img
                           src={s.img}
                           alt={s.label}
+                          width={800}
+                          height={800}
+                          loading="lazy"
                           style={{ width: "100%", height: "100%", objectFit: "contain" }}
                         />
                       </div>

@@ -8,12 +8,14 @@ const inter = Inter({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const manrope = Manrope({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -335,11 +337,8 @@ export default async function RootLayout({
       <head>
         {/* Google Search Console Verification */}
         <meta name="google-site-verification" content="bUyC6aCrt6af4PPxkR7VYWeSs4Rqplyk2iBSgbMxoQg" />
-        {/* Tabler Icons CDN */}
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
-        />
+        {/* Preconnect to Font Host */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         {/* Inline SVG Tooth Favicon */}
         <link
           rel="icon"

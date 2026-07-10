@@ -47,7 +47,7 @@ export default function CheckupsHygienePage() {
       <ServicePageLayout
         title="Check-ups & Hygiene"
         slug="checkups-hygiene"
-        icon="/images/icon-treatment.png"
+        icon="/images/icon-treatment.webp"
         heroDescription="Prevention is the foundation of good dental health. Our professional cleanings, comprehensive check-ups, and personalized preventive care plans help you and your family maintain healthy teeth and gums for life."
         bookingService="General Consultation"
         sections={[
@@ -71,19 +71,19 @@ export default function CheckupsHygienePage() {
           {
             name: "Dr. Fouzia Ismail",
             role: "General Dentist",
-            img: "/images/dr-fouzia.jpg",
+            img: "/images/dr-fouzia.webp",
             id: "fouzia",
           },
           {
             name: "Dr. Aswani Anil",
             role: "Pedodontist",
-            img: "/images/dr-aswani.jpg",
+            img: "/images/dr-aswani.webp",
             id: "aswani",
           },
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-monish.jpg",
+            img: "/images/dr-monish.webp",
             id: "monish",
           },
         ]}

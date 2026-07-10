@@ -22,13 +22,69 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero-wrapper" aria-label="Welcome to Park Dental Clinic">
+      {/* React 19 hoists link tags to document head */}
+      <link
+        rel="preload"
+        href="/images/hero-desktop.avif"
+        as="image"
+        media="(min-width: 768px)"
+        type="image/avif"
+        fetchPriority="high"
+      />
+      <link
+        rel="preload"
+        href="/images/hero.avif"
+        as="image"
+        media="(max-width: 767px)"
+        type="image/avif"
+        fetchPriority="high"
+      />
       <div className="hero section-inner">
         <div className="hero-bg">
           <picture>
-            <source media="(min-width: 768px)" srcSet="/images/hero-desktop.png" />
+            {/* Desktop sources */}
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/hero-desktop.avif"
+              type="image/avif"
+              width={1920}
+              height={1080}
+            />
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/hero-desktop.webp"
+              type="image/webp"
+              width={1920}
+              height={1080}
+            />
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/hero-desktop.png"
+              type="image/png"
+              width={1920}
+              height={1080}
+            />
+            {/* Mobile sources */}
+            <source
+              media="(max-width: 767px)"
+              srcSet="/images/hero.avif"
+              type="image/avif"
+              width={1024}
+              height={1024}
+            />
+            <source
+              media="(max-width: 767px)"
+              srcSet="/images/hero.webp"
+              type="image/webp"
+              width={1024}
+              height={1024}
+            />
             <img
-              src="/images/hero.png"
+              src="/images/hero.webp"
               alt="Happy patient smiling in a modern dental clinic with natural lighting and teal decor"
+              width={1024}
+              height={1024}
+              fetchPriority="high"
               loading="eager"
             />
           </picture>
@@ -80,21 +136,30 @@ export default function Hero() {
             <div className="avatar-stack">
               <img
                 className="avatar-item"
-                src="/images/reviewer-krishna.png"
+                src="/images/reviewer-krishna.webp"
                 alt="krishnasankar K S"
                 title="krishnasankar K S"
+                width={30}
+                height={30}
+                loading="lazy"
               />
               <img
                 className="avatar-item"
-                src="/images/reviewer-aznedi.png"
+                src="/images/reviewer-aznedi.webp"
                 alt="- Aznedi -"
                 title="- Aznedi -"
+                width={30}
+                height={30}
+                loading="lazy"
               />
               <img
                 className="avatar-item"
-                src="/images/reviewer-divesh.png"
+                src="/images/reviewer-divesh.webp"
                 alt="Divesh Raj"
                 title="Divesh Raj"
+                width={30}
+                height={30}
+                loading="lazy"
               />
             </div>
             <div className="reviews-badge-info">

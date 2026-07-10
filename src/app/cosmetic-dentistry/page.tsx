@@ -47,7 +47,7 @@ export default function CosmeticDentistryPage() {
       <ServicePageLayout
         title="Cosmetic Dentistry"
         slug="cosmetic-dentistry"
-        icon="/images/icon-veneers.png"
+        icon="/images/icon-veneers.webp"
         heroDescription="Achieve the smile you've always wanted with our comprehensive cosmetic dentistry services. From porcelain veneers to complete smile makeovers, our specialists craft natural-looking results tailored to your facial features."
         bookingService="Cosmetic Dentistry"
         sections={[
@@ -71,13 +71,13 @@ export default function CosmeticDentistryPage() {
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-monish.jpg",
+            img: "/images/dr-monish.webp",
             id: "monish",
           },
           {
             name: "Dr. Layana Theodore",
             role: "Prosthodontist & Implant Surgeon",
-            img: "/images/dr-layana.jpg",
+            img: "/images/dr-layana.webp",
             id: "layana",
           },
         ]}

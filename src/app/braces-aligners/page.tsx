@@ -47,7 +47,7 @@ export default function BracesAlignersPage() {
       <ServicePageLayout
         title="Braces & Aligners"
         slug="braces-aligners"
-        icon="/images/icon-braces.png"
+        icon="/images/icon-braces.webp"
         heroDescription="Achieve a perfectly aligned smile with our orthodontic treatments. We offer traditional metal braces, discreet ceramic braces, advanced self-ligating systems, and clear aligner therapy — customized to your age, lifestyle, and treatment goals."
         bookingService="Braces & Aligners"
         sections={[
@@ -71,7 +71,7 @@ export default function BracesAlignersPage() {
           {
             name: "Dr. Monish",
             role: "Chief Dental Surgeon",
-            img: "/images/dr-monish.jpg",
+            img: "/images/dr-monish.webp",
             id: "monish",
           },
         ]}

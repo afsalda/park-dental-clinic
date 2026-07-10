@@ -14,43 +14,43 @@ const doctorsList: Doctor[] = [
     id: "monish",
     name: "Dr. Monish",
     role: "Chief Dental Surgeon",
-    img: "/images/dr-monish.jpg",
+    img: "/images/dr-monish.webp",
   },
   {
     id: "manu",
     name: "Dr. Manu M. Das",
     role: "Maxillofacial Surgeon",
-    img: "/images/dr-manu.jpg",
+    img: "/images/dr-manu.webp",
   },
   {
     id: "aswani",
     name: "Dr. Aswani Anil",
     role: "Pedodontist",
-    img: "/images/dr-aswani.jpg",
+    img: "/images/dr-aswani.webp",
   },
   {
     id: "nikhil",
     name: "Dr. Nikhil Julian",
     role: "Endodontist",
-    img: "/images/dr-nikhil.jpg",
+    img: "/images/dr-nikhil.webp",
   },
   {
     id: "fouzia",
     name: "Dr. Fouzia Ismail",
     role: "General Dentist",
-    img: "/images/dr-fouzia.jpg",
+    img: "/images/dr-fouzia.webp",
   },
   {
     id: "mathew",
     name: "Dr. Mathew Jacob",
     role: "Endodontist",
-    img: "/images/dr-mathew.jpg",
+    img: "/images/dr-mathew.webp",
   },
   {
     id: "layana",
     name: "Dr. Layana Theodore",
     role: "Prosthodontist & Implant Surgeon",
-    img: "/images/dr-layana.jpg",
+    img: "/images/dr-layana.webp",
   },
 ];
 
@@ -107,6 +107,8 @@ export default function Team() {
                 <img
                   src={doc.img}
                   alt={`${doc.name}, ${doc.role} at Park Dental Clinic`}
+                  width={800}
+                  height={800}
                   loading="lazy"
                 />
                 <div className="team-card-overlay"></div>

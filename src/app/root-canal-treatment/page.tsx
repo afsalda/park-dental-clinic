@@ -47,7 +47,7 @@ export default function RootCanalPage() {
       <ServicePageLayout
         title="Root Canal Treatment"
         slug="root-canal-treatment"
-        icon="/images/icon-prosthetics.png"
+        icon="/images/icon-prosthetics.webp"
         heroDescription="Save your natural tooth with painless root canal therapy performed by our specialist endodontists. We use advanced rotary endodontics and digital imaging to ensure precise, comfortable treatment — often completed in a single visit."
         bookingService="Root Canal"
         sections={[
@@ -71,13 +71,13 @@ export default function RootCanalPage() {
           {
             name: "Dr. Nikhil Julian",
             role: "Endodontist",
-            img: "/images/dr-nikhil.jpg",
+            img: "/images/dr-nikhil.webp",
             id: "nikhil",
           },
           {
             name: "Dr. Mathew Jacob",
             role: "Endodontist",
-            img: "/images/dr-mathew.jpg",
+            img: "/images/dr-mathew.webp",
             id: "mathew",
           },
         ]}

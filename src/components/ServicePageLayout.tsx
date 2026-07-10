@@ -67,7 +67,13 @@ export default function ServicePageLayout({
         <div className="section-inner">
           <div className="service-page-hero animate-on-scroll">
             <div className="service-page-hero-icon">
-              <img src={icon} alt={title} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              <img
+                src={icon}
+                alt={title}
+                width={800}
+                height={800}
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
+              />
             </div>
             <div className="service-page-hero-content">
               <h1 className="text-display split-text-animate">{title}</h1>

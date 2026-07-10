@@ -11,8 +11,10 @@ export default function CtaSection() {
         <div className="cta-row">
           <div className="cta-image-card animate-on-scroll">
             <img
-              src="/images/dental-closeup.png"
+              src="/images/dental-closeup.webp"
               alt="Professional dental examination at Park Dental Clinic"
+              width={800}
+              height={800}
               loading="lazy"
             />
           </div>
@@ -28,21 +30,30 @@ export default function CtaSection() {
                 <div className="avatar-stack">
                   <img
                     className="avatar-item"
-                    src="/images/reviewer-krishna.png"
+                    src="/images/reviewer-krishna.webp"
                     alt="krishnasankar K S"
                     title="krishnasankar K S"
+                    width={30}
+                    height={30}
+                    loading="lazy"
                   />
                   <img
                     className="avatar-item"
-                    src="/images/reviewer-aznedi.png"
+                    src="/images/reviewer-aznedi.webp"
                     alt="- Aznedi -"
                     title="- Aznedi -"
+                    width={30}
+                    height={30}
+                    loading="lazy"
                   />
                   <img
                     className="avatar-item"
-                    src="/images/reviewer-divesh.png"
+                    src="/images/reviewer-divesh.webp"
                     alt="Divesh Raj"
                     title="Divesh Raj"
+                    width={30}
+                    height={30}
+                    loading="lazy"
                   />
                 </div>
                 <div className="cta-reviews-info">

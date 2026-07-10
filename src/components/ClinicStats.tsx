@@ -12,8 +12,10 @@ export default function ClinicStats() {
           {/* Clinic Image Card */}
           <div className="stats-clinic-card animate-on-scroll">
             <img
-              src="/images/clinic.jpg"
+              src="/images/clinic.webp"
               alt="Modern Park Dental Clinic building exterior with glass facade and tropical greenery in Kochi"
+              width={800}
+              height={800}
               loading="lazy"
             />
             <div className="stats-clinic-overlay"></div>
@@ -142,36 +144,46 @@ export default function ClinicStats() {
           <div className="gallery-track">
             <div className="gallery-item">
               <img
-                src="/images/gallery-1.jpg"
+                src="/images/gallery-1.webp"
                 alt="Modern dental consultation room at Park Dental Clinic"
+                width={800}
+                height={533}
                 loading="lazy"
               />
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-2.jpg"
+                src="/images/gallery-2.webp"
                 alt="State-of-the-art dental treatment operatory chair"
+                width={800}
+                height={533}
                 loading="lazy"
               />
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-3.jpg"
+                src="/images/gallery-3.webp"
                 alt="Comfortable clinic reception and waiting lounge area"
+                width={800}
+                height={533}
                 loading="lazy"
               />
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-4.jpg"
+                src="/images/gallery-4.webp"
                 alt="Advanced sterile clinical tools and diagnostic equipment"
+                width={800}
+                height={533}
                 loading="lazy"
               />
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-5.jpg"
+                src="/images/gallery-5.webp"
                 alt="Modern building exterior facade of Park Dental Clinic"
+                width={800}
+                height={533}
                 loading="lazy"
               />
             </div>

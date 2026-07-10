@@ -51,7 +51,7 @@ export default function DentalImplantsPage() {
       <ServicePageLayout
         title="Dental Implants"
         slug="dental-implants"
-        icon="/images/icon-implants.png"
+        icon="/images/icon-implants.webp"
         heroDescription="Replace missing teeth permanently with dental implants placed by our specialist prosthodontist and implant surgeon. We offer single tooth implants, full-arch restoration, All-on-4, and immediate-load implants using modern digital imaging for precise placement."
         bookingService="Dental Implants"
         sections={[
@@ -75,13 +75,13 @@ export default function DentalImplantsPage() {
           {
             name: "Dr. Layana Theodore",
             role: "Prosthodontist & Implant Surgeon",
-            img: "/images/dr-layana.jpg",
+            img: "/images/dr-layana.webp",
             id: "layana",
           },
           {
             name: "Dr. Manu M. Das",
             role: "Maxillofacial Surgeon",
-            img: "/images/dr-manu.jpg",
+            img: "/images/dr-manu.webp",
             id: "manu",
           },
         ]}

@@ -17,7 +17,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Monish",
     role: "Chief Dental Surgeon & Implantologist",
     specialty: "Dental Implants",
-    img: "/images/dr-monish.jpg",
+    img: "/images/dr-monish.webp",
     serviceUrl: "/dental-implants",
     serviceName: "Dental Implants",
   },
@@ -25,7 +25,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Manu M. Das",
     role: "Oral & Maxillofacial Surgeon",
     specialty: "Surgical Procedures",
-    img: "/images/dr-manu.jpg",
+    img: "/images/dr-manu.webp",
     serviceUrl: "/dental-implants",
     serviceName: "Dental Implants",
   },
@@ -33,7 +33,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Aswani Anil",
     role: "Pedodontist (Children's Dentist)",
     specialty: "Pediatric Care",
-    img: "/images/dr-aswani.jpg",
+    img: "/images/dr-aswani.webp",
     serviceUrl: "/checkups-hygiene",
     serviceName: "Check-ups & Hygiene",
   },
@@ -41,7 +41,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Nikhil Julian",
     role: "Endodontist (Root Canal Specialist)",
     specialty: "Root Canal Therapy",
-    img: "/images/dr-nikhil.jpg",
+    img: "/images/dr-nikhil.webp",
     serviceUrl: "/root-canal-treatment",
     serviceName: "Root Canal Treatment",
   },
@@ -49,7 +49,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Fouzia Ismail",
     role: "General Dentist",
     specialty: "General Dentistry",
-    img: "/images/dr-fouzia.jpg",
+    img: "/images/dr-fouzia.webp",
     serviceUrl: "/checkups-hygiene",
     serviceName: "Check-ups & Hygiene",
   },
@@ -57,7 +57,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Mathew Jacob",
     role: "Endodontist (Root Canal Specialist)",
     specialty: "Root Canal Therapy",
-    img: "/images/dr-mathew.jpg",
+    img: "/images/dr-mathew.webp",
     serviceUrl: "/root-canal-treatment",
     serviceName: "Root Canal Treatment",
   },
@@ -65,7 +65,7 @@ const doctorDb: Record<string, DoctorDetails> = {
     name: "Dr. Layana Theodore",
     role: "MDS Prosthodontist & Implantologist",
     specialty: "Implant Surgery & Prosthetics",
-    img: "/images/dr-layana.jpg",
+    img: "/images/dr-layana.webp",
     serviceUrl: "/dental-implants",
     serviceName: "Dental Implants",
   },
@@ -100,7 +100,7 @@ export default function DoctorModal() {
         </button>
         <div className="modal-body doctor-modal-content">
           <div className="doctor-modal-image">
-            <img src={doc.img} alt={`${doc.name}, ${doc.role}`} />
+            <img src={doc.img} alt={`${doc.name}, ${doc.role}`} width={800} height={800} loading="lazy" />
           </div>
           <div className="doctor-modal-details">
             <span id="doc-modal-specialty" className="badge">

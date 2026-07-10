@@ -16,42 +16,42 @@ const servicesList: ServiceItem[] = [
     title: "Dental Implants",
     label: "Dental Implants",
     desc: "Single tooth implants, full-arch restoration, All-on-4, immediate-load implants, and implant-supported bridges.",
-    img: "/images/icon-implants.png",
+    img: "/images/icon-implants.webp",
     href: "/dental-implants",
   },
   {
     title: "Cosmetic Dentistry",
     label: "Cosmetic Dentistry",
     desc: "Porcelain veneers, composite veneers, smile makeovers, dental bonding, and aesthetic contouring.",
-    img: "/images/icon-veneers.png",
+    img: "/images/icon-veneers.webp",
     href: "/cosmetic-dentistry",
   },
   {
     title: "Root Canal Therapy",
     label: "Root Canal",
     desc: "Painless single and multi-visit root canal treatments using advanced rotary endodontics and digital imaging.",
-    img: "/images/icon-prosthetics.png",
+    img: "/images/icon-prosthetics.webp",
     href: "/root-canal-treatment",
   },
   {
     title: "Teeth Whitening",
     label: "Teeth Whitening",
     desc: "In-office laser whitening, custom take-home whitening trays, and professional stain removal treatments.",
-    img: "/images/icon-whitening.png",
+    img: "/images/icon-whitening.webp",
     href: "/teeth-whitening",
   },
   {
     title: "Dental Braces & Aligners",
     label: "Braces & Aligners",
     desc: "Traditional metal braces, ceramic braces, self-ligating systems, and clear aligner therapy for all ages.",
-    img: "/images/icon-braces.png",
+    img: "/images/icon-braces.webp",
     href: "/braces-aligners",
   },
   {
     title: "Routine Check-ups & Hygiene",
     label: "General Consultation",
     desc: "Professional cleanings, plaque and tartar removal, gum health checks, and preventive care plans.",
-    img: "/images/icon-treatment.png",
+    img: "/images/icon-treatment.webp",
     href: "/checkups-hygiene",
   },
 ];
@@ -122,6 +122,9 @@ export default function Services() {
                   <img
                     src={service.img}
                     alt={service.title}
+                    width={800}
+                    height={800}
+                    loading="lazy"
                     style={{ width: "100%", height: "100%", objectFit: "contain" }}
                   />
                 </div>
