@@ -280,6 +280,82 @@ const jsonLd = {
           }
         }
       ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://www.parkdentalclinics.co.in/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.parkdentalclinics.co.in/"
+        }
+      ]
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Deepak Kumar" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "I visited Dr. Monish for a wisdom tooth extraction. I was extremely nervous, but he explained the whole process clearly and completed the extraction in less than 10 minutes with absolutely no pain. Excellent doctor and very sanitary clinic!",
+      "about": "Wisdom Tooth Extraction"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Ananya R." },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Dr. Monish is very patient and highly skilled. He performed a smile correction with veneers for me, and the result is absolutely natural and beautiful. The staff is polite, and the clinic is equipped with the latest dental technology.",
+      "about": "Dental Veneers / Smile Designing"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Jose Joseph" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "I've been visiting Park Dental Clinic for regular scaling and dental check-ups for years. Dr. Mathew Jacob performed a root canal treatment for me recently. It was completely painless and extremely professional. Best dental clinic in Cochin!",
+      "about": "Root Canal Treatment"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Meera Nair" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Excellent pediatric dental care! Took my 7-year-old son to Dr. Aswani Anil for a cavity filling. She was incredibly gentle, friendly, and managed his anxiety so well. Highly recommend this clinic for families.",
+      "about": "Pediatric Dental Care"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Siddharth Menon" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Got my front tooth implant done by Dr. Monish. The surgical procedure was explained thoroughly, and the crown fits perfectly. Highly satisfied with the advanced equipment and care.",
+      "about": "Dental Implants"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Riya Mathew" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Very happy with the teeth whitening treatment. The results are amazing, and the sensitivity was minimal. The clinic is exceptionally clean and comfortable.",
+      "about": "Teeth Whitening"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Rahul G. Nair" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Dr. Mathew Jacob did an excellent job with my root canal. He was very gentle and completed it in two brief sessions. The pain is completely gone.",
+      "about": "Root Canal Treatment"
+    },
+    {
+      "@type": "Review",
+      "itemReviewed": { "@id": "https://www.parkdentalclinics.co.in/#clinic" },
+      "author": { "@type": "Person", "name": "Lakshmi Priya" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Currently undergoing clear aligner treatment here. The digital scanning process was quick, and the doctors are very precise with their follow-ups. Great experience!",
+      "about": "Invisalign / Clear Aligners"
     }
   ]
 };
