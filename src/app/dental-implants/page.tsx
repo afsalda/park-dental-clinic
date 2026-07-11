@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "Single tooth implants, full-arch restoration, All-on-4, and immediate-load implants by a specialist prosthodontist and implant surgeon.",
     url: "https://www.parkdentalclinics.co.in/dental-implants",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dental Implants in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

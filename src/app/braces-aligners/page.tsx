@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "Metal braces, ceramic braces, and clear aligner therapy for all ages at Park Dental Clinic, Kochi.",
     url: "https://www.parkdentalclinics.co.in/braces-aligners",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Braces & Clear Aligners in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

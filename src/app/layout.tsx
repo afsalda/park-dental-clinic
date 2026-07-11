@@ -34,12 +34,21 @@ export const metadata: Metadata = {
     description:
       "Experienced specialists, modern technology, and compassionate dental care for your entire family. Book your consultation today.",
     url: "https://www.parkdentalclinics.co.in",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Park Dental Clinic — Premium Dental Care in Kochi, Kerala",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Park Dental Clinic — Premium Dental Care in Kochi, Kerala",
     description:
       "Experienced specialists, modern technology, and compassionate dental care for your entire family.",
+    images: ["https://www.parkdentalclinics.co.in/images/og-image.png"],
   },
 };
 

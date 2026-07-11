@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "Painless root canal therapy by specialist endodontists using advanced rotary endodontics and digital imaging.",
     url: "https://www.parkdentalclinics.co.in/root-canal-treatment",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Painless Root Canal Treatment in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

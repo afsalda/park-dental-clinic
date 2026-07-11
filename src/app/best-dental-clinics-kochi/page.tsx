@@ -21,6 +21,14 @@ export const metadata: Metadata = {
     description:
       "Compare Kochi's top dental clinics on specialist depth, safety protocols, technology, and patient trust.",
     url: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Best Dental Clinics in Kochi | 2026 Evaluation Guide",
+      },
+    ],
   },
 };
 

@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "Porcelain veneers, smile makeovers, and dental bonding by experienced cosmetic dental specialists in Kochi, Kerala.",
     url: "https://www.parkdentalclinics.co.in/cosmetic-dentistry",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Cosmetic Dentistry in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

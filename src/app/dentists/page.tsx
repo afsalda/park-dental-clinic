@@ -21,6 +21,14 @@ export const metadata: Metadata = {
     description:
       "Expert specialists ready to care for your smile. Meet our dentists at Park Dental Clinic.",
     url: "https://www.parkdentalclinics.co.in/dentists",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Our Dental Specialists — Park Dental Clinic",
+      },
+    ],
   },
 };
 

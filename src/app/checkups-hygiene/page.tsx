@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "Professional cleanings, gum health checks, and preventive care plans for your entire family.",
     url: "https://www.parkdentalclinics.co.in/checkups-hygiene",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Dental Check-ups & Hygiene in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

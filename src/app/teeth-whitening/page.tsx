@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     description:
       "In-office laser whitening and custom take-home trays for a brighter, more confident smile.",
     url: "https://www.parkdentalclinics.co.in/teeth-whitening",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Professional Teeth Whitening in Kochi — Park Dental Clinic",
+      },
+    ],
   },
 };
 

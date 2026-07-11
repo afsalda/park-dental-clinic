@@ -24,6 +24,14 @@ export const metadata: Metadata = {
     description:
       "We analyzed Reddit discussions to summarize what patients say about dental clinics in Kochi, including recommendations, common complaints, and real experiences.",
     url: "https://www.parkdentalclinics.co.in/best-dental-clinics-kochi-reddit",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Best Dental Clinics in Kochi According to Reddit Discussions (2026)",
+      },
+    ],
   },
 };
 

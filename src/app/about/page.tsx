@@ -21,6 +21,14 @@ export const metadata: Metadata = {
     description:
       "Modern dental facility in Kochi, Kerala with strict sterilization protocols and advanced dental technologies.",
     url: "https://www.parkdentalclinics.co.in/about",
+    images: [
+      {
+        url: "https://www.parkdentalclinics.co.in/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About Our Clinic — Park Dental Clinic",
+      },
+    ],
   },
 };
 
