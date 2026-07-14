@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 interface ComparisonSliderProps {
   label: string;
@@ -117,7 +117,7 @@ function ComparisonSlider({ label, beforeSrc, afterSrc, ariaLabel }: ComparisonS
         style={{
           position: "relative",
           width: "100%",
-          borderRadius: "var(--radius-lg)",
+          borderRadius: "32px",
           overflow: "hidden",
           userSelect: "none",
           touchAction: "none",
@@ -250,49 +250,6 @@ function ComparisonSlider({ label, beforeSrc, afterSrc, ariaLabel }: ComparisonS
 }
 
 export default function PremiumBeforeAfter() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  // Measures the real rendered width of a card + gap, since item width is now
-  // responsive (min(70vw, 260px) on mobile) instead of a fixed 280px.
-  const getItemStep = () => {
-    const container = containerRef.current;
-    if (!container) return 280 + 24;
-    const item = container.querySelector<HTMLElement>(".cases-item");
-    if (!item) return 280 + 24;
-    const gap = parseFloat(window.getComputedStyle(container).columnGap || "24") || 24;
-    return item.offsetWidth + gap;
-  };
-
-  const handleScroll = () => {
-    if (!containerRef.current) return;
-    const scrollLeft = containerRef.current.scrollLeft;
-    const step = getItemStep();
-    const index = Math.round(scrollLeft / step);
-    const clampedIndex = Math.max(0, Math.min(2, index));
-    setActiveIndex((prev) => (prev !== clampedIndex ? clampedIndex : prev));
-  };
-
-  const scrollToItem = (index: number) => {
-    if (!containerRef.current) return;
-    const step = getItemStep();
-    containerRef.current.scrollTo({
-      left: index * step,
-      behavior: "smooth",
-    });
-  };
-
-  useEffect(() => {
-    // Initial sync
-    handleScroll();
-    
-    // Recalculate on window resize
-    window.addEventListener("resize", handleScroll);
-    return () => {
-      window.removeEventListener("resize", handleScroll);
-    };
-  }, []);
-
   return (
     <section id="before-after" className="section-row" aria-label="Before and After Results">
       <div className="section-inner">
@@ -318,11 +275,7 @@ export default function PremiumBeforeAfter() {
         </div>
 
         {/* Cases container: 3-column grid on desktop, horizontal slider on mobile */}
-        <div
-          ref={containerRef}
-          onScroll={handleScroll}
-          className="cases-container"
-        >
+        <div className="cases-container">
           {/* Case 1: Smile Makeover */}
           <div className="cases-item">
             <ComparisonSlider
@@ -354,19 +307,6 @@ export default function PremiumBeforeAfter() {
           </div>
         </div>
 
-        {/* Mobile slide indicator slider */}
-        <div className="mobile-slider-container">
-          <input
-            type="range"
-            min={0}
-            max={2}
-            value={activeIndex}
-            onChange={(e) => scrollToItem(parseInt(e.target.value))}
-            className="mobile-slider"
-            aria-label="Navigate before and after transformations"
-          />
-        </div>
-
         <style jsx>{`
           .cases-container {
             display: grid;
@@ -380,43 +320,6 @@ export default function PremiumBeforeAfter() {
           .cases-item {
             display: flex;
             justify-content: center;
-          }
-          .mobile-slider-container {
-            display: none;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 1.5rem;
-            padding: 0 20px;
-          }
-          .mobile-slider {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 120px;
-            height: 4px;
-            background: var(--color-border);
-            border-radius: 2px;
-            outline: none;
-            margin: 0 auto;
-          }
-          .mobile-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 24px;
-            height: 8px;
-            border-radius: 4px;
-            background: var(--color-primary);
-            cursor: pointer;
-            transition: background var(--duration-fast);
-          }
-          .mobile-slider::-moz-range-thumb {
-            width: 24px;
-            height: 8px;
-            border-radius: 4px;
-            background: var(--color-primary);
-            cursor: pointer;
-            border: none;
-            transition: background var(--duration-fast);
           }
           @media (max-width: 960px) {
             .cases-container {
@@ -432,19 +335,24 @@ export default function PremiumBeforeAfter() {
               margin-right: calc(var(--page-padding) * -1);
               scroll-behavior: smooth;
               -webkit-overflow-scrolling: touch;
-              scrollbar-width: none; /* Firefox */
-              -ms-overflow-style: none;  /* IE/Edge */
+              scrollbar-width: thin;
+              scrollbar-color: var(--color-primary) var(--color-border-light);
             }
             .cases-container::-webkit-scrollbar {
-              display: none; /* Safari and Chrome */
+              height: 6px;
+            }
+            .cases-container::-webkit-scrollbar-track {
+              background: var(--color-border-light);
+              border-radius: var(--radius-pill);
+            }
+            .cases-container::-webkit-scrollbar-thumb {
+              background: var(--color-primary);
+              border-radius: var(--radius-pill);
             }
             .cases-item {
               flex: 0 0 auto;
               width: min(70vw, 260px);
               scroll-snap-align: start;
-            }
-            .mobile-slider-container {
-              display: flex;
             }
           }
           @media (max-width: 767px) {
@@ -467,9 +375,6 @@ export default function PremiumBeforeAfter() {
               max-width: 238px;
               min-width: 224px;
               scroll-snap-align: center;
-            }
-            .mobile-slider-container {
-              margin-top: 30px;
             }
           }
         `}</style>

@@ -76,7 +76,7 @@ export default function BeforeAfterGallery() {
                     flex: "none",
                     width: "100%",
                     aspectRatio: "3/2",
-                    borderRadius: "var(--radius-lg)",
+                    borderRadius: "32px",
                     overflow: "hidden",
                     boxShadow: "var(--shadow-card)",
                     border: "1px solid var(--color-border-light)",

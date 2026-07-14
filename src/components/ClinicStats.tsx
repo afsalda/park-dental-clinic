@@ -151,85 +151,121 @@ export default function ClinicStats() {
           </div>
           <div className="gallery-track">
             <div className="gallery-item">
-              <img
-                src="/images/JAI04274.JPG.webp"
-                alt="Clinic entrance and reception desk"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04274.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04274.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04274.JPG.webp"
+                  alt="Clinic entrance and reception desk"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04158.JPG.webp"
-                alt="Modern dental operatory treatment chair"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04158.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04158.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04158.JPG.webp"
+                  alt="Modern dental operatory treatment chair"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04168.JPG.webp"
-                alt="Advanced dental treatment equipment"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04168.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04168.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04168.JPG.webp"
+                  alt="Advanced dental treatment equipment"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04233.JPG.webp"
-                alt="Clinical treatment room setup"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04233.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04233.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04233.JPG.webp"
+                  alt="Clinical treatment room setup"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04180.JPG.webp"
-                alt="Dedicated dental specialist team room"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04180.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04180.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04180.JPG.webp"
+                  alt="Dedicated dental specialist team room"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04145.JPG.webp"
-                alt="Sterilized instruments and operating room"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04145.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04145.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04145.JPG.webp"
+                  alt="Sterilized instruments and operating room"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04125.JPG.webp"
-                alt="Patient treatment consult room"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04125.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04125.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04125.JPG.webp"
+                  alt="Patient treatment consult room"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04131.JPG.webp"
-                alt="Clinical diagnostic station"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04131.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04131.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04131.JPG.webp"
+                  alt="Clinical diagnostic station"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
             <div className="gallery-item">
-              <img
-                src="/images/JAI04305.JPG.webp"
-                alt="Dentist consulting room at Park Dental"
-                width={800}
-                height={533}
-                loading="lazy"
-              />
+              <picture>
+                <source srcSet="/images/JAI04305.JPG.avif" type="image/avif" />
+                <source srcSet="/images/JAI04305.JPG.webp" type="image/webp" />
+                <img
+                  src="/images/JAI04305.JPG.webp"
+                  alt="Dentist consulting room at Park Dental"
+                  width={800}
+                  height={533}
+                  loading="lazy"
+                />
+              </picture>
             </div>
           </div>
         </div>

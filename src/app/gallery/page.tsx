@@ -104,27 +104,34 @@ export default function GalleryPage() {
                 marginTop: "var(--space-xl)",
               }}
             >
-              {galleryImages.map((img, i) => (
-                <div
-                  key={i}
-                  className="gallery-item"
-                  style={{
-                    borderRadius: "var(--radius-lg)",
-                    overflow: "hidden",
-                    border: "1px solid var(--color-border-light)",
-                    boxShadow: "var(--shadow-card)",
-                    aspectRatio: "3/2",
-                    position: "relative",
-                    flex: "initial",
-                  }}
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                  />
-                </div>
-              ))}
+              {galleryImages.map((img, i) => {
+                const avifSrc = img.src.replace('.webp', '.avif');
+                return (
+                  <div
+                    key={i}
+                    className="gallery-item"
+                    style={{
+                      borderRadius: "var(--radius-lg)",
+                      overflow: "hidden",
+                      border: "1px solid var(--color-border-light)",
+                      boxShadow: "var(--shadow-card)",
+                      aspectRatio: "3/2",
+                      position: "relative",
+                      flex: "initial",
+                    }}
+                  >
+                    <picture>
+                      <source srcSet={avifSrc} type="image/avif" />
+                      <source srcSet={img.src} type="image/webp" />
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="lazy"
+                      />
+                    </picture>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

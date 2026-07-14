@@ -4405,3 +4405,18 @@ html.lenis, html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* Permanent disable and hide of the Vercel Toolbar / Live Feedback widget */
+vercel-live-feedback,
+#vercel-live-feedback,
+.vercel-live-feedback,
+[id^="vercel-live-feedback"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+  position: absolute !important;
+  left: -9999px !important;
+}
