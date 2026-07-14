@@ -71,6 +71,56 @@ export default function BookingModal() {
   const [patientPhone, setPatientPhone] = useState("");
   const [patientNotes, setPatientNotes] = useState("");
 
+  const [redirectType, setRedirectType] = useState<"wa" | "cb" | null>(null);
+  const [redirectCountdown, setRedirectCountdown] = useState(5);
+
+  // Redirect countdown and execution effect
+  useEffect(() => {
+    if (!redirectType) return;
+
+    setRedirectCountdown(5);
+    const interval = setInterval(() => {
+      setRedirectCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    const timeout = setTimeout(() => {
+      if (redirectType === "wa") {
+        let dateObj = null;
+        if (bkDate) {
+          const [year, month, day] = bkDate.split("-").map(Number);
+          dateObj = new Date(year, month - 1, day);
+        }
+        const d = dateObj
+          ? dateObj.toLocaleDateString("en-IN", {
+              weekday: "long",
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })
+          : "Flexible";
+        const msg = `Hello Park Dental Clinic!\n\nI'd like to book an appointment:\n\nService: ${bkSvc}\nDoctor: ${bkDoc}\nDate: ${d}\nTime: ${bkTime || "Any time"}\nName: ${patientName.trim()}\nPhone: +91 ${patientPhone.trim()}${patientNotes.trim() ? "\nNotes: " + patientNotes.trim() : ""}`;
+
+        closeBooking();
+        window.open("https://wa.me/919846918974?text=" + encodeURIComponent(msg), "_blank");
+      } else if (redirectType === "cb") {
+        closeBooking();
+        showSuccessToast();
+      }
+      setRedirectType(null);
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, [redirectType, bkDate, bkSvc, bkDoc, bkTime, patientName, patientPhone, patientNotes, closeBooking, showSuccessToast]);
+
   const [calMonth, setCalMonth] = useState(new Date().getMonth());
   const [calYear, setCalYear] = useState(new Date().getFullYear());
 
@@ -138,6 +188,8 @@ export default function BookingModal() {
       setPatientName("");
       setPatientPhone("");
       setPatientNotes("");
+      setRedirectType(null);
+      setRedirectCountdown(5);
       setCalMonth(new Date().getMonth());
       setCalYear(new Date().getFullYear());
     }
@@ -257,29 +309,12 @@ export default function BookingModal() {
 
   const doWA = () => {
     if (!validateDetails()) return;
-    let dateObj = null;
-    if (bkDate) {
-      const [year, month, day] = bkDate.split("-").map(Number);
-      dateObj = new Date(year, month - 1, day);
-    }
-    const d = dateObj
-      ? dateObj.toLocaleDateString("en-IN", {
-          weekday: "long",
-          day: "numeric",
-          month: "long",
-          year: "numeric",
-        })
-      : "Flexible";
-    const msg = `Hello Park Dental Clinic!\n\nI'd like to book an appointment:\n\nService: ${bkSvc}\nDoctor: ${bkDoc}\nDate: ${d}\nTime: ${bkTime || "Any time"}\nName: ${patientName.trim()}\nPhone: +91 ${patientPhone.trim()}${patientNotes.trim() ? "\nNotes: " + patientNotes.trim() : ""}`;
-
-    closeBooking();
-    window.open("https://wa.me/919846918974?text=" + encodeURIComponent(msg), "_blank");
+    setRedirectType("wa");
   };
 
   const doCB = () => {
     if (!validateDetails()) return;
-    closeBooking();
-    showSuccessToast();
+    setRedirectType("cb");
   };
 
   let summaryDateObj = null;
@@ -618,49 +653,6 @@ export default function BookingModal() {
             {/* STEP 3 */}
             {curStep === 3 && (
               <div id="s3">
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "10px",
-                    background: "#fffbeb",
-                    border: "1.5px solid #f59e0b",
-                    borderRadius: "var(--radius-md)",
-                    padding: "10px 12px",
-                    marginBottom: "12px",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#d97706"
-                    strokeWidth="2.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "2px" }}
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="12" x2="12" y2="16" />
-                    <line x1="12" y1="8" x2="12.01" y2="8" />
-                  </svg>
-                  <p
-                    style={{
-                      fontSize: "12px",
-                      lineHeight: "1.45",
-                      color: "#78350f",
-                      margin: 0,
-                      fontWeight: 500,
-                      fontFamily: "var(--font-body)",
-                    }}
-                  >
-                    This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
-                  </p>
-                </div>
-
                 <label className="fld-lbl" htmlFor="nm-in">
                   Full name
                 </label>
@@ -861,6 +853,144 @@ export default function BookingModal() {
             )}
           </div>
         </div>
+        {redirectType && (
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(255, 255, 255, 0.98)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              zIndex: 9999,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "24px",
+              textAlign: "center",
+            }}
+          >
+            <style>{`
+              @keyframes shrink-progress {
+                from { width: 100%; }
+                to { width: 0%; }
+              }
+              @keyframes pulse-warning {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+                70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+              }
+            `}</style>
+            <div
+              style={{
+                background: "#fffbeb",
+                border: "2px solid #f59e0b",
+                borderRadius: "var(--radius-lg)",
+                padding: "24px 20px",
+                maxWidth: "380px",
+                boxShadow: "0 10px 25px rgba(245, 158, 11, 0.15)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <div
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  background: "#fef3c7",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  animation: "pulse-warning 2s infinite ease-in-out",
+                }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#d97706"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="12" x2="12" y2="16" />
+                  <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    color: "#78350f",
+                    margin: 0,
+                    fontFamily: "var(--font-heading)",
+                  }}
+                >
+                  Booking Notice
+                </h3>
+                <p
+                  style={{
+                    fontSize: "13px",
+                    lineHeight: "1.5",
+                    color: "#92400e",
+                    margin: 0,
+                    fontWeight: 500,
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
+                </p>
+              </div>
+
+              <div style={{ width: "100%", marginTop: "8px" }}>
+                <div
+                  style={{
+                    height: "4px",
+                    width: "100%",
+                    background: "#fef3c7",
+                    borderRadius: "2px",
+                    overflow: "hidden",
+                  }}
+                >
+                  <div
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      background: "#f59e0b",
+                      borderRadius: "2px",
+                      animation: "shrink-progress 5s linear forwards",
+                    }}
+                  ></div>
+                </div>
+                <p
+                  style={{
+                    fontSize: "11px",
+                    color: "#b45309",
+                    fontWeight: 600,
+                    marginTop: "8px",
+                    margin: "8px 0 0 0",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {redirectType === "wa"
+                    ? `Opening WhatsApp in ${redirectCountdown}s...`
+                    : `Submitting request in ${redirectCountdown}s...`}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
