@@ -354,11 +354,17 @@ export default function PremiumBeforeAfter() {
           </div>
         </div>
 
-        {/* Mobile slide indicator dots */}
-        <div className="mobile-dots">
-          <span className={`dot ${activeIndex === 0 ? "active" : ""}`} onClick={() => scrollToItem(0)} />
-          <span className={`dot ${activeIndex === 1 ? "active" : ""}`} onClick={() => scrollToItem(1)} />
-          <span className={`dot ${activeIndex === 2 ? "active" : ""}`} onClick={() => scrollToItem(2)} />
+        {/* Mobile slide indicator slider */}
+        <div className="mobile-slider-container">
+          <input
+            type="range"
+            min={0}
+            max={2}
+            value={activeIndex}
+            onChange={(e) => scrollToItem(parseInt(e.target.value))}
+            className="mobile-slider"
+            aria-label="Navigate before and after transformations"
+          />
         </div>
 
         <style jsx>{`
@@ -375,25 +381,42 @@ export default function PremiumBeforeAfter() {
             display: flex;
             justify-content: center;
           }
-          .mobile-dots {
+          .mobile-slider-container {
             display: none;
             justify-content: center;
-            gap: 0.5rem;
+            align-items: center;
+            width: 100%;
             margin-top: 1.5rem;
+            padding: 0 20px;
           }
-          .dot {
-            width: 8px;
+          .mobile-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 120px;
+            height: 4px;
+            background: var(--color-border);
+            border-radius: 2px;
+            outline: none;
+            margin: 0 auto;
+          }
+          .mobile-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
             height: 8px;
-            border-radius: 50%;
-            background-color: var(--color-text-muted);
-            opacity: 0.4;
+            border-radius: 4px;
+            background: var(--color-primary);
             cursor: pointer;
-            transition: all var(--duration-fast);
+            transition: background var(--duration-fast);
           }
-          .dot.active {
-            background-color: var(--color-primary);
-            opacity: 1;
-            transform: scale(1.2);
+          .mobile-slider::-moz-range-thumb {
+            width: 24px;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--color-primary);
+            cursor: pointer;
+            border: none;
+            transition: background var(--duration-fast);
           }
           @media (max-width: 960px) {
             .cases-container {
@@ -420,7 +443,7 @@ export default function PremiumBeforeAfter() {
               width: min(70vw, 260px);
               scroll-snap-align: start;
             }
-            .mobile-dots {
+            .mobile-slider-container {
               display: flex;
             }
           }
@@ -445,7 +468,7 @@ export default function PremiumBeforeAfter() {
               min-width: 224px;
               scroll-snap-align: center;
             }
-            .mobile-dots {
+            .mobile-slider-container {
               margin-top: 30px;
             }
           }
