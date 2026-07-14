@@ -99,7 +99,7 @@ function ComparisonSlider({ label, beforeSrc, afterSrc, ariaLabel }: ComparisonS
   }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center", width: "280px", maxWidth: "100%" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "1rem", alignItems: "center", width: "100%" }}>
       {/* Outer comparison slider container */}
       <div
         ref={containerRef}
@@ -117,7 +117,6 @@ function ComparisonSlider({ label, beforeSrc, afterSrc, ariaLabel }: ComparisonS
         style={{
           position: "relative",
           width: "100%",
-          aspectRatio: "1792 / 2400",
           borderRadius: "var(--radius-lg)",
           overflow: "hidden",
           userSelect: "none",
@@ -129,6 +128,7 @@ function ComparisonSlider({ label, beforeSrc, afterSrc, ariaLabel }: ComparisonS
         {/* Style injection for responsive handle, custom classes and focus outlines */}
         <style jsx>{`
           .slider-container {
+            aspect-ratio: 3 / 4;
             box-shadow: var(--shadow-card);
             border: 1px solid var(--color-border-light);
             transition: box-shadow var(--duration-fast);
@@ -253,18 +253,31 @@ export default function PremiumBeforeAfter() {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Measures the real rendered width of a card + gap, since item width is now
+  // responsive (min(70vw, 260px) on mobile) instead of a fixed 280px.
+  const getItemStep = () => {
+    const container = containerRef.current;
+    if (!container) return 280 + 24;
+    const item = container.querySelector<HTMLElement>(".cases-item");
+    if (!item) return 280 + 24;
+    const gap = parseFloat(window.getComputedStyle(container).columnGap || "24") || 24;
+    return item.offsetWidth + gap;
+  };
+
   const handleScroll = () => {
     if (!containerRef.current) return;
     const scrollLeft = containerRef.current.scrollLeft;
-    const index = Math.round(scrollLeft / (280 + 24)); // 280px item width + 24px gap (1.5rem)
+    const step = getItemStep();
+    const index = Math.round(scrollLeft / step);
     const clampedIndex = Math.max(0, Math.min(2, index));
     setActiveIndex((prev) => (prev !== clampedIndex ? clampedIndex : prev));
   };
 
   const scrollToItem = (index: number) => {
     if (!containerRef.current) return;
+    const step = getItemStep();
     containerRef.current.scrollTo({
-      left: index * (280 + 24),
+      left: index * step,
       behavior: "smooth",
     });
   };
@@ -386,13 +399,14 @@ export default function PremiumBeforeAfter() {
             .cases-container {
               display: flex;
               flex-direction: row;
+              justify-content: flex-start;
               overflow-x: auto;
               scroll-snap-type: x mandatory;
               gap: 1.5rem;
-              padding: 0.5rem 1.5rem 1.5rem;
-              width: calc(100% + 24px);
-              margin-left: -12px;
-              margin-right: -12px;
+              padding: 0.5rem var(--page-padding) 1.5rem;
+              width: calc(100% + (var(--page-padding) * 2));
+              margin-left: calc(var(--page-padding) * -1);
+              margin-right: calc(var(--page-padding) * -1);
               scroll-behavior: smooth;
               -webkit-overflow-scrolling: touch;
               scrollbar-width: none; /* Firefox */
@@ -402,11 +416,37 @@ export default function PremiumBeforeAfter() {
               display: none; /* Safari and Chrome */
             }
             .cases-item {
-              flex: 0 0 280px;
+              flex: 0 0 auto;
+              width: min(70vw, 260px);
               scroll-snap-align: start;
             }
             .mobile-dots {
               display: flex;
+            }
+          }
+          @media (max-width: 767px) {
+            #before-after {
+              padding-bottom: 36px !important;
+            }
+            .gallery-header {
+              margin-bottom: 24px !important;
+            }
+            .cases-container {
+              gap: 16px;
+              padding: 0.5rem 20px 1.5rem;
+              width: calc(100% + 40px);
+              margin-left: -20px;
+              margin-right: -20px;
+            }
+            .cases-item {
+              flex: 0 0 auto;
+              width: 75vw;
+              max-width: 238px;
+              min-width: 224px;
+              scroll-snap-align: center;
+            }
+            .mobile-dots {
+              margin-top: 30px;
             }
           }
         `}</style>
