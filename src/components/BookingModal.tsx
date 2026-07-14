@@ -357,7 +357,195 @@ export default function BookingModal() {
         className="modal-container"
         style={{ maxWidth: "460px", padding: 0, overflow: "hidden", border: "none" }}
       >
-        <div className="wizard-card-embedded">
+        {redirectType ? (
+          <div
+            style={{
+              background: "#fffbeb",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "28px 24px 24px",
+              textAlign: "center",
+              boxSizing: "border-box",
+              width: "100%",
+            }}
+          >
+            <style>{`
+              @keyframes shrink-progress {
+                from { width: 100%; }
+                to { width: 0%; }
+              }
+              @keyframes pulse-warning {
+                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+                70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+              }
+            `}</style>
+            
+            {/* Pulsing Warning Icon */}
+            <div
+              style={{
+                width: "56px",
+                height: "56px",
+                borderRadius: "50%",
+                background: "#fef3c7",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                animation: "pulse-warning 2s infinite ease-in-out",
+                marginBottom: "8px",
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#d97706"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="12" x2="12" y2="16" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+            </div>
+
+            {/* Notice Text */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px", maxWidth: "360px", marginBottom: "20px" }}>
+              <h3
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 700,
+                  color: "#78350f",
+                  margin: 0,
+                  fontFamily: "var(--font-heading)",
+                }}
+              >
+                Booking Notice
+              </h3>
+              <p
+                style={{
+                  fontSize: "14px",
+                  lineHeight: "1.5",
+                  color: "#92400e",
+                  margin: 0,
+                  fontWeight: 500,
+                  fontFamily: "var(--font-body)",
+                }}
+              >
+                This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
+              </p>
+            </div>
+
+            {/* Progress Bar & Countdown */}
+            <div style={{ width: "100%", maxWidth: "320px", marginBottom: "24px" }}>
+              <div
+                style={{
+                  height: "5px",
+                  width: "100%",
+                  background: "#fef3c7",
+                  borderRadius: "3px",
+                  overflow: "hidden",
+                }}
+              >
+                <div
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    background: "#f59e0b",
+                    borderRadius: "3px",
+                    animation: "shrink-progress 5s linear forwards",
+                  }}
+                ></div>
+              </div>
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#b45309",
+                  fontWeight: 600,
+                  marginTop: "10px",
+                  margin: "10px 0 0 0",
+                  fontFamily: "var(--font-body)",
+                }}
+              >
+                {redirectType === "wa"
+                  ? `Opening WhatsApp in ${redirectCountdown}s...`
+                  : `Submitting request in ${redirectCountdown}s...`}
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%", maxWidth: "320px" }}>
+              {redirectType === "wa" && (
+                <button
+                  onClick={() => executeRedirect("wa")}
+                  style={{
+                    background: "#25D366",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "var(--radius-md)",
+                    padding: "12px 20px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "8px",
+                    boxShadow: "0 4px 12px rgba(37, 211, 102, 0.2)",
+                    fontFamily: "var(--font-body)",
+                    transition: "background-color 0.2s, transform 0.1s active",
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.001-2.63-1.019-5.101-2.872-6.958-1.85-1.856-4.322-2.874-6.941-2.875-5.44.001-9.866 4.417-9.87 9.851-.001 1.776.477 3.51 1.385 5.048L2.013 21.75l6.096-1.597z" />
+                  </svg>
+                  Open WhatsApp Now
+                </button>
+              )}
+              {redirectType === "cb" && (
+                <button
+                  onClick={() => executeRedirect("cb")}
+                  style={{
+                    background: "var(--color-primary)",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "var(--radius-md)",
+                    padding: "12px 20px",
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  Submit Callback Request Now
+                </button>
+              )}
+              
+              <button
+                onClick={() => setRedirectType(null)}
+                style={{
+                  background: "transparent",
+                  color: "#b45309",
+                  border: "none",
+                  fontSize: "13px",
+                  fontWeight: 500,
+                  textDecoration: "underline",
+                  cursor: "pointer",
+                  padding: "4px 8px",
+                  fontFamily: "var(--font-body)",
+                }}
+              >
+                Cancel & Edit Details
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="wizard-card-embedded">
           <button className="modal-close" aria-label="Close modal" onClick={closeBooking}>
             &times;
           </button>
@@ -864,198 +1052,6 @@ export default function BookingModal() {
             )}
           </div>
         </div>
-        {redirectType && (
-          <div
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: "#fffbeb",
-              zIndex: 9999,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "32px 24px",
-              textAlign: "center",
-              boxSizing: "border-box",
-            }}
-          >
-            <style>{`
-              @keyframes shrink-progress {
-                from { width: 100%; }
-                to { width: 0%; }
-              }
-              @keyframes pulse-warning {
-                0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
-                70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
-                100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
-              }
-            `}</style>
-            
-            {/* Pulsing Warning Icon */}
-            <div
-              style={{
-                width: "56px",
-                height: "56px",
-                borderRadius: "50%",
-                background: "#fef3c7",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                animation: "pulse-warning 2s infinite ease-in-out",
-                marginBottom: "8px",
-              }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#d97706"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="12" x2="12" y2="16" />
-                <line x1="12" y1="8" x2="12.01" y2="8" />
-              </svg>
-            </div>
-
-            {/* Notice Text */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px", maxWidth: "360px", marginBottom: "20px" }}>
-              <h3
-                style={{
-                  fontSize: "18px",
-                  fontWeight: 700,
-                  color: "#78350f",
-                  margin: 0,
-                  fontFamily: "var(--font-heading)",
-                }}
-              >
-                Booking Notice
-              </h3>
-              <p
-                style={{
-                  fontSize: "14px",
-                  lineHeight: "1.5",
-                  color: "#92400e",
-                  margin: 0,
-                  fontWeight: 500,
-                  fontFamily: "var(--font-body)",
-                }}
-              >
-                This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
-              </p>
-            </div>
-
-            {/* Progress Bar & Countdown */}
-            <div style={{ width: "100%", maxWidth: "320px", marginBottom: "24px" }}>
-              <div
-                style={{
-                  height: "5px",
-                  width: "100%",
-                  background: "#fef3c7",
-                  borderRadius: "3px",
-                  overflow: "hidden",
-                }}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: "100%",
-                    background: "#f59e0b",
-                    borderRadius: "3px",
-                    animation: "shrink-progress 5s linear forwards",
-                  }}
-                ></div>
-              </div>
-              <p
-                style={{
-                  fontSize: "12px",
-                  color: "#b45309",
-                  fontWeight: 600,
-                  marginTop: "10px",
-                  margin: "10px 0 0 0",
-                  fontFamily: "var(--font-body)",
-                }}
-              >
-                {redirectType === "wa"
-                  ? `Opening WhatsApp in ${redirectCountdown}s...`
-                  : `Submitting request in ${redirectCountdown}s...`}
-              </p>
-            </div>
-
-            {/* Action Buttons */}
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%", maxWidth: "320px" }}>
-              {redirectType === "wa" && (
-                <button
-                  onClick={() => executeRedirect("wa")}
-                  style={{
-                    background: "#25D366",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "var(--radius-md)",
-                    padding: "12px 20px",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: "8px",
-                    boxShadow: "0 4px 12px rgba(37, 211, 102, 0.2)",
-                    fontFamily: "var(--font-body)",
-                    transition: "background-color 0.2s, transform 0.1s active",
-                  }}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.847.001-2.63-1.019-5.101-2.872-6.958-1.85-1.856-4.322-2.874-6.941-2.875-5.44.001-9.866 4.417-9.87 9.851-.001 1.776.477 3.51 1.385 5.048L2.013 21.75l6.096-1.597z" />
-                  </svg>
-                  Open WhatsApp Now
-                </button>
-              )}
-              {redirectType === "cb" && (
-                <button
-                  onClick={() => executeRedirect("cb")}
-                  style={{
-                    background: "var(--color-primary)",
-                    color: "white",
-                    border: "none",
-                    borderRadius: "var(--radius-md)",
-                    padding: "12px 20px",
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    cursor: "pointer",
-                    fontFamily: "var(--font-body)",
-                  }}
-                >
-                  Submit Callback Request Now
-                </button>
-              )}
-              
-              <button
-                onClick={() => setRedirectType(null)}
-                style={{
-                  background: "transparent",
-                  color: "#b45309",
-                  border: "none",
-                  fontSize: "13px",
-                  fontWeight: 500,
-                  textDecoration: "underline",
-                  cursor: "pointer",
-                  padding: "4px 8px",
-                  fontFamily: "var(--font-body)",
-                }}
-              >
-                Cancel & Edit Details
-              </button>
-            </div>
-          </div>
         )}
       </div>
     </div>
