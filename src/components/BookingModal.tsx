@@ -143,6 +143,14 @@ export default function BookingModal() {
     }
   }, [isBookingOpen, selectedDoctor, selectedService]);
 
+  // Scroll content to top on step change
+  useEffect(() => {
+    const el = document.getElementById("content");
+    if (el) {
+      el.scrollTop = 0;
+    }
+  }, [curStep]);
+
   if (!isBookingOpen) return null;
 
   // Calendar render helpers
@@ -593,12 +601,66 @@ export default function BookingModal() {
                     );
                   })}
                 </div>
+                <p
+                  style={{
+                    fontSize: "12px",
+                    lineHeight: "1.45",
+                    color: "var(--color-text-muted)",
+                    margin: "12px 0 0 0",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  Note: Selecting a time shows your preference only — it is not a guaranteed slot until confirmed by the doctor.
+                </p>
               </div>
             )}
 
             {/* STEP 3 */}
             {curStep === 3 && (
               <div id="s3">
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    background: "#fffbeb",
+                    border: "1.5px solid #f59e0b",
+                    borderRadius: "var(--radius-md)",
+                    padding: "10px 12px",
+                    marginBottom: "12px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#d97706"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ flexShrink: 0, marginTop: "2px" }}
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="12" x2="12" y2="16" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "1.45",
+                      color: "#78350f",
+                      margin: 0,
+                      fontWeight: 500,
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
+                  </p>
+                </div>
+
                 <label className="fld-lbl" htmlFor="nm-in">
                   Full name
                 </label>
@@ -748,50 +810,6 @@ export default function BookingModal() {
                       </p>
                     </div>
                   </div>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "10px",
-                    background: "#fffbeb",
-                    border: "1.5px solid #f59e0b",
-                    borderRadius: "var(--radius-md)",
-                    padding: "10px 12px",
-                    marginTop: "12px",
-                    marginBottom: "6px",
-                    alignItems: "flex-start",
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#d97706"
-                    strokeWidth="2.25"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ flexShrink: 0, marginTop: "2px" }}
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="12" x2="12" y2="16" />
-                    <line x1="12" y1="8" x2="12.01" y2="8" />
-                  </svg>
-                  <p
-                    style={{
-                      fontSize: "12px",
-                      lineHeight: "1.45",
-                      color: "#78350f",
-                      margin: 0,
-                      fontWeight: 500,
-                      fontFamily: "var(--font-body)",
-                    }}
-                  >
-                    This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
-                  </p>
                 </div>
               </div>
             )}

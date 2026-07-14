@@ -2196,6 +2196,16 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+@media (max-width: 768px) {
+  .toast-notification {
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    left: var(--space-lg);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--radius-md);
+  }
+}
+
 .toast-notification.active {
   transform: translateY(0);
   opacity: 1;

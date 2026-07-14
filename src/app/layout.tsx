@@ -285,7 +285,7 @@ const jsonLd = {
           "name": "Are dental implants safe?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Dental implants at Park Dental Clinic are placed by Dr. Monish, a prosthodontist and implant surgeon. The clinic uses modern digital imaging for precise placement and follows strict sterilization protocols aligned with CDC and DCI guidelines."
+            "text": "Yes. Dental implants at Park Dental Clinic are placed by Dr. Monish, an implant surgeon. The clinic uses modern digital imaging for precise placement and follows strict sterilization protocols aligned with CDC and DCI guidelines."
           }
         }
       ]

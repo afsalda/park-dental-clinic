@@ -13,8 +13,8 @@ export default function SuccessToast() {
     >
       <div className="toast-icon">✓</div>
       <div className="toast-content">
-        <h4 className="toast-title">Booking Request Sent</h4>
-        <p className="toast-desc">Doctor will call or text to confirm.</p>
+        <h4 className="toast-title">Request Submitted</h4>
+        <p className="toast-desc">This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.</p>
       </div>
     </div>
   );

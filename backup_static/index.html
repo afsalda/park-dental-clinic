@@ -749,9 +749,18 @@
             </div>
             <span class="sec-lbl">Time preference</span>
             <div id="time-grid"></div>
+            <p style="font-size: 12px; line-height: 1.45; color: var(--color-text-muted); margin: 12px 0 0 0; font-family: var(--font-body);">
+              Note: Selecting a time shows your preference only — it is not a guaranteed slot until confirmed by the doctor.
+            </p>
           </div>
 
           <div id="s3" style="display: none;">
+            <div style="display: flex; gap: 10px; background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: var(--radius-md); padding: 10px 12px; margin-bottom: 12px; align-items: start;">
+              <i class="ti ti-alert-circle" aria-hidden="true" style="font-size: 18px; color: #d97706; flex-shrink: 0; margin-top: 2px;"></i>
+              <p style="font-size: 12px; line-height: 1.45; color: #78350f; margin: 0; font-weight: 500; font-family: var(--font-body);">
+                This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
+              </p>
+            </div>
             
             <label class="fld-lbl" for="nm-in">Full name</label>
             <input type="text" id="nm-in" placeholder="e.g. Rahul Nair" autocomplete="name" style="margin-bottom: 12px;">
@@ -788,13 +797,6 @@
                   <p id="sm-dt" style="font-size: 13.5px; font-weight: 600; color: var(--color-text); margin: 2px 0 0 0; font-family: var(--font-heading);"></p>
                 </div>
               </div>
-            </div>
-
-            <div style="display: flex; gap: 10px; background: #fffbeb; border: 1.5px solid #f59e0b; border-radius: var(--radius-md); padding: 10px 12px; margin-top: 12px; margin-bottom: 6px; align-items: start;">
-              <i class="ti ti-alert-circle" aria-hidden="true" style="font-size: 18px; color: #d97706; flex-shrink: 0; margin-top: 2px;"></i>
-              <p style="font-size: 12px; line-height: 1.45; color: #78350f; margin: 0; font-weight: 500; font-family: var(--font-body);">
-                This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
-              </p>
             </div>
           </div>
         </div>
@@ -853,8 +855,8 @@
   <div id="success-toast" class="toast-notification" aria-live="polite">
     <div class="toast-icon">✓</div>
     <div class="toast-content">
-      <h4 class="toast-title">Booking Request Sent</h4>
-      <p class="toast-desc">Doctor will call or text to confirm.</p>
+      <h4 class="toast-title">Request Submitted</h4>
+      <p class="toast-desc">This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.</p>
     </div>
   </div>
 
