@@ -74,6 +74,58 @@ export default function BookingModal() {
   const [calMonth, setCalMonth] = useState(new Date().getMonth());
   const [calYear, setCalYear] = useState(new Date().getFullYear());
 
+  const isSlotExpired = (slotText: string) => {
+    if (!bkDate) return false;
+
+    const [year, month, day] = bkDate.split("-").map(Number);
+    const selDate = new Date(year, month - 1, day);
+    selDate.setHours(0, 0, 0, 0);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selDate < today) return true;
+    if (selDate > today) return false;
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+
+    let startHour = 0;
+    let startMinute = 0;
+
+    if (slotText.includes("10:00 AM")) {
+      startHour = 10;
+      startMinute = 0;
+    } else if (slotText.includes("12:00 PM")) {
+      startHour = 12;
+      startMinute = 0;
+    } else if (slotText.includes("2:00 PM")) {
+      startHour = 14;
+      startMinute = 0;
+    } else if (slotText.includes("5:00 PM")) {
+      startHour = 17;
+      startMinute = 0;
+    } else {
+      return false;
+    }
+
+    if (currentHour > startHour) return true;
+    if (currentHour === startHour && currentMinute > startMinute) return true;
+
+    return false;
+  };
+
+  // Clear selected time if it becomes expired due to date change
+  useEffect(() => {
+    if (bkDate && bkTime) {
+      if (isSlotExpired(bkTime)) {
+        setBkTime("");
+      }
+    }
+  }, [bkDate, bkTime]);
+
+
   // Synchronize when context pre-selection changes
   useEffect(() => {
     if (isBookingOpen) {
@@ -122,7 +174,10 @@ export default function BookingModal() {
     }
     setCalMonth(date.getMonth());
     setCalYear(date.getFullYear());
-    const formatted = date.toISOString().split("T")[0];
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const formatted = `${year}-${month}-${day}`;
     setBkDate(formatted);
   };
 
@@ -134,8 +189,10 @@ export default function BookingModal() {
   const todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0);
 
-  const selectedDateObject = bkDate ? new Date(bkDate + " 00:00") : null;
-  if (selectedDateObject) {
+  let selectedDateObject = null;
+  if (bkDate) {
+    const [year, month, day] = bkDate.split("-").map(Number);
+    selectedDateObject = new Date(year, month - 1, day);
     selectedDateObject.setHours(0, 0, 0, 0);
   }
 
@@ -163,6 +220,11 @@ export default function BookingModal() {
         alert("Please select a preferred time slot.");
         return;
       }
+      if (isSlotExpired(bkTime)) {
+        alert("The selected time slot has already expired. Please select another slot.");
+        setBkTime("");
+        return;
+      }
       setCurStep(3);
     }
   };
@@ -187,8 +249,13 @@ export default function BookingModal() {
 
   const doWA = () => {
     if (!validateDetails()) return;
-    const d = bkDate
-      ? new Date(bkDate + " 00:00").toLocaleDateString("en-IN", {
+    let dateObj = null;
+    if (bkDate) {
+      const [year, month, day] = bkDate.split("-").map(Number);
+      dateObj = new Date(year, month - 1, day);
+    }
+    const d = dateObj
+      ? dateObj.toLocaleDateString("en-IN", {
           weekday: "long",
           day: "numeric",
           month: "long",
@@ -207,8 +274,13 @@ export default function BookingModal() {
     showSuccessToast();
   };
 
-  const summaryDateString = bkDate
-    ? new Date(bkDate + " 00:00").toLocaleDateString("en-IN", {
+  let summaryDateObj = null;
+  if (bkDate) {
+    const [year, month, day] = bkDate.split("-").map(Number);
+    summaryDateObj = new Date(year, month - 1, day);
+  }
+  const summaryDateString = summaryDateObj
+    ? summaryDateObj.toLocaleDateString("en-IN", {
         weekday: "short",
         day: "numeric",
         month: "short",
@@ -503,16 +575,23 @@ export default function BookingModal() {
                 </div>
                 <span className="sec-lbl">Time preference</span>
                 <div id="time-grid">
-                  {times.map((t) => (
-                    <div
-                      key={t.t}
-                      className={`t-slot ${bkTime === t.t ? "sel" : ""}`}
-                      onClick={() => setBkTime(t.t)}
-                    >
-                      <span className="t-main">{t.t}</span>
-                      <span className="t-lbl">{t.l}</span>
-                    </div>
-                  ))}
+                  {times.map((t) => {
+                    const expired = isSlotExpired(t.t);
+                    return (
+                      <div
+                        key={t.t}
+                        className={`t-slot ${bkTime === t.t ? "sel" : ""} ${expired ? "disabled" : ""}`}
+                        onClick={() => {
+                          if (!expired) {
+                            setBkTime(t.t);
+                          }
+                        }}
+                      >
+                        <span className="t-main">{t.t}</span>
+                        <span className="t-lbl">{t.l}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -669,6 +748,50 @@ export default function BookingModal() {
                       </p>
                     </div>
                   </div>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: "10px",
+                    background: "#fffbeb",
+                    border: "1.5px solid #f59e0b",
+                    borderRadius: "var(--radius-md)",
+                    padding: "10px 12px",
+                    marginTop: "12px",
+                    marginBottom: "6px",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#d97706"
+                    strokeWidth="2.25"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ flexShrink: 0, marginTop: "2px" }}
+                    aria-hidden="true"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="12" x2="12" y2="16" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                  </svg>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      lineHeight: "1.45",
+                      color: "#78350f",
+                      margin: 0,
+                      fontWeight: 500,
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    This is a booking request, not a confirmed slot. Your appointment is confirmed only after the doctor calls or texts you.
+                  </p>
                 </div>
               </div>
             )}

@@ -12,6 +12,7 @@ import DoctorModal from "../components/DoctorModal";
 import PrivacyModal from "../components/PrivacyModal";
 import SuccessToast from "../components/SuccessToast";
 import ScrollObserver from "../components/ScrollObserver";
+import PremiumBeforeAfter from "../components/PremiumBeforeAfter";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <Services />
         <Reviews />
         <Team />
+        <PremiumBeforeAfter />
         <HomeFAQ />
         <CtaSection />
         <Footer />

@@ -35,9 +35,9 @@ const homeFaqs = [
       "Park Dental Clinic offers dental implants (single tooth, full-arch, All-on-4, immediate-load), cosmetic dentistry (veneers, smile makeovers, bonding), root canal therapy with rotary endodontics, teeth whitening (laser and take-home trays), dental braces and clear aligners, and routine check-ups and hygiene care.",
   },
   {
-    question: "Are dental implants safe at Park Dental Clinic?",
+    question: "Are dental implants safe?",
     answer:
-      "Yes. Dental implants at Park Dental Clinic are placed by Dr. Layana Theodore, a prosthodontist and implant surgeon. The clinic uses modern digital imaging for precise placement and follows strict sterilization protocols aligned with CDC and DCI guidelines.",
+      "Yes. Dental implants at Park Dental Clinic are placed by Dr. Monish, a prosthodontist and implant surgeon. The clinic uses modern digital imaging for precise placement and follows strict sterilization protocols aligned with CDC and DCI guidelines.",
   },
 ];
 

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useBooking } from "../context/BookingContext";
 
 export default function ClinicStats() {
@@ -64,8 +65,8 @@ export default function ClinicStats() {
                   stroke="currentColor"
                   strokeWidth="2.5"
                 />
-                <path d="M8 28h48" stroke="currentColor" stroke-width="2.5" />
-                <circle cx="32" cy="12" r="6" stroke="currentColor" stroke-width="2.5" />
+                <path d="M8 28h48" stroke="currentColor" strokeWidth="2.5" />
+                <circle cx="32" cy="12" r="6" stroke="currentColor" strokeWidth="2.5" />
                 <path
                   d="M26 12l4 4 8-8"
                   stroke="currentColor"
@@ -123,29 +124,36 @@ export default function ClinicStats() {
             style={{
               marginBottom: "var(--space-xl)",
               display: "flex",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              gap: "var(--space-xs)",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "flex-end",
+              flexWrap: "wrap",
+              gap: "var(--space-md)",
             }}
           >
-            <span className="badge badge-primary">✦ Tour Our Space</span>
-            <h3
-              className="text-h2"
-              style={{
-                margin: 0,
-                fontFamily: "var(--font-heading)",
-                fontWeight: 700,
-                color: "var(--color-text)",
-              }}
-            >
-              Inside Our Clinic
-            </h3>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "var(--space-xs)" }}>
+              <span className="badge badge-primary">✦ Tour Our Space</span>
+              <h3
+                className="text-h2"
+                style={{
+                  margin: 0,
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 700,
+                  color: "var(--color-text)",
+                }}
+              >
+                Inside Our Clinic
+              </h3>
+            </div>
+            <Link href="/gallery" className="btn btn-secondary" style={{ padding: "10px 20px", fontSize: "0.875rem" }}>
+              See All Photos
+            </Link>
           </div>
           <div className="gallery-track">
             <div className="gallery-item">
               <img
-                src="/images/gallery-1.webp"
-                alt="Modern dental consultation room at Park Dental Clinic"
+                src="/images/JAI04274.JPG.webp"
+                alt="Clinic entrance and reception desk"
                 width={800}
                 height={533}
                 loading="lazy"
@@ -153,8 +161,8 @@ export default function ClinicStats() {
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-2.webp"
-                alt="State-of-the-art dental treatment operatory chair"
+                src="/images/JAI04158.JPG.webp"
+                alt="Modern dental operatory treatment chair"
                 width={800}
                 height={533}
                 loading="lazy"
@@ -162,8 +170,8 @@ export default function ClinicStats() {
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-3.webp"
-                alt="Comfortable clinic reception and waiting lounge area"
+                src="/images/JAI04168.JPG.webp"
+                alt="Advanced dental treatment equipment"
                 width={800}
                 height={533}
                 loading="lazy"
@@ -171,8 +179,8 @@ export default function ClinicStats() {
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-4.webp"
-                alt="Advanced sterile clinical tools and diagnostic equipment"
+                src="/images/JAI04233.JPG.webp"
+                alt="Clinical treatment room setup"
                 width={800}
                 height={533}
                 loading="lazy"
@@ -180,8 +188,44 @@ export default function ClinicStats() {
             </div>
             <div className="gallery-item">
               <img
-                src="/images/gallery-5.webp"
-                alt="Modern building exterior facade of Park Dental Clinic"
+                src="/images/JAI04180.JPG.webp"
+                alt="Dedicated dental specialist team room"
+                width={800}
+                height={533}
+                loading="lazy"
+              />
+            </div>
+            <div className="gallery-item">
+              <img
+                src="/images/JAI04145.JPG.webp"
+                alt="Sterilized instruments and operating room"
+                width={800}
+                height={533}
+                loading="lazy"
+              />
+            </div>
+            <div className="gallery-item">
+              <img
+                src="/images/JAI04125.JPG.webp"
+                alt="Patient treatment consult room"
+                width={800}
+                height={533}
+                loading="lazy"
+              />
+            </div>
+            <div className="gallery-item">
+              <img
+                src="/images/JAI04131.JPG.webp"
+                alt="Clinical diagnostic station"
+                width={800}
+                height={533}
+                loading="lazy"
+              />
+            </div>
+            <div className="gallery-item">
+              <img
+                src="/images/JAI04305.JPG.webp"
+                alt="Dentist consulting room at Park Dental"
                 width={800}
                 height={533}
                 loading="lazy"

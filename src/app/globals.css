@@ -3123,6 +3123,25 @@ h1, h2, h3, h4, h5, h6 {
   cursor: not-allowed;
 }
 
+.t-slot.disabled {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  background-color: var(--color-border-light) !important;
+  border-color: var(--color-border) !important;
+  transform: none !important;
+}
+
+.t-slot.disabled:hover {
+  background-color: var(--color-border-light) !important;
+  border-color: var(--color-border) !important;
+  transform: none !important;
+}
+
+.t-slot.disabled .t-main,
+.t-slot.disabled .t-lbl {
+  color: var(--color-text-muted) !important;
+}
+
 .cal-day-cell.empty {
   cursor: default;
 }
@@ -3677,6 +3696,25 @@ textarea {
   color: var(--text-muted);
   opacity: 0.35;
   cursor: not-allowed;
+}
+
+.t-slot.disabled {
+  opacity: 0.35;
+  cursor: not-allowed !important;
+  background-color: var(--surface-2) !important;
+  border-color: var(--border) !important;
+  transform: none !important;
+}
+
+.t-slot.disabled:hover {
+  background-color: var(--surface-2) !important;
+  border-color: var(--border) !important;
+  transform: none !important;
+}
+
+.t-slot.disabled .t-main,
+.t-slot.disabled .t-lbl {
+  color: var(--text-muted) !important;
 }
 
 .cal-day-cell.empty {
